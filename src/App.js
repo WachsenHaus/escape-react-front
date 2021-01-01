@@ -4,6 +4,7 @@ import "bootswatch/dist/darkly/bootstrap.css";
 import {
   Button,
   Collapse,
+  Container,
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
@@ -25,33 +26,32 @@ function App() {
   return (
     <>
       <Navbar className="navbar-padding" color="dark" dark expand="lg">
-        <NavbarBrand href="/">reactstrap</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav
-            className="navbar navbar-expand-lg navbar-dark bg-dark navbar-padding"
-            navbar
-          >
-            <NavItem>
-              <NavLink href="/components/">Components</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-            </NavItem>
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                Options
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>Option 1</DropdownItem>
-                <DropdownItem>Option 2</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>Reset</DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
-          </Nav>
-          <NavbarText>Simple Text</NavbarText>
-        </Collapse>
+        <Container>
+          <NavbarBrand href="/">reactstrap</NavbarBrand>
+          <NavbarToggler onClick={toggle} />
+          <Collapse isOpen={isOpen} navbar>
+            <Nav className="ml-auto mr-auto" navbar>
+              <NavItem className="ml-3 mr-3">
+                <NavLink href="/components/">Components</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+              </NavItem>
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  Options
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem>Option 1</DropdownItem>
+                  <DropdownItem>Option 2</DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>Reset</DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+            </Nav>
+            <NavbarText>Simple Text</NavbarText>
+          </Collapse>
+        </Container>
       </Navbar>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark navbar-padding">
         <div className="container">
