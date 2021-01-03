@@ -53,6 +53,7 @@ function App() {
           </Collapse>
         </Container>
       </Navbar>
+      
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark navbar-padding">
         <div className="container">
           <a className="navbar-brand" href="/home.do">
