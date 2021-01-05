@@ -1,0 +1,28 @@
+.myBox {
+  widows: 250px;
+  height: 250px;
+  background-color: #fff;
+  border-radius: 30px;
+}
+.branchStore {
+  background-color: #530101e3;
+  border: 1px solid black;
+  color: #fff;
+}
+.branchStore:hover {
+  background-color: rgba(0, 0, 0, 0.411);
+  transition: background-color 0.4s linear;
+}
+.branchStore h5 {
+  color: #fff;
+}
+.branchStore a {
+  padding: 5px;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  background-color: black;
+  color: #fff;
+}
+.branchStore div a {
+  margin: 0;
+}

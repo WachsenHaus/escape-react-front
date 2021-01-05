@@ -6,6 +6,10 @@ import EscapeNav from "./components/nav/nav.jsx";
 import styles from "./app.module.css";
 import EscapeInfo from "./components/info/info";
 import EscapeTheme from "./components/theme/theme.jsx";
+import EscapeHeader from "./components/header/header.jsx";
+import EscapeStoreIntro from "./components/intro/storeIntro.jsx";
+import EscapeCaution from "./components/caution/caution.jsx";
+import EscapeFooter from "./components/footer/footer.jsx";
 
 function App() {
   return (
@@ -15,6 +19,11 @@ function App() {
           <EscapeNav />
         </Route>
         <Switch>
+          <Route exact path="/">
+            <EscapeHeader />
+            <EscapeStoreIntro />
+            <EscapeCaution />
+          </Route>
           <Route exact path="/info">
             <EscapeInfo />
           </Route>
@@ -37,6 +46,9 @@ function App() {
             <EscapeInfo />
           </Route>
         </Switch>
+        <Route path="/">
+          <EscapeFooter />
+        </Route>
       </BrowserRouter>
     </div>
   );

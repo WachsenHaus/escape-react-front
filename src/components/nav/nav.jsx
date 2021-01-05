@@ -1,68 +1,53 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  Collapse,
-  Container,
-  Nav,
-  Navbar,
-  NavbarBrand,
-  NavbarToggler,
-  NavItem,
-  NavLink,
-} from "reactstrap";
+import { Button, Container, Nav, Navbar, NavItem } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
 const EscapeNav = (props) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isBrandClick, setIsBrandClick] = useState(false);
 
-  const toggle = () => setIsOpen(!isOpen);
-
+  const clickBrandButton = () => {
+    setIsBrandClick(false);
+  };
   return (
     <>
-      <Navbar className="navbar-padding" color="dark" dark expand="lg">
+      <Navbar
+        className="navbar-padding"
+        collapseOnSelect
+        expand="lg"
+        bg="dark"
+        variant="dark"
+      >
         <Container>
-          <NavbarBrand tag={Link} to="/">
-            Choi Escape
-          </NavbarBrand>
-          <NavbarToggler onClick={toggle} />
-          <Collapse isOpen={isOpen} navbar>
-            <Nav className="ml-auto mr-auto" navbar>
-              <NavItem className="ml-3 mr-3">
-                <NavLink tag={Link} to="/info">
-                  Escape
-                </NavLink>
-              </NavItem>
-              <NavItem className="ml-3 mr-3">
-                <NavLink tag={Link} to="/theme">
-                  테마
-                </NavLink>
-              </NavItem>
-              <NavItem className="ml-3 mr-3">
-                <NavLink tag={Link} to="/reservation">
-                  예약하기
-                </NavLink>
-              </NavItem>
-              <NavItem className="ml-3 mr-3">
-                <NavLink tag={Link} to="/confirm">
-                  예약확인/취소
-                </NavLink>
-              </NavItem>
-              <NavItem className="ml-3 mr-3">
-                <NavLink tag={Link} to="/notice">
-                  공지/이벤트
-                </NavLink>
-              </NavItem>
-              <NavItem className="ml-3 mr-3">
-                <NavLink tag={Link} to="/mapinfo">
-                  오시는길
-                </NavLink>
-              </NavItem>
-              <NavItem className="ml-3 mr-3">
-                <NavLink tag={Link} to="/review">
-                  후기게시판
-                </NavLink>
-              </NavItem>
+          <LinkContainer className="ml-3 mr-3" to="/" onClick={clickBrandButton}>
+            <Navbar.Brand className="navbar-brand">Choi Escape</Navbar.Brand>
+          </LinkContainer>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="mr-auto ml-auto">
+              <LinkContainer className="ml-3 mr-3" to="/info">
+                <Nav.Link active={isBrandClick}>Escape</Nav.Link>
+              </LinkContainer>
+              <LinkContainer className="ml-3 mr-3" to="/theme">
+                <Nav.Link active={isBrandClick}>테마</Nav.Link>
+              </LinkContainer>
+              <LinkContainer className="ml-3 mr-3" to="/reservation">
+                <Nav.Link active={isBrandClick}>예약하기</Nav.Link>
+              </LinkContainer>
+              <LinkContainer className="ml-3 mr-3" to="/confirm">
+                <Nav.Link active={isBrandClick}>예약확인/취소</Nav.Link>
+              </LinkContainer>
+              <LinkContainer className="ml-3 mr-3" to="/notice">
+                <Nav.Link active={isBrandClick}>공지/이벤트</Nav.Link>
+              </LinkContainer>
+              <LinkContainer className="ml-3 mr-3" to="/mapinfo">
+                <Nav.Link active={isBrandClick}>오시는길</Nav.Link>
+              </LinkContainer>
+              <LinkContainer className="ml-3 mr-3" to="/review">
+                <Nav.Link active={isBrandClick}>후기게시판</Nav.Link>
+              </LinkContainer>
             </Nav>
-          </Collapse>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
     </>

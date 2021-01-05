@@ -1,0 +1,13 @@
+.height {
+  height: 500px;
+  margin: 0 auto;
+}
+#height {
+  height: 500px;
+  margin: 0 auto;
+}
+.caption {
+  transform: translateY(-60%);
+  bottom: 0;
+  top: 60%;
+}
