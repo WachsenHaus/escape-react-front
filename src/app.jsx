@@ -10,6 +10,7 @@ import EscapeHeader from "./components/header/header.jsx";
 import EscapeStoreIntro from "./components/intro/storeIntro.jsx";
 import EscapeCaution from "./components/caution/caution.jsx";
 import EscapeFooter from "./components/footer/footer.jsx";
+import EscapeIntro from "./components/intro/intro.jsx";
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
             <EscapeCaution />
           </Route>
           <Route exact path="/info">
-            <EscapeInfo />
+            <EscapeIntro />
           </Route>
           <Route exact path="/theme">
             <EscapeTheme />
