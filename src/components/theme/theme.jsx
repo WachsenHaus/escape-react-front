@@ -1,7 +1,62 @@
-import React from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import { Button, Container } from "react-bootstrap";
 import styles from "./theme.module.css";
+import EscapeThemeCard from "./themeCard";
+import {
+  allThema,
+  daejeonThema,
+  jeonjuThema,
+  incheonThema,
+  cheonhoThema,
+  daeguThema,
+  hongdaeThema,
+  suyuThema,
+  jamsilThema,
+  themaes,
+} from "./themeData.js";
 const EscapeTheme = (props) => {
+  const [branch, setBranch] = useState("all");
+  const [ownedThemes, setOwnedThemes] = useState([...themaes]);
+
+  const getBtnBranch = useCallback((branch = "all") => {
+    let selectedBranch;
+    switch (branch) {
+      case "hongdae":
+        selectedBranch = hongdaeThema.map((index) => themaes[index]);
+        break;
+      case "daugu":
+        selectedBranch = daeguThema.map((index) => themaes[index]);
+        break;
+      case "incheon":
+        selectedBranch = incheonThema.map((index) => themaes[index]);
+        break;
+      case "jeonju":
+        selectedBranch = jeonjuThema.map((index) => themaes[index]);
+        break;
+      case "jamsil":
+        selectedBranch = jamsilThema.map((index) => themaes[index]);
+        break;
+      case "daejeon":
+        selectedBranch = daejeonThema.map((index) => themaes[index]);
+        break;
+      case "cheonho":
+        selectedBranch = cheonhoThema.map((index) => themaes[index]);
+        break;
+      case "suyu":
+        selectedBranch = suyuThema.map((index) => themaes[index]);
+        break;
+      case "all":
+        console.log("all!!");
+        selectedBranch = allThema.map((index) => themaes[index]);
+        break;
+      default:
+        console.log("디폴트!");
+        selectedBranch = allThema.map((index) => themaes[index]);
+        break;
+    }
+    setOwnedThemes([...selectedBranch]);
+    setBranch(branch);
+  }, []);
   return (
     <>
       <Container>
@@ -20,33 +75,92 @@ const EscapeTheme = (props) => {
         </div>
         <div className="text-center branch__box">
           <h5>원하시는 지점을 눌러주세요.</h5>
-          <Button className={`${styles.margin}`} variant="warning">
+          <Button
+            onClick={() => {
+              getBtnBranch("all");
+            }}
+            className={`${styles.margin}`}
+            variant="warning"
+          >
             모든 테마
           </Button>
-          <Button className={`${styles.margin}`} variant="warning">
-            홍대전
+          <Button
+            onClick={() => {
+              getBtnBranch("hongdae");
+            }}
+            className={`${styles.margin}`}
+            variant="warning"
+          >
+            홍대점
           </Button>
-          <Button className={`${styles.margin}`} variant="warning">
+          <Button
+            onClick={() => {
+              getBtnBranch("suyu");
+            }}
+            className={`${styles.margin}`}
+            variant="warning"
+          >
             대구점
           </Button>
-          <Button className={`${styles.margin}`} variant="warning">
+          <Button
+            onClick={() => {
+              getBtnBranch("incheon");
+            }}
+            className={`${styles.margin}`}
+            variant="warning"
+          >
             인천구월점
           </Button>
-          <Button className={`${styles.margin}`} variant="warning">
+          <Button
+            onClick={() => {
+              getBtnBranch("jeonju");
+            }}
+            className={`${styles.margin}`}
+            variant="warning"
+          >
             전주점
           </Button>
-          <Button className={`${styles.margin}`} variant="warning">
+          <Button
+            onClick={() => {
+              getBtnBranch("jamsil");
+            }}
+            className={`${styles.margin}`}
+            variant="warning"
+          >
             잠실점
           </Button>
-          <Button className={`${styles.margin}`} variant="warning">
+          <Button
+            onClick={() => {
+              getBtnBranch("daejeon");
+            }}
+            className={`${styles.margin}`}
+            variant="warning"
+          >
             대전둔산점
           </Button>
-          <Button className={`${styles.margin}`} variant="warning">
+          <Button
+            onClick={() => {
+              getBtnBranch("cheonho");
+            }}
+            className={`${styles.margin}`}
+            variant="warning"
+          >
             천호점
           </Button>
-          <Button className={`${styles.margin}`} variant="warning">
+          <Button
+            onClick={() => {
+              getBtnBranch("suyu");
+            }}
+            className={`${styles.margin}`}
+            variant="warning"
+          >
             수유점
           </Button>
+          <ul className="container">
+            {ownedThemes.map((theme) => (
+              <EscapeThemeCard branch={branch} theme={theme} />
+            ))}
+          </ul>
         </div>
       </Container>
     </>

@@ -1,0 +1,47 @@
+.wrap__box {
+  position: relative;
+}
+li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 550px;
+}
+.border {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 100%;
+  padding: 10px;
+  border: 2px solid black;
+}
+img {
+  width: 100%;
+}
+.note {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: -0;
+  opacity: 0;
+  background-color: rgb(16, 37, 37);
+  width: 100%;
+  height: 100%;
+}
+.note:hover {
+  opacity: 1;
+  transition: opacity 0.5s linear;
+}
+span {
+  font-size: 0.7vw;
+}
+.thema {
+  opacity: 0;
+  transition: opacity 150ms ease-in;
+}
