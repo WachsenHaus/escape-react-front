@@ -11,6 +11,7 @@ import EscapeStoreIntro from "./components/intro/storeIntro.jsx";
 import EscapeCaution from "./components/caution/caution.jsx";
 import EscapeFooter from "./components/footer/footer.jsx";
 import EscapeIntro from "./components/intro/intro.jsx";
+import EscapeReservationTitle from "./components/reservation/reservationTitle.jsx";
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
             <EscapeTheme />
           </Route>
           <Route exact path="/reservation">
-            <EscapeInfo />
+            <EscapeReservationTitle />
           </Route>
           <Route exact path="/confirm">
             <EscapeInfo />
