@@ -141,6 +141,7 @@ export const jamsilThema = [로미오포인트, 신데렐라, 집착, 마션, �
 
 export const themaes = [
   {
+    id: 0,
     img: "http://cubeescape.co.kr/theme/basic_room2/img/rain/room01.jpg",
     alt: "테마:피라미드의 비밀",
     contentsText: `
@@ -151,6 +152,7 @@ export const themaes = [
     type: "어드벤처",
   },
   {
+    id: 1,
     img: "http://cubeescape.co.kr/theme/basic_room2/img/rain/room04.jpg",
     alt: "테마:헨젤과 그레텔",
     contentsText: `
@@ -163,6 +165,7 @@ export const themaes = [
     type: "동화 어드벤처",
   },
   {
+    id: 2,
     img: "http://cubeescape.co.kr/theme/basic_room2/img/rain/room06.jpg",
     alt: "테마: Towering",
     contentsText: `
@@ -175,6 +178,7 @@ export const themaes = [
     type: "재난",
   },
   {
+    id: 3,
     img: "http://cubeescape.co.kr/theme/basic_room2/img/rain/room05.jpg",
     alt: "테마:Gestapo",
     contentsText: `
@@ -187,6 +191,7 @@ export const themaes = [
     type: "어드벤처",
   },
   {
+    id: 4,
     img: "http://cubeescape.co.kr/theme/basic_room2/img/rain/room02.jpg",
     alt: "테마: Monkey House",
     contentsText: `
@@ -199,6 +204,7 @@ export const themaes = [
     type: "호러/스릴러",
   },
   {
+    id: 5,
     img: "http://cubeescape.co.kr/theme/basic_room2/img/rain/room03.jpg",
     alt: "테마:장기밀매",
     contentsText: `
@@ -211,6 +217,7 @@ export const themaes = [
     type: "스릴러/19세미만불가",
   },
   {
+    id: 6,
     img: "http://cheonho.cubeescape.co.kr/theme/basic_room2/img/rain/room21.jpg",
     alt: "테마:장기밀매 PART2",
     contentsText: `
@@ -223,6 +230,7 @@ export const themaes = [
     type: "호러",
   },
   {
+    id: 7,
     img: "http://cubeescape.co.kr/theme/basic_room2/img/rain/room07.jpg",
     alt: "테마:Deliver",
     contentsText: `
@@ -235,6 +243,7 @@ export const themaes = [
     type: "스릴러/19세미만불가",
   },
   {
+    id: 8,
     img: "http://cubeescape.co.kr/theme/basic_room2/img/rain/room08.jpg",
     alt: "테마:RomeoPoint",
     contentsText: `
@@ -247,6 +256,7 @@ export const themaes = [
     type: "스릴러",
   },
   {
+    id: 9,
     img: "http://daegu.cubeescape.co.kr/theme/basic_room2/img/rain/room09.jpg",
     alt: "테마:폼페이최후의날",
     contentsText: `
@@ -263,6 +273,7 @@ export const themaes = [
     type: "어드벤처",
   },
   {
+    id: 10,
     img: "http://daegu.cubeescape.co.kr/theme/basic_room2/img/rain/room10.jpg",
     alt: "테마:집행",
     contentsText: `
@@ -279,6 +290,7 @@ export const themaes = [
     type: "어드벤처",
   },
   {
+    id: 11,
     img: "http://daegu.cubeescape.co.kr/theme/basic_room2/img/rain/room11.jpg",
     alt: "테마:카타콤",
     contentsText: `
@@ -296,6 +308,7 @@ export const themaes = [
     type: "어드벤처",
   },
   {
+    id: 12,
     img: "http://incheon.cubeescape.co.kr/theme/basic_room2/img/rain/room14.jpg",
     alt: "테마:타이타닉",
     contentsText: `
@@ -311,6 +324,7 @@ export const themaes = [
     type: "어드벤처",
   },
   {
+    id: 13,
     img: "http://incheon.cubeescape.co.kr/theme/basic_room2/img/rain/room12.jpg",
     alt: "테마:신데렐라",
     contentsText: `
@@ -327,6 +341,7 @@ export const themaes = [
     type: "동화/어드벤처",
   },
   {
+    id: 14,
     img: "http://incheon.cubeescape.co.kr/theme/basic_room2/img/rain/room13.jpg",
     alt: "테마:집착",
     contentsText: `
@@ -340,6 +355,7 @@ export const themaes = [
     type: "추리/스릴러",
   },
   {
+    id: 15,
     img: "http://junju.cubeescape.co.kr/theme/basic_room2/img/rain/room16.jpg",
     alt: "테마:좀비스쿨",
     contentsText: `
@@ -357,6 +373,7 @@ export const themaes = [
     type: "어드벤처",
   },
   {
+    id: 16,
     img: "http://junju.cubeescape.co.kr/theme/basic_room2/img/rain/room17.jpg",
     alt: "테마:피고인",
     contentsText: `
@@ -377,6 +394,7 @@ export const themaes = [
     type: "추리/스릴러",
   },
   {
+    id: 17,
     img: "http://junju.cubeescape.co.kr/theme/basic_room2/img/rain/room18.jpg",
     alt: "테마:제시의 시크릿",
     contentsText: `
@@ -397,6 +415,7 @@ export const themaes = [
     type: "섹시/19세미만불가",
   },
   {
+    id: 18,
     img: "http://jamsil.cubeescape.co.kr/theme/basic_room2/img/rain/room15.jpg",
     alt: "테마:마션",
     contentsText: `
@@ -414,6 +433,7 @@ export const themaes = [
     type: "추리/어드벤처",
   },
   {
+    id: 19,
     img: "http://cheonho.cubeescape.co.kr/theme/basic_room2/img/rain/room19.jpg",
     alt: "테마:The Cube",
     contentsText: `
@@ -426,6 +446,7 @@ export const themaes = [
     type: "추리/스릴러",
   },
   {
+    id: 20,
     img: "http://cheonho.cubeescape.co.kr/theme/basic_room2/img/rain/room20.jpg",
     alt: "테마:The Maze",
     contentsText: `
@@ -438,6 +459,7 @@ export const themaes = [
     type: "어드벤처/스릴러",
   },
   {
+    id: 21,
     img: "http://cheonho.cubeescape.co.kr/theme/basic_room2/img/rain/room22.jpg",
     alt: "테마:사라진 천사들",
     contentsText: `
@@ -450,6 +472,7 @@ export const themaes = [
     type: "추리/스릴러/호러",
   },
   {
+    id: 22,
     img: "http://cheonho.cubeescape.co.kr/theme/basic_room2/img/rain/room23.jpg",
     alt: "테마:마녀의 꿈",
     contentsText: `
@@ -461,6 +484,7 @@ export const themaes = [
     type: "판타지/어드벤처",
   },
   {
+    id: 23,
     img: "http://cheonho.cubeescape.co.kr/theme/basic_room2/img/rain/room24.jpg",
     alt: "테마:장미의 비밀",
     contentsText: `
@@ -473,6 +497,7 @@ export const themaes = [
     type: "추리/스릴러",
   },
   {
+    id: 24,
     img: "http://suyu.cubeescape.co.kr/theme/basic_room2/img/rain/sroom1.jpg",
     alt: "테마:Treasure Hunters(1):우든펍의 비밀",
     contentsText: `
@@ -487,6 +512,7 @@ export const themaes = [
     type: "추리/어드벤처",
   },
   {
+    id: 25,
     img: "http://suyu.cubeescape.co.kr/theme/basic_room2/img/rain/sroom2.jpg",
     alt: "테마:Treasure Hunters(2):빅토리아호의 침몰",
     contentsText: `
@@ -502,6 +528,7 @@ export const themaes = [
     type: "추리/어드벤처",
   },
   {
+    id: 26,
     img: "http://suyu.cubeescape.co.kr/theme/basic_room2/img/rain/sroom3.jpg",
     alt: "테마:Treasure Hunters(3):거미의 둥지",
     contentsText: `
@@ -516,6 +543,7 @@ export const themaes = [
     type: "스릴러/어드벤처",
   },
   {
+    id: 27,
     img: "http://suyu.cubeescape.co.kr/theme/basic_room2/img/rain/sroom4.jpg",
     alt: "Treasure Hunters(4):골든 아이",
     contentsText: `

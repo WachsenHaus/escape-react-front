@@ -42,6 +42,5 @@ span {
   font-size: 0.7vw;
 }
 .thema {
-  opacity: 0;
-  transition: opacity 150ms ease-in;
+  transition: opacity 350ms ease-in;
 }

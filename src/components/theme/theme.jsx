@@ -1,7 +1,7 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Container } from "react-bootstrap";
 import styles from "./theme.module.css";
-import EscapeThemeCard from "./themeCard";
+import EscapeThemeCards from "./themeCards";
 import {
   allThema,
   daejeonThema,
@@ -15,12 +15,14 @@ import {
   themaes,
 } from "./themeData.js";
 const EscapeTheme = (props) => {
-  const [branch, setBranch] = useState("all");
   const [ownedThemes, setOwnedThemes] = useState([...themaes]);
-
-  const getBtnBranch = useCallback((branch = "all") => {
+  const [time, setTime] = useState();
+  useEffect(() => {
+    // defaultButton.current.click();
+  }, []);
+  const getBtnBranch = (mBranch = "all") => {
     let selectedBranch;
-    switch (branch) {
+    switch (mBranch) {
       case "hongdae":
         selectedBranch = hongdaeThema.map((index) => themaes[index]);
         break;
@@ -55,8 +57,9 @@ const EscapeTheme = (props) => {
         break;
     }
     setOwnedThemes([...selectedBranch]);
-    setBranch(branch);
-  }, []);
+    setTime(Date.now());
+  };
+
   return (
     <>
       <Container>
@@ -156,11 +159,7 @@ const EscapeTheme = (props) => {
           >
             수유점
           </Button>
-          <ul className="container">
-            {ownedThemes.map((theme) => (
-              <EscapeThemeCard branch={branch} theme={theme} />
-            ))}
-          </ul>
+          <EscapeThemeCards ownedThemes={ownedThemes} time={time} />
         </div>
       </Container>
     </>

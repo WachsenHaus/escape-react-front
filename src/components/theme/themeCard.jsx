@@ -1,19 +1,16 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button } from "react-bootstrap";
 import styles from "./themeCard.module.css";
 
-const EscapeThemeCard = ({ theme, branch }) => {
+const EscapeThemeCard = ({ theme, time }) => {
+  const [state, setState] = useState(0);
   const card = useRef();
-
   useEffect(() => {
-    setTimeout(() => {
-      card.current.style.opacity = 1;
-    }, 300);
-  });
-
+    setState(1);
+  }, []);
   return (
     <>
-      <li ref={card} className={`${styles.thema} col-md-4`}>
+      <li ref={card} className={`${styles.thema} col-md-4`} style={{ opacity: state }}>
         <div className={styles.border}>
           <div className="thema__border__picture">
             <div>
