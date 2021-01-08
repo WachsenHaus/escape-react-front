@@ -143,7 +143,7 @@ export const themaes = [
   {
     id: 0,
     img: "http://cubeescape.co.kr/theme/basic_room2/img/rain/room01.jpg",
-    alt: "테마:피라미드의 비밀",
+    alt: "피라미드의 비밀",
     contentsText: `
         당신의 세계를 누비는 탐험가! 마지막 목표는 이집트의 피라미드! 엄청난 보물의 근원지를 파악했다는 정보를 입수했다. 화려한 여행의 마무리를 짓기위해서 가족과 연인을 동반해서 탐험에 나섰다!불가사의 한 피라미드를 탐험 중 당신과 일행은 피라미드에 갇치게 된다. 방안의 모든 단서를 이용하여 피라미드를 탈출해야 한다.주어진 시간은 단 60분 시간 내에 피라미드를 탈출하라!
         `,
@@ -154,7 +154,7 @@ export const themaes = [
   {
     id: 1,
     img: "http://cubeescape.co.kr/theme/basic_room2/img/rain/room04.jpg",
-    alt: "테마:헨젤과 그레텔",
+    alt: "헨젤과 그레텔",
     contentsText: `
         
         	과자로 만든 집 , 케잌, 달콤한 쿠키와 초콜렛 ‘ ‘신비의 마녀오두막 과 아궁이 ‘ 동화속에 신비한 공간이 현실로 나타났습니다! 이 신비의 공간에서 마녀의 비밀오두막 까지 여행을 떠나보세요~ CUBE에서만 즐길수있는 어드벤처 형식의 룸 입니다! 
@@ -167,7 +167,7 @@ export const themaes = [
   {
     id: 2,
     img: "http://cubeescape.co.kr/theme/basic_room2/img/rain/room06.jpg",
-    alt: "테마: Towering",
+    alt: "Towering",
     contentsText: `
         
         	‘대한민국 최고의 고층 빌딩, CUBE Tower’ 멋진 추억을 만들기 위해 100층 스카이 라운지에서 열리는 파티에 참석한 당신! 가장 화려하고 도시에서 가장 빛나던 100층에서 화재가 발생하게된다. 인생 최고의 순간이 최악의 순간으로 치닫고있다!! 유일한 탈출구였던 엘리베이터는 화재로 인해 작동을 멈췄고, 지금 이순간 당신의 눈에 들어온것은 이미 오래전 작동을 멈춘듯해 보이는 화물용 엘리베이터! 우여곡절 끝에 탑승한 엘리베이터는 문이 닫히자 작동을 멈췄다. 당신의 인생이 타워와 함께 불타버리기전 주어진 시간은 단 60분! 스산한 느낌이 감도는 이 엘리베이터 안에서 작동암호를 풀고 무사히 탈출해야한다.
@@ -180,7 +180,7 @@ export const themaes = [
   {
     id: 3,
     img: "http://cubeescape.co.kr/theme/basic_room2/img/rain/room05.jpg",
-    alt: "테마:Gestapo",
+    alt: "Gestapo",
     contentsText: `
         
         	당신은 비밀경찰 조직 Gestapo( 게슈타포)의 요원 , 동료 뮐러와 함께 작전수행을 위해 암스테르담행 기차를 타기위해 향하고있었다. 지령을 받기위해 약속된 장소에 이동하고있는 도중 의문의 남자들에게 둘러 쌓이게된다. “이제는 너희가 대가를 치루게될 차례다.!” 눈앞의 초점이 사라진후 눈을 떠보니 암스테르담행 기차내부, 동료 뮐러는 당신의 앞에 쓰러져있고 , 눈앞에 1시간으로 설정된 폭탄이 놓여있다. 제한시간은 1시간! 폭탄이터지기전 동료와 당신을 궁지로 몰아넣은 적들에게 복수해야만한다!  
@@ -193,7 +193,7 @@ export const themaes = [
   {
     id: 4,
     img: "http://cubeescape.co.kr/theme/basic_room2/img/rain/room02.jpg",
-    alt: "테마: Monkey House",
+    alt: "Monkey House",
     contentsText: `
         
         	‘난 미치지 않았어! 미치지 않았다고!!’ 그런데… 난 누구지? 내가 왜 여기에있지? 기억이 나질않아.. 어떻게든 이곳에서 나가야만해!! 그리고 다음 약물투입시에 일어난 의문의 폭발 엄청난 소리의 폭발음과 함께 지진이 난것처럼 모든게 뒤흔들렸다. 눈을 떳을때는 모든게 아수라장이었다. 실험도중 사고가 난게 분명했다. 밖에서는 이리저리 뛰어다니는 환자들이 폭동을 일으키는것같았다. 그런데… 이방안에 문은 어디에있는거지? 여태까지의 기억을 더듬어봤지만 매번 눈을떳을때는 간호사와 의사가 보였지만 그들이 들어오는건 본적이없었다. 모든 실마리는 방안에 있다! 방안에서의 흔적을 통해 탈출해야한다. 
@@ -206,7 +206,7 @@ export const themaes = [
   {
     id: 5,
     img: "http://cubeescape.co.kr/theme/basic_room2/img/rain/room03.jpg",
-    alt: "테마:장기밀매",
+    alt: "장기밀매",
     contentsText: `
         
         	퇴근길, 간단한 회식을 마치고 집으로 귀가 중이던 당신 아무생각없이 걷던중, 머리 뒤쪽에 통증과 함께 눈이 감겼다. 등에 느껴지는 차가운감촉. 코를 찌르는 시체 썩는 악취에 눈을 떠보니 어둡고 너무도 공포스러운 밀실 손은 수갑으로 채워져 있어 움질일수가 없다. 대체 이곳은 어딜까? 당신은 장기밀매단에 납치되어 한 시간 후에는 장기적출 수술을 받고 죽는 운명에 처해있다. 제한시간 단 한 시간 방안의 모든 단서를 이용하여 이 밀실을 탈출하라. 
@@ -219,20 +219,20 @@ export const themaes = [
   {
     id: 6,
     img: "http://cheonho.cubeescape.co.kr/theme/basic_room2/img/rain/room21.jpg",
-    alt: "테마:장기밀매 PART2",
+    alt: "장기밀매 PART2",
     contentsText: `
         
         	아무 생각 없이 길을 걷다가 머리 뒤쪽에서 느껴지는 커다란 통증과 함께 정신을 잃었다. 등을 따라 느껴지는 차가운 감촉과 코를 찌르는 악취에 눈을 떠보니 이곳은 너무나 어둡고 무서운 방이었고 손은 수갑으로 채워져 움직일 수도 없다. 대체 이곳은 어디인가? 당신은 장기밀매단에 납치되었습니다. 그리고 1시간 후에 무자비한 장기적출수술을 받고 싸늘하게 죽어갈 운명에 처해 있습니다. 제한 시간은 단 60분. 숨겨진 단서를 찾아내 공포의 밀실을 탈출하십시오. 새로운 구성·스토리·특수효과로 돌아온 장기밀매 PART 2.
         
         `,
     level: "⭐⭐⭐⭐",
-    title: "장기밀매 PART2",
+    title: "장기밀매 Part2",
     type: "호러",
   },
   {
     id: 7,
     img: "http://cubeescape.co.kr/theme/basic_room2/img/rain/room07.jpg",
-    alt: "테마:Deliver",
+    alt: "Deliver",
     contentsText: `
         
         	우연히 친구로부터 소개받은 단순한 배달(Deliver)직업, 다른 배달과의 차이점은 고액의 월급이다! 의문점 투성이의 일이지만, 두둑한 지갑이 궁금증을 잠재웠다. 그러던 어느날 저녁, 동료친구로부터 문자가 왔다. ‘내일 아침 늦지않게 와라!, 내일 큰 돈 만지는 날이니까! ‘ 큰 돈이라는 생각에 밤새 잠을 설치던 당신이 눈을 떳을때는 약속된 시간을 훨씬 넘겼을때였다. 약속된 장소는 폐 물류창고, 지정된 사무실에 들어선 순간, 코를 찌르는듯한 악취와 끔찍한 광경이 펼쳐진다 
@@ -245,20 +245,20 @@ export const themaes = [
   {
     id: 8,
     img: "http://cubeescape.co.kr/theme/basic_room2/img/rain/room08.jpg",
-    alt: "테마:RomeoPoint",
+    alt: "RomeoPoint",
     contentsText: `
         
         	‘여기는 하늘소 응답하라..’ ‘아군을 구출하라.. ‘ R-POINT 에서 계속되는 구조신호,아군병사를 구조하기 위해 도착한 R-POINT에는 죽은 병사의 백골만이 남아있다. 그럼 누가 구조 신호를 보낸 것 인가? 설상가상 밖으로 나가는 문도 잠겨있다. 시시각각 다가오는 죽음의 공포. 시간 내에 탈출하지 못 하면 우리의 운명은 어떻게 될 것인가? 
         
         `,
     level: "⭐⭐⭐⭐",
-    title: "RomeoPoint",
+    title: "Romeo Point",
     type: "스릴러",
   },
   {
     id: 9,
     img: "http://daegu.cubeescape.co.kr/theme/basic_room2/img/rain/room09.jpg",
-    alt: "테마:폼페이최후의날",
+    alt: "폼페이최후의날",
     contentsText: `
         
         	한 순간에 모든 것이 잿더미로 변해버린 도시 폼페이.
@@ -275,7 +275,7 @@ export const themaes = [
   {
     id: 10,
     img: "http://daegu.cubeescape.co.kr/theme/basic_room2/img/rain/room10.jpg",
-    alt: "테마:집행",
+    alt: "집행",
     contentsText: `
         
         	나는 사형수다. 여자 친구와 그의 가족을 잔인하게 살해 했다는 죄명을 갖고 있다.
@@ -292,7 +292,7 @@ export const themaes = [
   {
     id: 11,
     img: "http://daegu.cubeescape.co.kr/theme/basic_room2/img/rain/room11.jpg",
-    alt: "테마:카타콤",
+    alt: "카타콤",
     contentsText: `
         
         	억압과 비밀의 공간 Catacomb(카타콤)
@@ -310,7 +310,7 @@ export const themaes = [
   {
     id: 12,
     img: "http://incheon.cubeescape.co.kr/theme/basic_room2/img/rain/room14.jpg",
-    alt: "테마:타이타닉",
+    alt: "타이타닉",
     contentsText: `
         
         	1912년 4월 10일. 영국의 사우스햄프턴에서 타이타닉호가 출항했다. 에드워드 존 스미스 선장과 승무원, 승객을 합쳐 2,200여명이 배에 탑승했다. 
@@ -326,7 +326,7 @@ export const themaes = [
   {
     id: 13,
     img: "http://incheon.cubeescape.co.kr/theme/basic_room2/img/rain/room12.jpg",
-    alt: "테마:신데렐라",
+    alt: "신데렐라",
     contentsText: `
         
         	오늘은 왕자님의 신부를 결정하는 파티가 열리는 날!
@@ -343,7 +343,7 @@ export const themaes = [
   {
     id: 14,
     img: "http://incheon.cubeescape.co.kr/theme/basic_room2/img/rain/room13.jpg",
-    alt: "테마:집착",
+    alt: "집착",
     contentsText: `
         
         	후문에서 의문의 남자와 함께 있는 모습이 찍힌 CCTV 영상. 실종 후, 몸값을 요구하는 연락도 없었고, 핸드폰 위치 추적도 소용없었다. 할 수 있는 일은 혼자 미친듯이 돌아다니며 실종 전단지를 뿌리는 일 뿐이었다.
@@ -357,7 +357,7 @@ export const themaes = [
   {
     id: 15,
     img: "http://junju.cubeescape.co.kr/theme/basic_room2/img/rain/room16.jpg",
-    alt: "테마:좀비스쿨",
+    alt: "좀비스쿨",
     contentsText: `
         
         	1995년 강원도 어느 산골짜기에 풍경이 좋은 곳.평범하고 아담한 고교가 있었다.
@@ -375,7 +375,7 @@ export const themaes = [
   {
     id: 16,
     img: "http://junju.cubeescape.co.kr/theme/basic_room2/img/rain/room17.jpg",
-    alt: "테마:피고인",
+    alt: "피고인",
     contentsText: `
         
         	난 딸과 아내를 죽이지 않았어!
@@ -396,7 +396,7 @@ export const themaes = [
   {
     id: 17,
     img: "http://junju.cubeescape.co.kr/theme/basic_room2/img/rain/room18.jpg",
-    alt: "테마:제시의 시크릿",
+    alt: "제시의 시크릿",
     contentsText: `
         
         	제시는 키 169cm 47kg에 환상적인 바디사이즈에 눈부시게 빛나는 미모!
@@ -411,13 +411,13 @@ export const themaes = [
         
         `,
     level: "⭐⭐⭐⭐",
-    title: "제시의 시크릿",
+    title: "제시의시크릿",
     type: "섹시/19세미만불가",
   },
   {
     id: 18,
     img: "http://jamsil.cubeescape.co.kr/theme/basic_room2/img/rain/room15.jpg",
-    alt: "테마:마션",
+    alt: "마션",
     contentsText: `
         
         	화성탐사를 위해 동료들과 우주로 여행을 나섰다. 
@@ -435,7 +435,7 @@ export const themaes = [
   {
     id: 19,
     img: "http://cheonho.cubeescape.co.kr/theme/basic_room2/img/rain/room19.jpg",
-    alt: "테마:The Cube",
+    alt: "The Cube",
     contentsText: `
         
         	머리가 깨질 듯이 아팠다. 눈을 떠보니 낯선 공간 낯선 사람들 그리고 태어나서 처음 보는 시체가 옆에 눕혀져 있다. 밀폐된 이 공간이 어떤 곳인지 알고 있는 사람은 아무도 없었다. 잠겨있는 문은 암호화되어 있고 수많은 희생자들의 흔적만 남아 있다. 우리는 함정에 빠졌다. 그것도 아주 정교하고 위험한 함정에 빠져버렸다. 모두가 혼란스럽고 고통스러운 바로 그 때 한쪽 벽에 붙어있던 타이머가 작동됐다. 우리 서로 말하지 않아도 알 수 있었다. 제한 시간 60분이 지나면 우리도 저기 놓여 있는 시체처럼 되고 만다.
@@ -448,7 +448,7 @@ export const themaes = [
   {
     id: 20,
     img: "http://cheonho.cubeescape.co.kr/theme/basic_room2/img/rain/room20.jpg",
-    alt: "테마:The Maze",
+    alt: "The Maze",
     contentsText: `
         
         	삭제된 기억과 낯선 미로 공간. 인간의 생존 본능을 실험하기 위해 ‘THE MAZE’를 설계하고 있던 내가 왜 이곳에 있는 걸까? 아무리 애를 써도 기억나지 않는다. 심지어 내 이름조차 기억나지 않는다. 이제 그나마 갖고 있는 기억들마저도 사라져간다. 내가 기억하는 있는 것이라고는 해가 지면 이 미로의 문이 닫히게 된다는 것. 그리고 연이은 괴생명체들의 습격으로 인해 잔인하게 죽어갈 뿐이라는 것이다. 해가 질 때까지 남아 있는 시간은 1시간 정도일까. 이 미로부터 빠져나가야만 한다.
@@ -461,7 +461,7 @@ export const themaes = [
   {
     id: 21,
     img: "http://cheonho.cubeescape.co.kr/theme/basic_room2/img/rain/room22.jpg",
-    alt: "테마:사라진 천사들",
+    alt: "사라진 천사들",
     contentsText: `
         
         	곧 나의 아빠가 될 그 아저씨 집에서의 첫 번째 밤이 찾아왔다. 잠을 자려고 침대에 누운 순간 아래층에서 낮은 비명소리가 들려왔다. ‘무슨 일이지?’ 호기심을 못 참고 아래층으로 내려와 캄캄한 거실을 지나 불빛이 새어 나오는 방으로 다가갔다. 열린 문틈 사이로 방 안을 들여다보는 순간 안에서 문 쪽으로 고개를 돌린 아저씨와 눈이 마주치고 말았다. 너무 놀라 도망치듯 뛰어 들어온 이 낯선 방. 나는 지금 본능적으로 느끼고 있다. 아저씨가 나를 찾아내기 전에 이 집을 떠나야만 살 수 있다는 사실 말이다.
@@ -474,7 +474,7 @@ export const themaes = [
   {
     id: 22,
     img: "http://cheonho.cubeescape.co.kr/theme/basic_room2/img/rain/room23.jpg",
-    alt: "테마:마녀의 꿈",
+    alt: "마녀의 꿈",
     contentsText: `
               	
         	“내 이름은 PIGGIES. 사람들은 내가 무섭고 괴팍한 마녀인 줄로만 알아. 그래서 나를 ‘돼지마녀’라고 놀리거나 돌을 던지고 도망가기도 하지. 하지만 이따위 인생에서 벗어날 때가 됐어. 500년 만에 푸른달이 뜨는 오늘 밤 난 신비의 묘약 BELLE을 마시고 마녀에서 미녀로 변신할 거야. 아름답고 날씬한 미녀로 다시 태어나 예쁜 옷도 입고 멋진 남자들의 청혼을 받으며 행복하게 살 거야. 그 꿈을 이루기 위해서는 푸른달의 시험을 통과해야만 해.” 푸른달의 시험을 통과하고 BELLE을 만들어 세상 최고의 미인이 되어 보세요.
@@ -486,7 +486,7 @@ export const themaes = [
   {
     id: 23,
     img: "http://cheonho.cubeescape.co.kr/theme/basic_room2/img/rain/room24.jpg",
-    alt: "테마:장미의 비밀",
+    alt: "장미의 비밀",
     contentsText: `
         
         	처음으로 그녀의 집을 방문하는 날이다. 내게는 너무나 과분하고 완벽한 그녀지만 나와 그녀 사이에는 왠지 모를 거리감이 있다. 그녀와 연애하면서도 손조차 잡아보지 못했다. 그런 그녀에게서 연락이 왔다. “오늘밤은 꼭 당신과 함께 있고 싶어요.” 그녀가 가장 좋아하는 와인을 준비해 그녀의 집에 도착했다. 그녀는 웃으며 나를 반겨줬다. “어머, 기억하고 있었네요? 오늘은 제 인생이 바뀐 특별한 날이에요. 조금만 기다려 줄래요? 당신에게 준비한 선물이 있어요.” 그녀의 집에 들어온 순간 잊고 싶었던 기억 하나가 떠올랐다.
@@ -499,7 +499,7 @@ export const themaes = [
   {
     id: 24,
     img: "http://suyu.cubeescape.co.kr/theme/basic_room2/img/rain/sroom1.jpg",
-    alt: "테마:Treasure Hunters(1):우든펍의 비밀",
+    alt: "Treasure Hunters:우든펍의 비밀",
     contentsText: `
         
         	보물사냥꾼인 필립, 도시 외곽의 허름한 술집인 우든펍에서 동료들과 술을 마시던 중 고대의 보물이 숨겨진 곳의 보물지도가 
@@ -508,13 +508,13 @@ export const themaes = [
         
         `,
     level: "⭐⭐⭐",
-    title: "Treasure Hunters(1):우든펍의 비밀",
+    title: "Treasure Hunters:우든펍의 비밀",
     type: "추리/어드벤처",
   },
   {
     id: 25,
     img: "http://suyu.cubeescape.co.kr/theme/basic_room2/img/rain/sroom2.jpg",
-    alt: "테마:Treasure Hunters(2):빅토리아호의 침몰",
+    alt: "Treasure Hunters:빅토리아호의 침몰",
     contentsText: `
         
         	보물지도를 간신히 얻은 필립과 동료들, 빅토리아호를 타고 지도에 표시된 곳으로 향하던 중
@@ -524,13 +524,13 @@ export const themaes = [
         
         `,
     level: "⭐⭐⭐",
-    title: "Treasure Hunters(2):빅토리아호의 침몰",
+    title: "Treasure Hunters:빅토리아호의 침몰",
     type: "추리/어드벤처",
   },
   {
     id: 26,
     img: "http://suyu.cubeescape.co.kr/theme/basic_room2/img/rain/sroom3.jpg",
-    alt: "테마:Treasure Hunters(3):거미의 둥지",
+    alt: "Treasure Hunters:거미의 둥지",
     contentsText: `
         
         	침몰하는 빅토리아호에서 간신히 탈출에 성공한 필립과 동료들, 하지만 탈출의 기쁨도 잠시... 
@@ -539,13 +539,13 @@ export const themaes = [
 			필립과 나탈리가 처형되기까지 60분! 서로 협동하여 타란툴라의 본거지에서 탈출해야만 한다!
                 `,
     level: "⭐⭐⭐⭐",
-    title: "Treasure Hunters(3):거미의 둥지",
+    title: "Treasure Hunters:거미의 둥지",
     type: "스릴러/어드벤처",
   },
   {
     id: 27,
     img: "http://suyu.cubeescape.co.kr/theme/basic_room2/img/rain/sroom4.jpg",
-    alt: "Treasure Hunters(4):골든 아이",
+    alt: "Treasure Hunters:골든아이",
     contentsText: `
         
         	타란툴라의 본거지에서 무사히 탈출하여 아마존에 도착한 필립과 동료들, 지도에 표시된 곳으로 따라가 고대의 유적지에 들어오게 됐다. 위험한 함정들을 피하여 보물이 있는 곳에 도착하게 된다. 
@@ -554,7 +554,7 @@ export const themaes = [
 			보물을 갖고 다른 출구를 찾아 무사히 탈출해야만 한다!
                 `,
     level: "⭐⭐⭐⭐⭐",
-    title: "Treasure Hunters(4):골든 아이",
+    title: "Treasure Hunters:골든아이",
     type: "판타지/어드벤처",
   },
 ];

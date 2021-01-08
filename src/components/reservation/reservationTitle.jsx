@@ -1,8 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Button, Container } from "react-bootstrap";
 
-const EscapeReservationTitle = ({ state, setBranch, setDate, setOwnedThemes }) => {
+const EscapeReservationTitle = ({
+  state,
+  setBranch,
+  setDate,
+  setOwnedThemes,
+  EscapeApi,
+}) => {
   const selectedBranch = useRef();
+  const selectedTheme = useRef();
   const selectedDate = useRef();
   const [test, setTest] = useState();
   //오늘로부터 2개월뒤까지만 달력에 표시함
@@ -29,10 +36,22 @@ const EscapeReservationTitle = ({ state, setBranch, setDate, setOwnedThemes }) =
     return today;
   };
 
+  const ttt = () => {
+    const a = EscapeApi.getReservation(
+      state.branch,
+      selectedTheme.current.value,
+      state.date
+    );
+    console.log(a);
+  };
+
   useEffect(() => {
     if (!!!state.branch) {
       setOwnedThemes("홍대점");
     }
+  }, [EscapeApi, setOwnedThemes, state.branch, state.date]);
+
+  useEffect(() => {
     setTest(maxDay());
   }, []);
   const onChangeBranch = () => {
@@ -79,9 +98,9 @@ const EscapeReservationTitle = ({ state, setBranch, setDate, setOwnedThemes }) =
           </div>
           <div className="col-4">
             <label htmlFor="">테마</label>
-            <select name="" id="" className="form-control">
+            <select name="" ref={selectedTheme} onChange={ttt} className="form-control">
               {state.ownedThemes.map((item) => (
-                <option value={item.id}>
+                <option value={item.title}>
                   {item.title} {item.level}
                 </option>
               ))}

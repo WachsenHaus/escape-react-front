@@ -12,8 +12,8 @@ import EscapeCaution from "./components/caution/caution.jsx";
 import EscapeFooter from "./components/footer/footer.jsx";
 import EscapeIntro from "./components/intro/intro.jsx";
 import EscapeReservationTitle from "./components/reservation/reservationTitle.jsx";
+import Escape from "./service/api";
 import {
-  allThema,
   daejeonThema,
   jeonjuThema,
   incheonThema,
@@ -26,6 +26,8 @@ import {
 } from "./components/theme/themeData.js";
 
 function App() {
+  const EscapeApi = new Escape();
+
   const [state, setState] = useState({
     branch: "홍대점",
     date: new Date().toISOString().split("T")[0],
@@ -111,6 +113,7 @@ function App() {
               setBranch={setBranch}
               setDate={setDate}
               setOwnedThemes={setOwnedThemes}
+              EscapeApi={EscapeApi}
             />
           </Route>
           <Route exact path="/confirm">
