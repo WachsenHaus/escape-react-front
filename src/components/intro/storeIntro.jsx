@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 import EscapeStoreCard from "./storeCard";
 import styles from "./storeIntro.module.css";
 
-const EscapeStoreIntro = (props) => {
+const EscapeStoreIntro = ({ setBranch }) => {
   const cards = [
     {
       id: 1,
@@ -60,14 +60,14 @@ const EscapeStoreIntro = (props) => {
           <div className="row d-flex flex-wrap">
             <div className="col-lg-2"></div>
             {cards.map((card, index) => (
-              <EscapeStoreCard key={card.id} card={card} />
+              <EscapeStoreCard setBranch={setBranch} key={card.id} card={card} />
             ))}
             <div className="col-lg-2"></div>
           </div>
           <div className="row d-flex flex-wrap">
             <div className="col-lg-2"></div>
             {cards2.map((card, index) => (
-              <EscapeStoreCard key={card.id} card={card} />
+              <EscapeStoreCard setBranch={setBranch} key={card.id} card={card} />
             ))}
             <div className="col-lg-2"></div>
           </div>

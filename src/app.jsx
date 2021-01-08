@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootswatch/dist/darkly/bootstrap.css";
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import EscapeNav from "./components/nav/nav.jsx";
 import styles from "./app.module.css";
@@ -14,6 +14,26 @@ import EscapeIntro from "./components/intro/intro.jsx";
 import EscapeReservationTitle from "./components/reservation/reservationTitle.jsx";
 
 function App() {
+  const [state, setState] = useState({
+    branch: "홍대점",
+    date: new Date().toISOString().split("T")[0],
+  });
+  const setBranch = (branchName) => {
+    setState((state) => {
+      const mBranch = { ...state };
+      mBranch.branch = branchName;
+      console.log(mBranch);
+      return mBranch;
+    });
+  };
+  const setDate = (date) => {
+    setState((state) => {
+      const mDate = { ...state };
+      mDate.date = date;
+      return mDate;
+    });
+  };
+
   return (
     <div className={styles.app}>
       <BrowserRouter>
@@ -23,7 +43,7 @@ function App() {
         <Switch>
           <Route exact path="/">
             <EscapeHeader />
-            <EscapeStoreIntro />
+            <EscapeStoreIntro setBranch={setBranch} />
             <EscapeCaution />
           </Route>
           <Route exact path="/info">
@@ -33,7 +53,11 @@ function App() {
             <EscapeTheme />
           </Route>
           <Route exact path="/reservation">
-            <EscapeReservationTitle />
+            <EscapeReservationTitle
+              state={state}
+              setBranch={setBranch}
+              setDate={setDate}
+            />
           </Route>
           <Route exact path="/confirm">
             <EscapeInfo />

@@ -1,32 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { Button, Container } from "react-bootstrap";
 
-const EscapeReservationTitle = ({ props }) => {
-  console.log();
-  const [state, setState] = useState({
-    date: new Date().toISOString().split("T")[0],
-  });
+const EscapeReservationTitle = ({ state, setBranch, setDate }) => {
   useEffect(() => {
-    // setState(new Date().toISOString().split("T")[0]);
+    console.log(!!!state.branch);
+    if (!!!state.branch) {
+      setBranch("홍대점");
+    }
   }, []);
   return (
     <>
       <Container>
-        <h1 className="text-center branch__tag">예약하기</h1>
+        <h1 className="text-center branch__tag">{state.branch} 예약하기</h1>
         <div className="form-group row">
           <div className="col-4">
             <label htmlFor="">날짜선택</label>
-            <input type="date" value={state.date} />
+            <input
+              className="form-control"
+              type="date"
+              value={state.date}
+              min={state.date}
+            />
           </div>
           <div className="col-4">
             <label htmlFor="">지점선택</label>
-            <select name="" id="">
+            <select name="" id="" className="form-control">
               <option value=""></option>
             </select>
           </div>
           <div className="col-4">
             <label htmlFor="">테마</label>
-            <select name="" id=""></select>
+            <select name="" id="" className="form-control"></select>
           </div>
           <table className="table table-striped mt-3">
             <thead>

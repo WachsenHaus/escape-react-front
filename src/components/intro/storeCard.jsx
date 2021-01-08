@@ -1,9 +1,11 @@
 import React from "react";
 import styles from "./storeCard.module.css";
-
-const EscapeStoreCard = ({ card }) => {
+import { Link } from "react-router-dom";
+const EscapeStoreCard = ({ card, setBranch }) => {
   const { name } = card;
-
+  const onBranchChange = () => {
+    setBranch(name);
+  };
   return (
     <>
       <div
@@ -12,13 +14,15 @@ const EscapeStoreCard = ({ card }) => {
       >
         <h5>{name}</h5>
         <hr className="w-50 solid" />
-        <a className={`${styles.branch_reserve}`} href="">
+        <Link onClick={onBranchChange} to="reservation">
           예약하기
-        </a>
-        <a className="branch_thema" href="">
+        </Link>
+        <Link onClick={onBranchChange} to="theme">
           테마소개
-        </a>
-        <a href="">오시는길</a>
+        </Link>
+        <Link onClick={onBranchChange} to="theme">
+          오시는길
+        </Link>
       </div>
     </>
   );
