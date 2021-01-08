@@ -4,10 +4,36 @@ import { Button, Container } from "react-bootstrap";
 const EscapeReservationTitle = ({ state, setBranch, setDate, setOwnedThemes }) => {
   const selectedBranch = useRef();
   const selectedDate = useRef();
+  const [test, setTest] = useState();
+  //오늘로부터 2개월뒤까지만 달력에 표시함
+  const maxDay = () => {
+    let today = new Date();
+    let yyyy = today.getFullYear();
+    let dd = today.getDate();
+    let mm = today.getMonth() + 2; //January is 0!
+
+    if (dd < 10) {
+      dd = "0" + dd;
+    }
+    if (mm < 10) {
+      mm = "0" + mm;
+    }
+    if (mm > 12) {
+      mm = mm % 12;
+      yyyy += 1;
+      if (mm < 10) {
+        mm = "0" + mm;
+      }
+    }
+    today = yyyy + "-" + mm + "-" + dd;
+    return today;
+  };
+
   useEffect(() => {
     if (!!!state.branch) {
       setOwnedThemes("홍대점");
     }
+    setTest(maxDay());
   }, []);
   const onChangeBranch = () => {
     setOwnedThemes(selectedBranch.current.value);
@@ -29,6 +55,7 @@ const EscapeReservationTitle = ({ state, setBranch, setDate, setOwnedThemes }) =
               type="date"
               value={state.date}
               min={new Date().toISOString().split("T")[0]}
+              max={test}
             />
           </div>
           <div className="col-4">
