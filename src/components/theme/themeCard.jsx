@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Button } from "react-bootstrap";
 import styles from "./themeCard.module.css";
 
-const EscapeThemeCard = ({ theme, time }) => {
+const EscapeThemeCard = ({ theme }) => {
   const [state, setState] = useState(0);
   const card = useRef();
   useEffect(() => {

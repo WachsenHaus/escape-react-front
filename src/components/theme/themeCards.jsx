@@ -3,12 +3,12 @@ import { Button } from "react-bootstrap";
 import EscapeThemeCard from "./themeCard";
 import styles from "./themeCard.module.css";
 
-const EscapeThemeCards = ({ ownedThemes, time }) => {
+const EscapeThemeCards = ({ state }) => {
   return (
     <>
       <ul className="container">
-        {ownedThemes.map((theme) => (
-          <EscapeThemeCard key={Math.random()} time={time} theme={theme} />
+        {state.ownedThemes.map((theme) => (
+          <EscapeThemeCard key={Math.random()} theme={theme} />
         ))}
       </ul>
     </>

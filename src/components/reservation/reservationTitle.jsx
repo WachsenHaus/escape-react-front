@@ -1,13 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button, Container } from "react-bootstrap";
 
 const EscapeReservationTitle = ({ state, setBranch, setDate }) => {
+  const selectedBranch = useRef();
+  const selectedDate = useRef();
   useEffect(() => {
-    console.log(!!!state.branch);
     if (!!!state.branch) {
       setBranch("홍대점");
     }
+    selectedBranch.current.value = state.branch;
   }, []);
+  const onChangeBranch = () => {
+    setBranch(selectedBranch.current.value);
+  };
+  const onChangeDate = () => {
+    // console.log();
+    setDate(selectedDate.current.value);
+  };
   return (
     <>
       <Container>
@@ -16,16 +25,31 @@ const EscapeReservationTitle = ({ state, setBranch, setDate }) => {
           <div className="col-4">
             <label htmlFor="">날짜선택</label>
             <input
+              ref={selectedDate}
+              onChange={onChangeDate}
               className="form-control"
               type="date"
               value={state.date}
-              min={state.date}
+              min={new Date().toISOString().split("T")[0]}
             />
           </div>
           <div className="col-4">
             <label htmlFor="">지점선택</label>
-            <select name="" id="" className="form-control">
-              <option value=""></option>
+            <select
+              onChange={onChangeBranch}
+              ref={selectedBranch}
+              name=""
+              id=""
+              className="form-control"
+            >
+              <option value="홍대점">홍대점</option>
+              <option value="대구점">대구점</option>
+              <option value="인천구월점">인천구월점</option>
+              <option value="전주점">전주점</option>
+              <option value="잠실점">잠실점</option>
+              <option value="대전둔산점">대전둔산점</option>
+              <option value="천호점">천호점</option>
+              <option value="수유점">수유점</option>
             </select>
           </div>
           <div className="col-4">
