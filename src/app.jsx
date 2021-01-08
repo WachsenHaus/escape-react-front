@@ -110,6 +110,7 @@ function App() {
               state={state}
               setBranch={setBranch}
               setDate={setDate}
+              setOwnedThemes={setOwnedThemes}
             />
           </Route>
           <Route exact path="/confirm">

@@ -1,20 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Button, Container } from "react-bootstrap";
 
-const EscapeReservationTitle = ({ state, setBranch, setDate }) => {
+const EscapeReservationTitle = ({ state, setBranch, setDate, setOwnedThemes }) => {
   const selectedBranch = useRef();
   const selectedDate = useRef();
   useEffect(() => {
     if (!!!state.branch) {
-      setBranch("홍대점");
+      setOwnedThemes("홍대점");
     }
-    selectedBranch.current.value = state.branch;
   }, []);
   const onChangeBranch = () => {
-    setBranch(selectedBranch.current.value);
+    setOwnedThemes(selectedBranch.current.value);
   };
   const onChangeDate = () => {
-    // console.log();
     setDate(selectedDate.current.value);
   };
   return (
@@ -54,7 +52,13 @@ const EscapeReservationTitle = ({ state, setBranch, setDate }) => {
           </div>
           <div className="col-4">
             <label htmlFor="">테마</label>
-            <select name="" id="" className="form-control"></select>
+            <select name="" id="" className="form-control">
+              {state.ownedThemes.map((item) => (
+                <option value={item.id}>
+                  {item.title} {item.level}
+                </option>
+              ))}
+            </select>
           </div>
           <table className="table table-striped mt-3">
             <thead>
