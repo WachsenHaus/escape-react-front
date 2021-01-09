@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Button, Container } from "react-bootstrap";
 
 const EscapeReservationTitle = ({
@@ -11,9 +11,10 @@ const EscapeReservationTitle = ({
   const selectedBranch = useRef();
   const selectedTheme = useRef();
   const selectedDate = useRef();
-  const [test, setTest] = useState();
+  const [maxDay, setMaxDay] = useState();
+  const [themaList, setThemaList] = useState();
   //오늘로부터 2개월뒤까지만 달력에 표시함
-  const maxDay = () => {
+  const calcMaxDay = () => {
     let today = new Date();
     let yyyy = today.getFullYear();
     let dd = today.getDate();
@@ -36,25 +37,31 @@ const EscapeReservationTitle = ({
     return today;
   };
 
-  const ttt = () => {
-    const a = EscapeApi.getReservation(
+  const getOwnedBranchSchedule = useCallback(() => {
+    const getData = EscapeApi.getReservation(
       state.branch,
       selectedTheme.current.value,
       state.date
     );
-    console.log(a);
-  };
+    getData.then((res) => {
+      setThemaList(res.data.list);
+      console.log(res.data.list);
+    });
+  }, [EscapeApi, state.branch, state.date]);
 
   useEffect(() => {
     if (!!!state.branch) {
       setOwnedThemes("홍대점");
     }
-  }, [EscapeApi, setOwnedThemes, state.branch, state.date]);
+    getOwnedBranchSchedule();
+  }, [EscapeApi, getOwnedBranchSchedule, setOwnedThemes, state.branch, state.date]);
 
   useEffect(() => {
-    setTest(maxDay());
+    setMaxDay(calcMaxDay());
   }, []);
+
   const onChangeBranch = () => {
+    selectedTheme.current.value = "전체테마";
     setOwnedThemes(selectedBranch.current.value);
   };
   const onChangeDate = () => {
@@ -74,7 +81,7 @@ const EscapeReservationTitle = ({
               type="date"
               value={state.date}
               min={new Date().toISOString().split("T")[0]}
-              max={test}
+              max={maxDay}
             />
           </div>
           <div className="col-4">
@@ -82,6 +89,7 @@ const EscapeReservationTitle = ({
             <select
               onChange={onChangeBranch}
               ref={selectedBranch}
+              value={state.branch}
               name=""
               id=""
               className="form-control"
@@ -98,7 +106,13 @@ const EscapeReservationTitle = ({
           </div>
           <div className="col-4">
             <label htmlFor="">테마</label>
-            <select name="" ref={selectedTheme} onChange={ttt} className="form-control">
+            <select
+              name=""
+              ref={selectedTheme}
+              onChange={getOwnedBranchSchedule}
+              className="form-control"
+            >
+              <option value={"total"}>전체테마</option>
               {state.ownedThemes.map((item) => (
                 <option value={item.title}>
                   {item.title} {item.level}
@@ -116,9 +130,30 @@ const EscapeReservationTitle = ({
             </thead>
             <tbody>
               <tr className="row">
-                <td className="col-3 text-center">시간</td>
-                <td className="col-6 text-center">테마</td>
-                <td className="col-3 text-center">매진</td>
+                {themaList &&
+                  themaList.map((item) => {
+                    return (
+                      <>
+                        <td className="col-3 text-center">{item.time}</td>
+                        <td className="col-6 text-center">{item.thema}</td>
+                        {item.state === "매진" && (
+                          <td className="col-3 text-center">
+                            <span className="badge badge-danger">{item.state}</span>
+                          </td>
+                        )}
+                        {item.state === "예약진행중" && (
+                          <td className="col-3 text-center">
+                            <span className="badge badge-warning">{item.state}</span>
+                          </td>
+                        )}
+                        {item.state === "예약하기" && (
+                          <td className="col-3 text-center">
+                            <span className="badge badge-info">{item.state}</span>
+                          </td>
+                        )}
+                      </>
+                    );
+                  })}
               </tr>
             </tbody>
           </table>

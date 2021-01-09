@@ -8,14 +8,18 @@ class Escape {
   }
 
   async getReservation(branchName, thema, mDate) {
-    const response = await this.escape.get("reservation/reservation_ajax.do", {
-      params: {
-        name: branchName,
-        thema: thema,
-        date: mDate,
-      },
-    });
-    return response;
+    try {
+      const response = await this.escape.get("reservation/reservation_ajax.do", {
+        params: {
+          name: branchName,
+          thema: thema,
+          date: mDate,
+        },
+      });
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 

@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootswatch/dist/darkly/bootstrap.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import EscapeNav from "./components/nav/nav.jsx";
 import styles from "./app.module.css";
@@ -31,8 +31,16 @@ function App() {
   const [state, setState] = useState({
     branch: "홍대점",
     date: new Date().toISOString().split("T")[0],
-    ownedThemes: [...themaes],
+    ownedThemes: [],
   });
+  useEffect(() => {
+    setState((state) => {
+      const dummy = { ...state };
+      dummy.ownedThemes = [...hongdaeThema.map((index) => themaes[index])];
+      console.log(dummy.ownedThemes);
+      return dummy;
+    });
+  }, []);
   const setBranch = (branchName) => {
     setState((state) => {
       const mBranch = { ...state };
