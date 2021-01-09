@@ -24,6 +24,7 @@ import {
   jamsilThema,
   themaes,
 } from "./components/theme/themeData.js";
+import EscapeReservationDetail from "./components/reservation/reservationDetail.jsx";
 
 function App() {
   const EscapeApi = new Escape();
@@ -136,6 +137,7 @@ function App() {
           <Route exact path="/review">
             <EscapeInfo />
           </Route>
+          <Route path="/reservation-detail" component={EscapeReservationDetail}></Route>
         </Switch>
         <Route path="/">
           <EscapeFooter />

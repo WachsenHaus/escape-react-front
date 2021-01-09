@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Button, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const EscapeReservationTitle = ({
   state,
@@ -129,11 +130,11 @@ const EscapeReservationTitle = ({
               </tr>
             </thead>
             <tbody>
-              <tr className="row">
-                {themaList &&
-                  themaList.map((item) => {
-                    return (
-                      <>
+              {themaList &&
+                themaList.map((item) => {
+                  return (
+                    <>
+                      <tr className="row">
                         <td className="col-3 text-center">{item.time}</td>
                         <td className="col-6 text-center">{item.thema}</td>
                         {item.state === "매진" && (
@@ -148,13 +149,26 @@ const EscapeReservationTitle = ({
                         )}
                         {item.state === "예약하기" && (
                           <td className="col-3 text-center">
-                            <span className="badge badge-info">{item.state}</span>
+                            <Link
+                              className="badge badge-info"
+                              to={{
+                                pathname: "/reservation-detail",
+                                state: {
+                                  date: state.date,
+                                  time: item.time,
+                                  thema: item.thema,
+                                  branch: state.branch,
+                                },
+                              }}
+                            >
+                              {item.state}
+                            </Link>
                           </td>
                         )}
-                      </>
-                    );
-                  })}
-              </tr>
+                      </tr>
+                    </>
+                  );
+                })}
             </tbody>
           </table>
           <Button variant="primary" style={{ "margin-left": "85%" }}>
