@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Button } from "react-bootstrap";
 import styles from "./themeCard.module.css";
+import { Link } from "react-router-dom";
 
 const EscapeThemeCard = ({ theme }) => {
   const [state, setState] = useState(0);
@@ -8,6 +8,7 @@ const EscapeThemeCard = ({ theme }) => {
   useEffect(() => {
     setState(1);
   }, []);
+
   return (
     <>
       <li ref={card} className={`${styles.thema} col-md-4`} style={{ opacity: state }}>
@@ -25,9 +26,9 @@ const EscapeThemeCard = ({ theme }) => {
           <div className="text-center">{theme.level}</div>
           <div className="text-center title">{theme.title}</div>
           <div className="text-center">{theme.type}</div>
-          <Button variant="warning" className="text-center">
-            온라인예약하기
-          </Button>
+          <Link className="btn btn-warning text-center" to="reservation">
+            온라인 예약하기
+          </Link>
         </div>
       </li>
     </>
