@@ -21,6 +21,35 @@ class Escape {
       console.log(error);
     }
   }
+
+  async setReservation(resname, resdate, time, bname, thema, phone, cost, personal) {
+    try {
+      //resname:$scope.resname,
+      //resdate:$scope.date,
+      //time:$scope.time,
+      //bname:$scope.bname,
+      //thema:$scope.thema,
+      //phone:$scope.phone,
+      //cost:$scope.cost,
+      //personal:$scope.personal
+
+      const response = await this.escape.get("reservation/res_process.do", {
+        params: {
+          resname: resname,
+          resdate: resdate,
+          time: time,
+          bname: bname,
+          thema: thema,
+          phone: phone,
+          cost: cost,
+          personal: personal,
+        },
+      });
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default Escape;

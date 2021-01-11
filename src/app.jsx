@@ -97,9 +97,7 @@ function App() {
   return (
     <div className={styles.app}>
       <BrowserRouter>
-        <Route path="/">
-          <EscapeNav />
-        </Route>
+        <EscapeNav />
         <Switch>
           <Route exact path="/">
             <EscapeHeader />
@@ -137,11 +135,11 @@ function App() {
           <Route exact path="/review">
             <EscapeInfo />
           </Route>
-          <Route path="/reservation-detail" component={EscapeReservationDetail}></Route>
+          <Route path="/reservation-detail">
+            <EscapeReservationDetail EscapeApi={EscapeApi} />
+          </Route>
         </Switch>
-        <Route path="/">
-          <EscapeFooter />
-        </Route>
+        <EscapeFooter />
       </BrowserRouter>
     </div>
   );

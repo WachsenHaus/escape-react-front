@@ -1,14 +1,76 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Container } from "react-bootstrap";
+import { useHistory, useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-const EscapeReservationDetail = (props) => {
-  const [state, setState] = useState();
-  console.log("왜안나와");
-  console.log({ ...props });
-  useEffect(() => {
-    console.log("왜안나와2");
-    console.log(props);
-  }, []);
+const EscapeReservationDetail = ({ EscapeApi }) => {
+  const historyState = useLocation().state;
+  const [state, setState] = useState(
+    historyState && {
+      date: historyState.date,
+      time: historyState.time,
+      thema: historyState.thema,
+      branch: historyState.branch,
+      // }
+    }
+  );
+
+  const numberOfPeopleRef = useRef();
+  const costRef = useRef();
+  const nameRef = useRef();
+  const phoneRef = useRef();
+
+  useEffect(() => {}, []);
+
+  const uploadReservationState = () => {
+    const data = {
+      name: nameRef.current.value,
+      date: state.date,
+      time: state.time,
+      bname: state.branch,
+      thema: state.thema,
+      phone: phoneRef.current.value,
+      cost: costRef.current.value,
+      numberOfPeople: numberOfPeopleRef.current.value,
+    };
+    const setData = EscapeApi.setReservation(
+      data.name,
+      data.date,
+      data.time,
+      data.bname,
+      data.thema,
+      data.phone,
+      data.cost,
+      data.numberOfPeople
+    );
+    setData.then((res) => {
+      alert("예약되었습니다.");
+    });
+  };
+  const costChange = () => {
+    if (numberOfPeopleRef.current) {
+      const count = numberOfPeopleRef.current.value;
+      switch (count) {
+        case "2p":
+          costRef.current.value = "45,000원";
+          break;
+        case "3p":
+          costRef.current.value = "60,000원";
+          break;
+        case "4p":
+          costRef.current.value = "76,000원";
+          break;
+        case "5p":
+          costRef.current.value = "90,000원";
+          break;
+        case "6p":
+          costRef.current.value = "102,000원";
+          break;
+        default:
+          break;
+      }
+    }
+  };
+
   return (
     <>
       <Container className="mb-5 mt-5">
@@ -19,33 +81,29 @@ const EscapeReservationDetail = (props) => {
             <input
               type="text"
               className="form-control"
-              value={`${props.location.state.date} ${props.location.state.time}`}
+              value={`${state.date} ${state.time}`}
               readOnly
             />
           </div>
           <div className="col-6">
             <label htmlFor="branch">지점</label>
-            <input
-              type="text"
-              className="form-control"
-              value={props.location.state.branch}
-              readOnly
-            />
+            <input type="text" className="form-control" value={state.branch} readOnly />
           </div>
         </div>
         <div className="form-group row">
           <div className="col-6">
             <label htmlFor="">테마</label>
-            <input
-              type="text"
-              className="form-control"
-              value={props.location.state.thema}
-              readOnly
-            />
+            <input type="text" className="form-control" value={state.thema} readOnly />
           </div>
           <div className="col-6">
             <label htmlFor="people">인원선택</label>
-            <select className="form-control" name="" id="">
+            <select
+              className="form-control"
+              onChange={costChange}
+              ref={numberOfPeopleRef}
+              name=""
+              id=""
+            >
               <option value="2p">2명</option>
               <option value="3p">3명</option>
               <option value="4p">4명</option>
@@ -57,17 +115,24 @@ const EscapeReservationDetail = (props) => {
         <div className="form-group row">
           <div className="col-6">
             <label htmlFor="cost">금액</label>
-            <input type="text" className="form-control" value="45,000원" readOnly />
+            <input
+              ref={costRef}
+              type="text"
+              className="form-control"
+              value="45,000원"
+              readOnly
+            />
           </div>
         </div>
         <div className="form-group row">
           <div className="col-6">
             <label htmlFor="resname">예약자 성함</label>
-            <input type="text" className="form-control" />
+            <input ref={nameRef} type="text" className="form-control" />
           </div>
           <div className="col-6">
             <label htmlFor="">연락처</label>
             <input
+              ref={phoneRef}
               type="text"
               className="form-control"
               placholeder=" '-'없이 숫자만 입력해주세요."
@@ -75,7 +140,11 @@ const EscapeReservationDetail = (props) => {
           </div>
         </div>
 
-        <button style={{ "margin-left": "45%" }} className="btn btn-outline-info">
+        <button
+          style={{ "margin-left": "45%" }}
+          className="btn btn-outline-info"
+          onClick={uploadReservationState}
+        >
           온라인 예약하기
         </button>
       </Container>
