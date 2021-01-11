@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useHistory, useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
 const EscapeReservationDetail = ({ EscapeApi }) => {
   const historyState = useLocation().state;
+  const history = useHistory();
+
   const [state, setState] = useState(
     historyState && {
       date: historyState.date,
@@ -42,9 +43,39 @@ const EscapeReservationDetail = ({ EscapeApi }) => {
       data.cost,
       data.numberOfPeople
     );
-    setData.then((res) => {
-      alert("예약되었습니다.");
-    });
+
+    setData
+      .then((res) => {
+        if (!!!res) return;
+      })
+      .then(() => {
+        const goReservation = EscapeApi.getResNumber(
+          data.bname,
+          data.thema,
+          data.date,
+          data.time
+        );
+        goReservation.then((res) => {
+          if (!!!res) return;
+          if (res.status === 200) {
+            alert("예약되었습니다.");
+            history.push({
+              pathname: "/reservation-succeed",
+              state: {
+                bname: data.bname,
+                thema: data.thema,
+                numberOfPeople: data.numberOfPeople,
+                cost: data.cost,
+                name: data.name,
+                phone: data.phone,
+                resNo: res.data.number,
+              },
+            });
+          } else if (res.status !== 200) {
+            alert("예약은 성공하였으나 조회에 실패하였습니다.");
+          }
+        });
+      });
   };
   const costChange = () => {
     if (numberOfPeopleRef.current) {

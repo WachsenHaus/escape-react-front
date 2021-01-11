@@ -21,6 +21,21 @@ class Escape {
       console.log(error);
     }
   }
+  async getResNumber(branchName, thema, mDate, mTime) {
+    try {
+      const response = await this.escape.get("reservation/res_number.do", {
+        params: {
+          bname: branchName,
+          thema: thema,
+          resdate: mDate,
+          time: mTime,
+        },
+      });
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   async setReservation(resname, resdate, time, bname, thema, phone, cost, personal) {
     try {

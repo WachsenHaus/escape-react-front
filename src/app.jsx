@@ -25,6 +25,8 @@ import {
   themaes,
 } from "./components/theme/themeData.js";
 import EscapeReservationDetail from "./components/reservation/reservationDetail.jsx";
+import EscapeReservationCheck from "./pages/reservationSucceed.jsx";
+import EscapeReservationSucceed from "./pages/reservationSucceed.jsx";
 
 function App() {
   const EscapeApi = new Escape();
@@ -135,8 +137,11 @@ function App() {
           <Route exact path="/review">
             <EscapeInfo />
           </Route>
-          <Route path="/reservation-detail">
+          <Route exact path="/reservation-detail">
             <EscapeReservationDetail EscapeApi={EscapeApi} />
+          </Route>
+          <Route exact path="/reservation-succeed">
+            <EscapeReservationSucceed EscapeApi={EscapeApi} />
           </Route>
         </Switch>
         <EscapeFooter />
