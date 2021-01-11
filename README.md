@@ -6,8 +6,16 @@
 
 ## 프론트엔드 개발환경
 - creat-react-app
-- react : 16.8.0
-- react-dom : 16.8.0
-- reactstrap : 8.8.1
+- react : 17.0.1
+- react-dom : 17.0.1
+- react-bootstrap : 1.4.0
 - bootstrap : 4.5.3
 - bootswatch : 4.5.3
+## 백엔드 개발환경
+tomcat : 8.5
+java
+spring
+mybatis
+## 서버 운영 환경
+centos7
+docker
