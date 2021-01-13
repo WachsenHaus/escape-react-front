@@ -1,0 +1,6 @@
+.borderless {
+  border: 0px solid;
+}
+tr {
+  border-top: 1px solid grey;
+}

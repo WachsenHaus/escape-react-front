@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Button, Container } from "react-bootstrap";
+import styles from "./title.module.css";
+import { Button, Container, Table } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 
 const EscapeReservationTitle = ({
@@ -122,7 +123,7 @@ const EscapeReservationTitle = ({
               ))}
             </select>
           </div>
-          <table className="table table-striped mt-3">
+          <Table striped className={`${styles.borderless} mt-3`} borderless>
             <thead>
               <tr className="row">
                 <th className="col-3 text-center">시간</th>
@@ -173,7 +174,7 @@ const EscapeReservationTitle = ({
                   );
                 })}
             </tbody>
-          </table>
+          </Table>
           <Button variant="primary" style={{ "margin-left": "85%" }}>
             예약취소
           </Button>
