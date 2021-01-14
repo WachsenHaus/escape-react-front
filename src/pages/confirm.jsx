@@ -1,11 +1,13 @@
 import React, { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Container, Form, Table, Button } from "react-bootstrap";
+import { Container, Spinner, Modal, Form, Table, Button } from "react-bootstrap";
+import styles from "./confirm.module.css";
 
 const EscapeConfirm = ({ EscapeApi, Regex }) => {
   const history = useHistory();
   const DID_NOT_TYPING = "";
 
+  const [loading, setLoading] = useState(false);
   const [inputState, setInputState] = useState({
     name: DID_NOT_TYPING,
     nameSucceed: DID_NOT_TYPING,
@@ -25,6 +27,7 @@ const EscapeConfirm = ({ EscapeApi, Regex }) => {
       alert("값이 올바르지 않습니다.");
       return;
     }
+    setLoading(true);
     const getData = EscapeApi.getReservationStat(
       inputState.name,
       inputState.phone,
@@ -35,25 +38,29 @@ const EscapeConfirm = ({ EscapeApi, Regex }) => {
       return;
     }
     getData.then((res) => {
-      if (res.status === 200) {
-        const data = res.data.list[0];
-        history.push({
-          pathname: "/reservation-succeed",
-          state: {
-            bname: data.bname,
-            thema: data.thema,
-            numberOfPeople: data.personal,
-            date: data.resdate,
-            time: data.time,
-            cost: data.cost,
-            name: data.res_name,
-            phone: data.phone,
-            resNo: data.res_no,
-          },
-        });
+      if (res.status !== 200) {
+        alert(`예약 확인 에러${res.status}`);
+        return;
       }
+      setLoading(false);
+      const data = res.data.list[0];
+      history.push({
+        pathname: "/reservation-succeed",
+        state: {
+          bname: data.bname,
+          thema: data.thema,
+          numberOfPeople: data.personal,
+          date: data.resdate,
+          time: data.time,
+          cost: data.cost,
+          name: data.res_name,
+          phone: data.phone,
+          resNo: data.res_no,
+        },
+      });
     });
   };
+
   const onDelete = () => {
     if (
       !(
@@ -65,6 +72,7 @@ const EscapeConfirm = ({ EscapeApi, Regex }) => {
       alert("값이 올바르지 않습니다.");
       return;
     }
+    setLoading(true);
     const getData = EscapeApi.deleteReservation(
       inputState.name,
       inputState.phone,
@@ -75,7 +83,7 @@ const EscapeConfirm = ({ EscapeApi, Regex }) => {
       return;
     }
     getData.then((res) => {
-      console.log(res.data.result);
+      setLoading(false);
       if (res.status !== 200) {
         alert(`삭제 에러${res.status}`);
         return;
@@ -85,6 +93,7 @@ const EscapeConfirm = ({ EscapeApi, Regex }) => {
         : alert("해당 예약이 존재하지 않습니다.");
     });
   };
+
   const onChange = useCallback((event) => {
     let func;
     if (event.target.name === "name") {
@@ -122,6 +131,16 @@ const EscapeConfirm = ({ EscapeApi, Regex }) => {
   return (
     <>
       <Container>
+        {loading && (
+          <Modal
+            centered={true}
+            dialogClassName={`${styles.center} modal-90w`}
+            contentClassName={styles.center}
+            show={true}
+          >
+            <Spinner animation="border" />
+          </Modal>
+        )}
         <Form action="">
           <br />
           <br />
