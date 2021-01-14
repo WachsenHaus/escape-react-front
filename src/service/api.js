@@ -33,21 +33,25 @@ class Escape {
       });
       return response;
     } catch (error) {
-      console.log(error);
+      return false;
     }
   }
-
+  async getReservationStat(res_name, phone, res_no) {
+    try {
+      const response = await this.escape.get("confirm/confirmApi.do", {
+        params: {
+          res_name: res_name,
+          phone: phone,
+          res_no: res_no,
+        },
+      });
+      return response;
+    } catch (error) {
+      return false;
+    }
+  }
   async setReservation(resname, resdate, time, bname, thema, phone, cost, personal) {
     try {
-      //resname:$scope.resname,
-      //resdate:$scope.date,
-      //time:$scope.time,
-      //bname:$scope.bname,
-      //thema:$scope.thema,
-      //phone:$scope.phone,
-      //cost:$scope.cost,
-      //personal:$scope.personal
-
       const response = await this.escape.get("reservation/res_process.do", {
         params: {
           resname: resname,
@@ -62,7 +66,7 @@ class Escape {
       });
       return response;
     } catch (error) {
-      console.log(error);
+      return false;
     }
   }
 }

@@ -64,6 +64,8 @@ const EscapeReservationDetail = ({ EscapeApi }) => {
               state: {
                 bname: data.bname,
                 thema: data.thema,
+                date: data.date,
+                time: data.time,
                 numberOfPeople: data.numberOfPeople,
                 cost: data.cost,
                 name: data.name,

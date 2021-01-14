@@ -10,6 +10,8 @@ const EscapeReservationSucceed = (props) => {
       bname: historyState.bname,
       thema: historyState.thema,
       numberOfPeople: historyState.numberOfPeople,
+      date: historyState.date,
+      time: historyState.time,
       cost: historyState.cost,
       name: historyState.name,
       phone: historyState.phone,
@@ -30,6 +32,12 @@ const EscapeReservationSucceed = (props) => {
             <tr>
               <th>테마</th>
               <td>{state.thema}</td>
+            </tr>
+            <tr>
+              <th>예약일시</th>
+              <td>
+                {state.date} {state.time}
+              </td>
             </tr>
             <tr>
               <th>인원</th>

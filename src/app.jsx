@@ -128,7 +128,7 @@ function App() {
             />
           </Route>
           <Route exact path="/confirm">
-            <EscapeConfirm Regex={Regex} />
+            <EscapeConfirm Regex={Regex} EscapeApi={EscapeApi} />
           </Route>
           <Route exact path="/notice">
             <EscapeConfirm />

@@ -1,9 +1,10 @@
-import React, { useRef, useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Container, Form, Table, Button } from "react-bootstrap";
 
-const EscapeConfirm = ({ Regex }) => {
+const EscapeConfirm = ({ EscapeApi, Regex }) => {
+  const history = useHistory();
   const DID_NOT_TYPING = "";
-  const SOMETHING_TYPING = true;
 
   const [inputState, setInputState] = useState({
     name: DID_NOT_TYPING,
@@ -13,6 +14,47 @@ const EscapeConfirm = ({ Regex }) => {
     checkNumber: DID_NOT_TYPING,
     checkNumberSucceed: DID_NOT_TYPING,
   });
+  const onCheck = () => {
+    if (
+      !(
+        inputState.checkNumberSucceed &&
+        inputState.nameSucceed &&
+        inputState.phoneSucceed
+      )
+    ) {
+      alert("값이 올바르지 않습니다.");
+      return;
+    }
+    const getData = EscapeApi.getReservationStat(
+      inputState.name,
+      inputState.phone,
+      inputState.checkNumber
+    );
+    if (getData === false) {
+      alert("서버 에러");
+      return;
+    }
+    getData.then((res) => {
+      if (res.status === 200) {
+        const data = res.data.list[0];
+        history.push({
+          pathname: "/reservation-succeed",
+          state: {
+            bname: data.bname,
+            thema: data.thema,
+            numberOfPeople: data.personal,
+            date: data.resdate,
+            time: data.time,
+            cost: data.cost,
+            name: data.res_name,
+            phone: data.phone,
+            resNo: data.res_no,
+          },
+        });
+      }
+    });
+  };
+  const onDelete = () => {};
   const onChange = useCallback((event) => {
     let func;
     if (event.target.name === "name") {
@@ -26,13 +68,13 @@ const EscapeConfirm = ({ Regex }) => {
       func(event.target) === false
         ? setInputState((state) => {
             const updated = { ...state };
-            updated[`${event.target.name}`] = SOMETHING_TYPING;
+            updated[`${event.target.name}`] = event.target.value;
             updated[`${event.target.name}Succeed`] = false;
             return updated;
           })
         : setInputState((state) => {
             const updated = { ...state };
-            updated[`${event.target.name}`] = SOMETHING_TYPING;
+            updated[`${event.target.name}`] = event.target.value;
             updated[`${event.target.name}Succeed`] = true;
             console.log(updated);
             return updated;
@@ -136,10 +178,10 @@ const EscapeConfirm = ({ Regex }) => {
           <br />
           <div className="row">
             <div className="col-sm-12 col-md-12 text-center">
-              <Button className="mx-2" size="lg" variant="primary">
+              <Button className="mx-2" size="lg" variant="primary" onClick={onCheck}>
                 예약 확인
               </Button>
-              <Button className="mx-2" size="lg" variant="danger">
+              <Button className="mx-2" size="lg" variant="danger" onclick={onDelete}>
                 예약 취소
               </Button>
             </div>
