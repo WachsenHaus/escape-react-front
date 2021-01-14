@@ -9,12 +9,14 @@ const EscapeReservationTitle = ({
   setDate,
   setOwnedThemes,
   EscapeApi,
+  timezoneDate,
 }) => {
   const history = useHistory();
   const selectedBranch = useRef();
   const selectedTheme = useRef();
   const selectedDate = useRef();
   const [maxDay, setMaxDay] = useState();
+  const [minDay, setMinDay] = useState();
   const [themaList, setThemaList] = useState();
   //오늘로부터 2개월뒤까지만 달력에 표시함
   const calcMaxDay = () => {
@@ -48,7 +50,6 @@ const EscapeReservationTitle = ({
     );
     getData.then((res) => {
       setThemaList(res.data.list);
-      console.log(res.data.list);
     });
   }, [EscapeApi, state.branch, state.date]);
 
@@ -60,6 +61,7 @@ const EscapeReservationTitle = ({
   }, [EscapeApi, getOwnedBranchSchedule, setOwnedThemes, state.branch, state.date]);
 
   useEffect(() => {
+    setMinDay(timezoneDate.toISOString().split("T")[0]);
     setMaxDay(calcMaxDay());
   }, []);
 
@@ -83,7 +85,7 @@ const EscapeReservationTitle = ({
               className="form-control"
               type="date"
               value={state.date}
-              min={new Date().toISOString().split("T")[0]}
+              min={minDay}
               max={maxDay}
             />
           </div>

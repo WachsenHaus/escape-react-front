@@ -32,10 +32,12 @@ import EscapeConfirm from "./pages/confirm.jsx";
 function App() {
   const EscapeApi = new Escape();
   const Regex = new RegUtil();
+  let timezoneOffset = new Date().getTimezoneOffset() * 60000;
+  let timezoneDate = new Date(Date.now() - timezoneOffset);
 
   const [state, setState] = useState({
     branch: "홍대점",
-    date: new Date().toISOString().split("T")[0],
+    date: timezoneDate.toISOString().split("T")[0],
     ownedThemes: [],
   });
   useEffect(() => {
@@ -125,6 +127,7 @@ function App() {
               setDate={setDate}
               setOwnedThemes={setOwnedThemes}
               EscapeApi={EscapeApi}
+              timezoneDate={timezoneDate}
             />
           </Route>
           <Route exact path="/confirm">

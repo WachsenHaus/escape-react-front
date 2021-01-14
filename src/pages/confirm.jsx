@@ -54,7 +54,37 @@ const EscapeConfirm = ({ EscapeApi, Regex }) => {
       }
     });
   };
-  const onDelete = () => {};
+  const onDelete = () => {
+    if (
+      !(
+        inputState.checkNumberSucceed &&
+        inputState.nameSucceed &&
+        inputState.phoneSucceed
+      )
+    ) {
+      alert("값이 올바르지 않습니다.");
+      return;
+    }
+    const getData = EscapeApi.deleteReservation(
+      inputState.name,
+      inputState.phone,
+      inputState.checkNumber
+    );
+    if (getData === false) {
+      alert("서버 에러");
+      return;
+    }
+    getData.then((res) => {
+      console.log(res.data.result);
+      if (res.status !== 200) {
+        alert(`삭제 에러${res.status}`);
+        return;
+      }
+      res.data.result === "true"
+        ? alert("예약이 취소되었습니다.")
+        : alert("해당 예약이 존재하지 않습니다.");
+    });
+  };
   const onChange = useCallback((event) => {
     let func;
     if (event.target.name === "name") {
@@ -76,7 +106,6 @@ const EscapeConfirm = ({ EscapeApi, Regex }) => {
             const updated = { ...state };
             updated[`${event.target.name}`] = event.target.value;
             updated[`${event.target.name}Succeed`] = true;
-            console.log(updated);
             return updated;
           });
     }
@@ -181,7 +210,7 @@ const EscapeConfirm = ({ EscapeApi, Regex }) => {
               <Button className="mx-2" size="lg" variant="primary" onClick={onCheck}>
                 예약 확인
               </Button>
-              <Button className="mx-2" size="lg" variant="danger" onclick={onDelete}>
+              <Button className="mx-2" size="lg" variant="danger" onClick={onDelete}>
                 예약 취소
               </Button>
             </div>

@@ -50,6 +50,20 @@ class Escape {
       return false;
     }
   }
+  async deleteReservation(res_name, phone, res_no) {
+    try {
+      const response = await this.escape.get("confirm/deleteApi.do", {
+        params: {
+          res_name: res_name,
+          phone: phone,
+          res_no: res_no,
+        },
+      });
+      return response;
+    } catch (error) {
+      return false;
+    }
+  }
   async setReservation(resname, resdate, time, bname, thema, phone, cost, personal) {
     try {
       const response = await this.escape.get("reservation/res_process.do", {

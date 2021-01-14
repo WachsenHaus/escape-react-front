@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import styles from "./reservationSucceed.module.css";
-import { useHistory, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 const EscapeReservationSucceed = (props) => {
   const historyState = useLocation().state;
 
