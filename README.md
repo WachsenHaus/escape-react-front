@@ -16,7 +16,6 @@
 - bootstrap : 4.5.3
 - bootswatch : 4.5.3
 ## 백엔드 개발환경
-- tomcat : 8.5
 - java jdk : 1.8  
 - spring : 3.5
 - mybatis
@@ -25,5 +24,5 @@
 - docker
 - docker-compose
 - nginx
-- docker tomcat
-- docker Oracle Database 18c Express Edition (XE) 
+- docker tomcat 8.5
+- docker Oracle Database 11g XE
