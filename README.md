@@ -9,14 +9,21 @@
 - creat-react-app
 - react : 17.0.1
 - react-dom : 17.0.1
+- react-scripts : 4.0.1
+- react-router-bootstrap : 0.25.0
 - react-bootstrap : 1.4.0
+- axios : 0.21.1
 - bootstrap : 4.5.3
 - bootswatch : 4.5.3
 ## 백엔드 개발환경
-tomcat : 8.5
-java
-spring
-mybatis
+- tomcat : 8.5
+- java jdk : 1.8  
+- spring : 3.5
+- mybatis
 ## 서버 운영 환경
-centos7
-docker
+- centos 7
+- docker
+- docker-compose
+- nginx
+- docker tomcat
+- docker Oracle Database 18c Express Edition (XE) 
