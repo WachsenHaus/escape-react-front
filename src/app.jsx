@@ -13,6 +13,7 @@ import EscapeFooter from "./components/footer/footer.jsx";
 import EscapeIntro from "./components/intro/intro.jsx";
 import EscapeReservationTitle from "./components/reservation/reservationTitle.jsx";
 import Escape from "./service/api";
+import RegUtil from "./utils/regex";
 import {
   daejeonThema,
   jeonjuThema,
@@ -25,11 +26,12 @@ import {
   themaes,
 } from "./components/theme/themeData.js";
 import EscapeReservationDetail from "./components/reservation/reservationDetail.jsx";
-import EscapeReservationCheck from "./pages/reservationSucceed.jsx";
 import EscapeReservationSucceed from "./pages/reservationSucceed.jsx";
+import EscapeConfirm from "./pages/confirm.jsx";
 
 function App() {
   const EscapeApi = new Escape();
+  const Regex = new RegUtil();
 
   const [state, setState] = useState({
     branch: "홍대점",
@@ -126,10 +128,10 @@ function App() {
             />
           </Route>
           <Route exact path="/confirm">
-            <EscapeInfo />
+            <EscapeConfirm Regex={Regex} />
           </Route>
           <Route exact path="/notice">
-            <EscapeInfo />
+            <EscapeConfirm />
           </Route>
           <Route exact path="/mapinfo">
             <EscapeInfo />
