@@ -11,89 +11,43 @@ const EscapeConfirm = ({ Regex }) => {
     phone: DID_NOT_TYPING,
     phoneSucceed: DID_NOT_TYPING,
     checkNumber: DID_NOT_TYPING,
-    checkNumbereSucceed: DID_NOT_TYPING,
+    checkNumberSucceed: DID_NOT_TYPING,
   });
-  const nameRef = useRef();
-  const phoneRef = useRef();
-  const checkNumberRef = useRef();
-  const onNameChange = useCallback(() => {
-    if (nameRef.current.value !== DID_NOT_TYPING) {
-      Regex.checkHangleName(nameRef.current) === false
+  const onChange = useCallback((event) => {
+    let func;
+    if (event.target.name === "name") {
+      func = Regex.checkHangleName;
+    } else if (event.target.name === "phone") {
+      func = Regex.checkNonHipenPhoneNumber;
+    } else if (event.target.name === "checkNumber") {
+      func = Regex.checkDigitNumber;
+    }
+    if (event.target.value !== DID_NOT_TYPING) {
+      func(event.target) === false
         ? setInputState((state) => {
             const updated = { ...state };
-            updated["name"] = SOMETHING_TYPING;
-            updated["nameSucceed"] = false;
+            updated[`${event.target.name}`] = SOMETHING_TYPING;
+            updated[`${event.target.name}Succeed`] = false;
             return updated;
           })
         : setInputState((state) => {
             const updated = { ...state };
-            updated["name"] = SOMETHING_TYPING;
-            updated["nameSucceed"] = true;
+            updated[`${event.target.name}`] = SOMETHING_TYPING;
+            updated[`${event.target.name}Succeed`] = true;
+            console.log(updated);
             return updated;
           });
     }
-    if (nameRef.current.value === DID_NOT_TYPING) {
+    if (event.target.value === DID_NOT_TYPING) {
       setInputState((state) => {
         const updated = { ...state };
-        updated["name"] = DID_NOT_TYPING;
-        updated["nameSucceed"] = DID_NOT_TYPING;
-        console.log(updated);
+        updated[`${event.target.name}`] = DID_NOT_TYPING;
+        updated[`${event.target.name}Succeed`] = DID_NOT_TYPING;
         return updated;
       });
     }
-  }, [Regex, SOMETHING_TYPING]);
-  const onPhoneChange = useCallback(() => {
-    if (phoneRef.current.value !== DID_NOT_TYPING) {
-      Regex.checkNonHipenPhoneNumber(phoneRef.current) === false
-        ? setInputState((state) => {
-            const updated = { ...state };
-            updated["phone"] = SOMETHING_TYPING;
-            updated["phoneSucceed"] = false;
-            return updated;
-          })
-        : setInputState((state) => {
-            const updated = { ...state };
-            updated["phone"] = SOMETHING_TYPING;
-            updated["phoneSucceed"] = true;
-            return updated;
-          });
-    }
-    if (phoneRef.current.value === DID_NOT_TYPING) {
-      setInputState((state) => {
-        const updated = { ...state };
-        updated["phone"] = DID_NOT_TYPING;
-        updated["phoneSucceed"] = DID_NOT_TYPING;
-        console.log(updated);
-        return updated;
-      });
-    }
-  }, []);
-  const onCheckNumberChange = useCallback(() => {
-    if (checkNumberRef.current.value !== DID_NOT_TYPING) {
-      Regex.checkDigitNumber(checkNumberRef.current) === false
-        ? setInputState((state) => {
-            const updated = { ...state };
-            updated["checkNumber"] = SOMETHING_TYPING;
-            updated["checkNumbereSucceed"] = false;
-            return updated;
-          })
-        : setInputState((state) => {
-            const updated = { ...state };
-            updated["checkNumber"] = SOMETHING_TYPING;
-            updated["checkNumbereSucceed"] = true;
-            return updated;
-          });
-    }
-    if (checkNumberRef.current.value === DID_NOT_TYPING) {
-      setInputState((state) => {
-        const updated = { ...state };
-        updated["checkNumber"] = DID_NOT_TYPING;
-        updated["checkNumbereSucceed"] = DID_NOT_TYPING;
-        console.log(updated);
-        return updated;
-      });
-    }
-  }, []);
+  });
+
   return (
     <>
       <Container>
@@ -111,8 +65,8 @@ const EscapeConfirm = ({ Regex }) => {
                   <td className="text-left">
                     <Form.Group>
                       <Form.Control
-                        ref={nameRef}
-                        onChange={onNameChange}
+                        name={"name"}
+                        onChange={onChange}
                         placeholder="예약자 성함"
                         aria-label="Username"
                         isInvalid={
@@ -134,8 +88,8 @@ const EscapeConfirm = ({ Regex }) => {
                   <td className="text-left">
                     <Form.Group>
                       <Form.Control
-                        ref={phoneRef}
-                        onChange={onPhoneChange}
+                        name={"phone"}
+                        onChange={onChange}
                         placeholder="연락처"
                         aria-label="UserPhone"
                         isInvalid={
@@ -157,18 +111,18 @@ const EscapeConfirm = ({ Regex }) => {
                   <td className="text-left">
                     <Form.Group>
                       <Form.Control
-                        ref={checkNumberRef}
-                        onChange={onCheckNumberChange}
+                        name={"checkNumber"}
+                        onChange={onChange}
                         placeholder="예약확인번호"
                         aria-label="UserNumber"
                         isInvalid={
                           inputState.checkNumber !== DID_NOT_TYPING
-                            ? !!!inputState.checkNumbereSucceed
+                            ? !!!inputState.checkNumberSucceed
                             : ""
                         }
                         isValid={
                           inputState.checkNumber !== DID_NOT_TYPING
-                            ? !!inputState.checkNumbereSucceed
+                            ? !!inputState.checkNumberSucceed
                             : ""
                         }
                       />

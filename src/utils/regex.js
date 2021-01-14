@@ -4,7 +4,7 @@ class RegUtil {
     this.phoneRegExp = /^\d{3}-\d{3,4}-\d{4}$/;
     this.nonHipenPhoneRegExp = /^\d{3}\d{4}\d{4}$/;
     this.checkHangleNameRegExp = /^[가-힣]{2,4}$/;
-    this.numberRegExp = /^[0-9]/g;
+    this.numberRegExp = /^\d/;
   }
   checkHangleName = (element) => {
     if (!this.checkHangleNameRegExp.test(element.value)) {
