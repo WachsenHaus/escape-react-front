@@ -42,6 +42,7 @@ const EscapeConfirm = ({ EscapeApi, Regex }) => {
         alert(`예약 확인 에러${res.status}`);
         return;
       }
+      //
       setLoading(false);
       const data = res.data.list[0];
       history.push({
