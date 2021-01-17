@@ -43,6 +43,7 @@ const EscapeConfirm = ({ EscapeApi, Regex }) => {
         return;
       }
       //
+      //
       setLoading(false);
       const data = res.data.list[0];
       history.push({
