@@ -24,3 +24,7 @@ p {
   width: 100px;
   text-align: center;
 }
+
+.borderless {
+  border: 0px;
+}

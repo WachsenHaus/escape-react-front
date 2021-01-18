@@ -113,7 +113,8 @@ const EscapeInfo = ({ branchData, kakaoConfig, state, setBranch }) => {
           <div className="col-sm-6 col-md-6 col-xs-12 my-5">
             <div>
               <h4>{state.branch}</h4>
-              <Table responsive>
+
+              <Table responsive className={`${styles.borderless}`} borderless={true}>
                 <tbody>
                   <tr>
                     <td>주소</td>
@@ -155,7 +156,7 @@ const EscapeInfo = ({ branchData, kakaoConfig, state, setBranch }) => {
             </div>
             <div>
               <h4>주변지하철</h4>
-              <Table responsive>
+              <Table responsive className={`${styles.borderless}`} borderless={true}>
                 <tbody>
                   <tr>
                     {selectedBranch.지하철[0] && <>{selectedBranch.지하철[0]}</>}
@@ -170,8 +171,8 @@ const EscapeInfo = ({ branchData, kakaoConfig, state, setBranch }) => {
               </Table>
             </div>
             <div>
-              <h4>버스정류장</h4>
-              <Table responsive>
+              {selectedBranch.버스 && <h4>버스정류장</h4>}
+              <Table responsive className={`${styles.borderless}`} borderless={true}>
                 <tbody>
                   {selectedBranch.버스 &&
                     selectedBranch.버스.map((item) => (
@@ -203,6 +204,42 @@ const EscapeInfo = ({ branchData, kakaoConfig, state, setBranch }) => {
                                 <br></br>
                                 <span className="badge badge-success">급행</span>
                                 {item["급행"].join(",")}
+                              </>
+                            ) : (
+                              <></>
+                            )}
+                            {Object.keys(item).includes("일반") ? (
+                              <>
+                                <br></br>
+                                <span className="badge badge-success">급행</span>
+                                {item["일반"].join(",")}
+                              </>
+                            ) : (
+                              <></>
+                            )}
+                            {Object.keys(item).includes("공항") ? (
+                              <>
+                                <br></br>
+                                <span className="badge badge-info">공항</span>
+                                {item["공항"].join(",")}
+                              </>
+                            ) : (
+                              <></>
+                            )}
+                            {Object.keys(item).includes("광역") ? (
+                              <>
+                                <br></br>
+                                <span className="badge badge-warning">광역</span>
+                                {item["광역"].join(",")}
+                              </>
+                            ) : (
+                              <></>
+                            )}
+                            {Object.keys(item).includes("좌석") ? (
+                              <>
+                                <br></br>
+                                <span className="badge badge-info">좌석</span>
+                                {item["좌석"].join(",")}
                               </>
                             ) : (
                               <></>
