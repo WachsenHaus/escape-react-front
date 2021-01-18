@@ -1,6 +1,5 @@
 {
   "name": "escape",
-  "homepage": "http://localhost:8888/escape",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

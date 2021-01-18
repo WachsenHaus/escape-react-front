@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import EscapeNav from "./components/nav/nav.jsx";
 import styles from "./app.module.css";
-import EscapeInfo from "./components/info/info";
+import EscapeInfo from "./pages/info";
 import EscapeTheme from "./components/theme/theme.jsx";
 import EscapeHeader from "./components/header/header.jsx";
 import EscapeStoreIntro from "./components/intro/storeIntro.jsx";
@@ -28,13 +28,13 @@ import {
 import EscapeReservationDetail from "./components/reservation/reservationDetail.jsx";
 import EscapeReservationSucceed from "./pages/reservationSucceed.jsx";
 import EscapeConfirm from "./pages/confirm.jsx";
+import { kakaoConfig } from "./service/kakaoMap.js";
 
 function App() {
   const EscapeApi = new Escape();
   const Regex = new RegUtil();
   let timezoneOffset = new Date().getTimezoneOffset() * 60000;
   let timezoneDate = new Date(Date.now() - timezoneOffset);
-
   const [state, setState] = useState({
     branch: "홍대점",
     date: timezoneDate.toISOString().split("T")[0],
@@ -44,7 +44,6 @@ function App() {
     setState((state) => {
       const dummy = { ...state };
       dummy.ownedThemes = [...hongdaeThema.map((index) => themaes[index])];
-      console.log(dummy.ownedThemes);
       return dummy;
     });
   }, []);
@@ -52,7 +51,6 @@ function App() {
     setState((state) => {
       const mBranch = { ...state };
       mBranch.branch = branchName;
-      console.log(mBranch);
       return mBranch;
     });
   };
@@ -137,7 +135,7 @@ function App() {
             <EscapeConfirm />
           </Route>
           <Route exact path="/mapinfo">
-            <EscapeInfo />
+            <EscapeInfo kakaoConfig={kakaoConfig} state={state} setBranch={setBranch} />
           </Route>
           <Route exact path="/review">
             <EscapeInfo />

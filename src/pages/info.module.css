@@ -1,0 +1,26 @@
+.link:hover {
+  cursor: pointer;
+}
+.branch {
+  margin-top: 5%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+.closeButton {
+  position: absolute;
+  right: 6px;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0);
+  border: 0;
+}
+p {
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
+.avatar {
+  height: 100px;
+  width: 100px;
+  text-align: center;
+}
