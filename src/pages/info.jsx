@@ -1,18 +1,14 @@
 /*global kakao*/
 import React, { useEffect } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Table } from "react-bootstrap";
 import styles from "./info.module.css";
 
-const EscapeInfo = ({ kakaoConfig, state, setBranch }) => {
+const EscapeInfo = ({ branchData, kakaoConfig, state, setBranch }) => {
   const onClick = (event) => {
-    console.log(event.target.innerText);
+    setBranch(event.target.innerText);
   };
 
-  const onCloseClick = () => {
-    // infowindow.close();
-    console.log("ㅇㅇㅇ");
-  };
-
+  const selectedBranch = branchData[`${state.branch}`];
   useEffect(() => {
     const script = document.createElement("script");
     script.async = true;
@@ -114,7 +110,111 @@ const EscapeInfo = ({ kakaoConfig, state, setBranch }) => {
               }}
             ></div>
           </div>
-          <div className="col-sm-6 col-md-6 col-xs-12 my-5"></div>
+          <div className="col-sm-6 col-md-6 col-xs-12 my-5">
+            <div>
+              <h4>{state.branch}</h4>
+              <Table responsive>
+                <tbody>
+                  <tr>
+                    <td>주소</td>
+                    <td>:</td>
+                    <td>{selectedBranch.주소}</td>
+                  </tr>
+                  <tr>
+                    <td>연락처</td>
+                    <td>:</td>
+                    <td>{selectedBranch.연락처}</td>
+                  </tr>
+                  <tr>
+                    <td>영업시간</td>
+                    <td>:</td>
+                    <td>
+                      {selectedBranch.영업시간[0] && selectedBranch.영업시간[0]}
+                      {selectedBranch.영업시간[1] && (
+                        <>
+                          <br></br>
+                          {selectedBranch.영업시간[1]}
+                        </>
+                      )}
+                      {selectedBranch.영업시간[2] && (
+                        <>
+                          <br></br>
+                          {selectedBranch.영업시간[2]}
+                        </>
+                      )}
+                      {selectedBranch.영업시간[3] && (
+                        <>
+                          <br></br>
+                          {selectedBranch.영업시간[3]}
+                        </>
+                      )}
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+            </div>
+            <div>
+              <h4>주변지하철</h4>
+              <Table responsive>
+                <tbody>
+                  <tr>
+                    {selectedBranch.지하철[0] && <>{selectedBranch.지하철[0]}</>}
+                    {selectedBranch.지하철[1] && (
+                      <>
+                        <br></br>
+                        {selectedBranch.지하철[1]}
+                      </>
+                    )}
+                  </tr>
+                </tbody>
+              </Table>
+            </div>
+            <div>
+              <h4>버스정류장</h4>
+              <Table responsive>
+                <tbody>
+                  {selectedBranch.버스 &&
+                    selectedBranch.버스.map((item) => (
+                      <>
+                        <tr>
+                          <td>
+                            {item.정류장이름} : {item.정류장번호}
+                          </td>
+                          <td>
+                            {Object.keys(item).includes("간선") ? (
+                              <>
+                                <span className="badge badge-info">간선</span>
+                                {item["간선"].join(",")}
+                              </>
+                            ) : (
+                              <></>
+                            )}
+                            {Object.keys(item).includes("지선") ? (
+                              <>
+                                <br></br>
+                                <span className="badge badge-danger">지선</span>
+                                {item["지선"].join(",")}
+                              </>
+                            ) : (
+                              <></>
+                            )}
+                            {Object.keys(item).includes("급행") ? (
+                              <>
+                                <br></br>
+                                <span className="badge badge-success">급행</span>
+                                {item["급행"].join(",")}
+                              </>
+                            ) : (
+                              <></>
+                            )}
+                          </td>
+                        </tr>
+                      </>
+                    ))}
+                </tbody>
+              </Table>
+            </div>
+          </div>
         </div>
       </Container>
     </>

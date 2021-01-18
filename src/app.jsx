@@ -29,17 +29,20 @@ import EscapeReservationDetail from "./components/reservation/reservationDetail.
 import EscapeReservationSucceed from "./pages/reservationSucceed.jsx";
 import EscapeConfirm from "./pages/confirm.jsx";
 import { kakaoConfig } from "./service/kakaoMap.js";
+import { branch as branchData } from "./data/mapInfo.js";
 
 function App() {
   const EscapeApi = new Escape();
   const Regex = new RegUtil();
   let timezoneOffset = new Date().getTimezoneOffset() * 60000;
   let timezoneDate = new Date(Date.now() - timezoneOffset);
+
   const [state, setState] = useState({
     branch: "홍대점",
     date: timezoneDate.toISOString().split("T")[0],
     ownedThemes: [],
   });
+
   useEffect(() => {
     setState((state) => {
       const dummy = { ...state };
@@ -135,7 +138,12 @@ function App() {
             <EscapeConfirm />
           </Route>
           <Route exact path="/mapinfo">
-            <EscapeInfo kakaoConfig={kakaoConfig} state={state} setBranch={setBranch} />
+            <EscapeInfo
+              branchData={branchData}
+              kakaoConfig={kakaoConfig}
+              state={state}
+              setBranch={setBranch}
+            />
           </Route>
           <Route exact path="/review">
             <EscapeInfo />
