@@ -18,15 +18,51 @@ const EscapeInfo = ({ branchData, kakaoConfig, state, setBranch }) => {
     script.onload = () => {
       kakao.maps &&
         kakao.maps.load(() => {
-          console.log(kakao.maps);
-          const x = 37.553419;
-          const y = 126.920605;
+          let x = 37.553419;
+          let y = 126.920605;
+          switch (state.branch) {
+            case "홍대점":
+              x = 37.553419;
+              y = 126.920605;
+              break;
+            case "대구점":
+              x = 37.553419;
+              y = 126.920605;
+              break;
+            case "인천구월점":
+              x = 37.444135;
+              y = 126.702761;
+              break;
+            case "전주점":
+              x = 35.8156;
+              y = 127.110433;
+              break;
+            case "잠실점":
+              x = 37.51077;
+              y = 127.079955;
+              break;
+            case "대전둔산점":
+              x = 36.35069;
+              y = 127.374909;
+              break;
+            case "천호점":
+              x = 37.53862;
+              y = 127.127454;
+              break;
+            case "수유점":
+              x = 37.638344;
+              y = 127.02485;
+              break;
+            default:
+              break;
+          }
+          console.log(selectedBranch);
           let context = `<div style="padding:5px;">
               <button id="closeBtn" class="${styles.closeButton}" >
                 x
               </button>
               <h1 class="mt-1">
-                <span class="badge badge-info">ACORN 이스케이프 홍대점</span>
+                <span class="badge badge-info">ACORN 이스케이프 ${state.branch}</span>
               </h1>
               <br/>
                 <img class="avatar"  src="../resources/images/unnamed.png" />
@@ -69,7 +105,7 @@ const EscapeInfo = ({ branchData, kakaoConfig, state, setBranch }) => {
             });
         });
     };
-  }, []);
+  }, [state]);
   return (
     <>
       <Container>
@@ -112,7 +148,7 @@ const EscapeInfo = ({ branchData, kakaoConfig, state, setBranch }) => {
           </div>
           <div className="col-sm-6 col-md-6 col-xs-12 my-5">
             <div>
-              <h4>{state.branch}</h4>
+              <h4 style={{ color: "red" }}>{state.branch}</h4>
 
               <Table responsive className={`${styles.borderless}`} borderless={true}>
                 <tbody>
@@ -155,7 +191,7 @@ const EscapeInfo = ({ branchData, kakaoConfig, state, setBranch }) => {
               </Table>
             </div>
             <div>
-              <h4>주변지하철</h4>
+              <h4>주변 지하철</h4>
               <Table responsive className={`${styles.borderless}`} borderless={true}>
                 <tbody>
                   <tr>
@@ -171,7 +207,7 @@ const EscapeInfo = ({ branchData, kakaoConfig, state, setBranch }) => {
               </Table>
             </div>
             <div>
-              {selectedBranch.버스 && <h4>버스정류장</h4>}
+              {selectedBranch.버스 && <h4>버스 정류장</h4>}
               <Table responsive className={`${styles.borderless}`} borderless={true}>
                 <tbody>
                   {selectedBranch.버스 &&
