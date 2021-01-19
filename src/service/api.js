@@ -7,6 +7,19 @@ class Escape {
     });
   }
 
+  async getReviewPageNumber(pageNum) {
+    try {
+      const response = await this.escape.get("review/ajax_listpage.do", {
+        params: {
+          pageNum: pageNum,
+        },
+      });
+      return response;
+    } catch (error) {
+      return false;
+    }
+  }
+
   async getReservation(branchName, thema, mDate) {
     try {
       const response = await this.escape.get("reservation/reservation_ajax.do", {
@@ -18,7 +31,7 @@ class Escape {
       });
       return response;
     } catch (error) {
-      console.log(error);
+      return false;
     }
   }
   async getResNumber(branchName, thema, mDate, mTime) {

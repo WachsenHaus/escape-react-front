@@ -147,7 +147,7 @@ function App() {
             />
           </Route>
           <Route exact path="/review">
-            <EscapeReview />
+            <EscapeReview EscapeApi={EscapeApi} />
           </Route>
           <Route exact path="/reservation-detail">
             <EscapeReservationDetail EscapeApi={EscapeApi} />
