@@ -1,0 +1,12 @@
+body {
+  background-color: #fff;
+}
+h1 {
+  color: black;
+}
+label {
+  color: black;
+}
+input[type="password"] {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}

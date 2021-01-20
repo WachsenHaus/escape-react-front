@@ -157,7 +157,7 @@ function App() {
             <EscapeReservationSucceed EscapeApi={EscapeApi} />
           </Route>
           <Route exact path="/reviewWrite">
-            <EditorReview />
+            <EditorReview EscapeApi={EscapeApi} />
           </Route>
         </Switch>
         <EscapeFooter />

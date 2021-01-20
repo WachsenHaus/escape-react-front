@@ -1,13 +1,11 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Container, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-// import styles from "./reviewWrite.module.css";
-import styles from "./content-styles.css";
 import { Button } from "react-bootstrap";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
-// import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import ClassicEditor from "@ckeditor/ckeditor5-editor-classic/src/classiceditor";
-
+import styles_ckeditor from "./content-styles.css";
+import styles from "./reviewWrite.module.css";
 import Bold from "@ckeditor/ckeditor5-basic-styles/src/bold.js";
 import Essentials from "@ckeditor/ckeditor5-essentials/src/essentials.js";
 import Heading from "@ckeditor/ckeditor5-heading/src/heading.js";
@@ -44,7 +42,7 @@ import TableToolbar from "@ckeditor/ckeditor5-table/src/tabletoolbar.js";
 import TextTransformation from "@ckeditor/ckeditor5-typing/src/texttransformation.js";
 import Underline from "@ckeditor/ckeditor5-basic-styles/src/underline.js";
 
-const EditorReview = (props) => {
+const EditorReview = ({ EscapeApi }) => {
   const installedPlugins = [
     Alignment,
     Autoformat,
@@ -83,50 +81,73 @@ const EditorReview = (props) => {
     Underline,
   ];
 
+  const onClickWriteButton = () => {};
   return (
     <>
-      <link rel="stylesheet" href="./content-styles.css" type="text/css"></link>
       <Container>
         <div>
-          <CKEditor
-            editor={ClassicEditor}
-            config={{
-              plugins: [...installedPlugins],
-              ckfinder: {
-                uploadUrl: "http://localhost:8888/escape/review/imgUpload.do",
-              },
-              toolbar: [
-                "fontFamily",
-                "fontSize",
-                "fontColor",
-                "alignment",
-                "|",
-                "bold",
-                "italic",
-                "strikethrough",
-                "underline",
-                "specialCharacters",
-                "horizontalLine",
-                "|",
-                "bulletedList",
-                "numberedList",
-                "|",
-                "indent",
-                "outdent",
-                "|",
-                "link",
-                "blockQuote",
-                "imageUpload",
-                "mediaEmbed",
-                "|",
-                "undo",
-                "redo",
-              ],
-            }}
-            data="<p>다른 사용자를 위해 테마 내용은 지양해주세요</p>"
-          />
+          <br></br>
+          <h1>글쓰기</h1>
+          <form>
+            <div className="form-group">
+              <label for="writer">이름</label>
+              <input className={"form-control"} name="writer"></input>
+            </div>
+            <div className="form-group">
+              <label for="pwd">비밀번호</label>
+              <input className={"form-control"} type="password" name="pwd"></input>
+            </div>
+            <div className="form-group">
+              <label for="title">제목</label>
+              <input className={"form-control"} name="title"></input>
+            </div>
+            <div className="form-group">
+              <label for="content">내용</label>
+              <input className={"form-control"} name="content"></input>
+            </div>
+
+            <CKEditor
+              editor={ClassicEditor}
+              config={{
+                plugins: [...installedPlugins],
+                ckfinder: {
+                  uploadUrl: "http://localhost:8888/escape/review/imgUpload.do",
+                },
+                toolbar: [
+                  "fontFamily",
+                  "fontSize",
+                  "fontColor",
+                  "alignment",
+                  "|",
+                  "bold",
+                  "italic",
+                  "strikethrough",
+                  "underline",
+                  "specialCharacters",
+                  "horizontalLine",
+                  "|",
+                  "bulletedList",
+                  "numberedList",
+                  "|",
+                  "indent",
+                  "outdent",
+                  "|",
+                  "link",
+                  "blockQuote",
+                  "imageUpload",
+                  "mediaEmbed",
+                  "|",
+                  "undo",
+                  "redo",
+                ],
+              }}
+              data="<p>다른 사용자를 위해 테마 내용은 지양해주세요</p>"
+            />
+          </form>
         </div>
-        <Button>글쓰기</Button>
+        <div className="d-flex justify-content-center my-5">
+          <Button onClick={onClickWriteButton}>글쓰기</Button>
+        </div>
       </Container>
     </>
   );
