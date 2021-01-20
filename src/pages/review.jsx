@@ -2,14 +2,12 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Container, Button, Table } from "react-bootstrap";
 import styles from "./review.module.css";
 import PaginationComponent from "../components/pagination/pagination.jsx";
+import { Link, useHistory, useLocation } from "react-router-dom";
 
 const EscapeReview = ({ EscapeApi }) => {
-  const [pageInfo, setPageInfo] = useState({
-    pageNum: 1,
-    startPageNum: 0,
-    totalPageCount: 0,
-    endPageNum: 0,
-  });
+  const [pageInfo, setPageInfo] = useState({});
+  const [contents, setContents] = useState([]);
+  const history = useHistory();
 
   const getPage = useCallback(
     (pageNum = 1) => {
@@ -35,10 +33,33 @@ const EscapeReview = ({ EscapeApi }) => {
     },
     [EscapeApi]
   );
+  const getPageContext = useCallback(
+    (pageNum = 1) => {
+      const getData = EscapeApi.getReviewPageList(pageNum);
+      if (getData === false) {
+        alert("서버 에러");
+        return;
+      }
+      getData.then((res) => {
+        if (res.status !== 200) {
+          alert(`페이지 에러${res.status}`);
+          return;
+        }
+        console.log(res.data);
+        setContents([...res.data]);
+      });
+    },
+    [EscapeApi]
+  );
 
   useEffect(() => {
     getPage();
   }, [getPage]);
+
+  useEffect(() => {
+    //여기에 본문 내용들 가져오는 함수 추가함.
+    getPageContext(pageInfo.pageNum);
+  }, [pageInfo, getPageContext]);
 
   const submitButton = useRef();
   const searchinputRef = useRef();
@@ -69,11 +90,13 @@ const EscapeReview = ({ EscapeApi }) => {
             </form>
           </div>
           <div>
-            <Button variant="outline-primary">글작성</Button>
+            <Button variant="outline-primary">
+              <Link to="reviewWrite">글작성</Link>
+            </Button>
           </div>
         </div>
         <div className="row mt-5">
-          <Table>
+          <Table borderless>
             <thead>
               <tr>
                 <th className={styles.w10}>번호</th>
@@ -84,16 +107,24 @@ const EscapeReview = ({ EscapeApi }) => {
               </tr>
             </thead>
             <tbody>
-              <td className={styles.w10}>1</td>
-              <td className={styles.w50}>2</td>
-              <td className={styles.w10}>3</td>
-              <td className={styles.w10}>4</td>
-              <td className={styles.w10}>5</td>
+              {contents.map((item) => (
+                <>
+                  <tr>
+                    <td className={styles.w10}>{item.num}</td>
+                    <td className={styles.w50}>
+                      <span className={"text-success"}>{item.title}</span>
+                    </td>
+                    <td className={styles.w10}>{item.writer}</td>
+                    <td className={styles.w10}>{item.regdate}</td>
+                    <td className={styles.w10}>{item.viewcount}</td>
+                  </tr>
+                </>
+              ))}
             </tbody>
           </Table>
         </div>
 
-        <div className={`${styles.font} text-center row`}>
+        <div className={`${styles.font} row`}>
           <PaginationComponent
             setPageInfo={setPageInfo}
             pageInfo={pageInfo}

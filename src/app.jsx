@@ -31,6 +31,7 @@ import EscapeConfirm from "./pages/confirm.jsx";
 import { kakaoConfig } from "./service/kakaoMap.js";
 import { branch as branchData } from "./data/mapInfo.js";
 import EscapeReview from "./pages/review.jsx";
+import EditorReview from "./components/write/reviewWrite.jsx";
 
 function App() {
   const EscapeApi = new Escape();
@@ -154,6 +155,9 @@ function App() {
           </Route>
           <Route exact path="/reservation-succeed">
             <EscapeReservationSucceed EscapeApi={EscapeApi} />
+          </Route>
+          <Route exact path="/reviewWrite">
+            <EditorReview />
           </Route>
         </Switch>
         <EscapeFooter />

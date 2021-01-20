@@ -1,7 +1,7 @@
 .w10 {
   width: 10%;
 }
-.w_50 {
+.w50 {
   width: 50%;
 }
 
@@ -10,4 +10,27 @@
 
 .font {
   font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+tr,
+thead,
+table,
+tbody,
+th,
+td {
+  text-align: center;
+  border: 0px solid;
+}
+
+tr {
+  border-top: 1px solid gray;
+}
+
+li {
+  height: 0;
+  margin-bottom: 1rem;
+}
+
+span:hover {
+  cursor: pointer;
 }

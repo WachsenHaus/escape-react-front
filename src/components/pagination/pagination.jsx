@@ -28,7 +28,11 @@ const PaginationComponent = ({ getPage, pageInfo, setPageInfo }) => {
 
   return (
     <>
-      <Pagination>{pages}</Pagination>
+      <Pagination>
+        {pageInfo.startPageNum !== 1 ? <Pagination.Prev /> : null}
+        {pages}
+        {pageInfo.endPageNum < pageInfo.totalPageCount ? <Pagination.Next /> : null}
+      </Pagination>
     </>
   );
 };
