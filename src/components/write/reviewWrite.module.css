@@ -1,4 +1,4 @@
-body {
+/* body {
   background-color: #fff;
 }
 h1 {
@@ -6,7 +6,7 @@ h1 {
 }
 label {
   color: black;
-}
+} */
 input[type="password"] {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }

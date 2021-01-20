@@ -31,7 +31,20 @@ class Escape {
       return false;
     }
   }
+  async sendBoard(writer, pwd, title, content) {
+    try {
+      let form = new FormData();
+      form.append("writer", writer);
+      form.append("pwd", pwd);
+      form.append("title", title);
+      form.append("content", content);
 
+      const response = await this.escape.post("review/insert_AJAX.do", form);
+      return response;
+    } catch (error) {
+      return false;
+    }
+  }
   async getReservation(branchName, thema, mDate) {
     try {
       const response = await this.escape.get("reservation/reservation_ajax.do", {

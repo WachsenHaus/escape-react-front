@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { Container, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { Button } from "react-bootstrap";
@@ -43,6 +43,14 @@ import TextTransformation from "@ckeditor/ckeditor5-typing/src/texttransformatio
 import Underline from "@ckeditor/ckeditor5-basic-styles/src/underline.js";
 
 const EditorReview = ({ EscapeApi }) => {
+  const [state, setState] = useState({
+    data: "<p>다른 사용자를 위해 테마 내용은 지양해주세요</p>",
+  });
+  const writerRef = useRef();
+  const pwdRef = useRef();
+  const titleRef = useRef();
+  const editorRef = useRef();
+
   const installedPlugins = [
     Alignment,
     Autoformat,
@@ -81,7 +89,34 @@ const EditorReview = ({ EscapeApi }) => {
     Underline,
   ];
 
-  const onClickWriteButton = () => {};
+  const onChangeEditor = (event, editor) => {
+    // console.log(event);
+    console.log({ event, editor });
+    setState((v) => {
+      const updated = { ...v };
+      updated["data"] = editor.getData();
+      return updated;
+    });
+  };
+
+  const onClickWriteButton = () => {
+    const writer = writerRef.current.value;
+    const pwd = pwdRef.current.value;
+    const title = titleRef.current.value;
+    const content = state.data;
+    console.log(content);
+    const response = EscapeApi.sendBoard(writer, pwd, title, content);
+
+    response.then((res) => {
+      if (!!!res) return;
+      if (res.status === 200) {
+        console.log(res.data);
+      } else if (res.status !== 200) {
+        alert("글작성에 실패하였습니다.");
+      }
+    });
+  };
+
   return (
     <>
       <Container>
@@ -91,22 +126,28 @@ const EditorReview = ({ EscapeApi }) => {
           <form>
             <div className="form-group">
               <label for="writer">이름</label>
-              <input className={"form-control"} name="writer"></input>
+              <input ref={writerRef} className={"form-control"} name="writer"></input>
             </div>
             <div className="form-group">
               <label for="pwd">비밀번호</label>
-              <input className={"form-control"} type="password" name="pwd"></input>
+              <input
+                ref={pwdRef}
+                className={"form-control"}
+                type="password"
+                name="pwd"
+              ></input>
             </div>
             <div className="form-group">
               <label for="title">제목</label>
-              <input className={"form-control"} name="title"></input>
+              <input ref={titleRef} className={"form-control"} name="title"></input>
             </div>
             <div className="form-group">
               <label for="content">내용</label>
-              <input className={"form-control"} name="content"></input>
             </div>
 
             <CKEditor
+              name="content"
+              ref={editorRef}
               editor={ClassicEditor}
               config={{
                 plugins: [...installedPlugins],
@@ -141,7 +182,12 @@ const EditorReview = ({ EscapeApi }) => {
                   "redo",
                 ],
               }}
-              data="<p>다른 사용자를 위해 테마 내용은 지양해주세요</p>"
+              data={state.data}
+              onChange={onChangeEditor}
+              //   onChange={ ( event, editor ) => {
+              //     const data = editor.getData();
+              //     console.log( { event, editor, data } );
+              // } }
             />
           </form>
         </div>
