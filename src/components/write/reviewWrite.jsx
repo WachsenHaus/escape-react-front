@@ -50,6 +50,7 @@ const EditorReview = ({ EscapeApi }) => {
   const pwdRef = useRef();
   const titleRef = useRef();
   const editorRef = useRef();
+  const history = useHistory();
 
   const installedPlugins = [
     Alignment,
@@ -110,7 +111,12 @@ const EditorReview = ({ EscapeApi }) => {
     response.then((res) => {
       if (!!!res) return;
       if (res.status === 200) {
-        console.log(res.data);
+        console.log(res.data.success);
+        if (res.data.success === "isSuccess") {
+          history.push({
+            pathname: "/review",
+          });
+        }
       } else if (res.status !== 200) {
         alert("글작성에 실패하였습니다.");
       }

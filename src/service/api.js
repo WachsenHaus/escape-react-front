@@ -45,6 +45,19 @@ class Escape {
       return false;
     }
   }
+  async getReviewBoardContent(num) {
+    try {
+      const response = await this.escape.get("review/review-detail_AJAX.do", {
+        params: {
+          num: num,
+        },
+      });
+      return response;
+    } catch (error) {
+      return false;
+    }
+  }
+
   async getReservation(branchName, thema, mDate) {
     try {
       const response = await this.escape.get("reservation/reservation_ajax.do", {

@@ -8,6 +8,7 @@ const EscapeReview = ({ EscapeApi }) => {
   const [pageInfo, setPageInfo] = useState({});
   const [contents, setContents] = useState([]);
   const history = useHistory();
+  const numRef = useRef();
 
   const getPage = useCallback(
     (pageNum = 1) => {
@@ -51,6 +52,20 @@ const EscapeReview = ({ EscapeApi }) => {
     },
     [EscapeApi]
   );
+
+  const onContentClick = (event) => {
+    const num = event.target.dataset.num;
+    console.log(event.target.dataset.num);
+    const response = EscapeApi.getReviewBoardContent(num);
+    response.then((res) => {
+      if (!!!res) {
+        return;
+      }
+      if (res.status === 200) {
+        console.log(res.data.list);
+      }
+    });
+  };
 
   useEffect(() => {
     getPage();
@@ -112,7 +127,13 @@ const EscapeReview = ({ EscapeApi }) => {
                   <tr>
                     <td className={styles.w10}>{item.num}</td>
                     <td className={styles.w50}>
-                      <span className={"text-success"}>{item.title}</span>
+                      <span
+                        data-num={item.num}
+                        onClick={onContentClick}
+                        className={"text-success"}
+                      >
+                        {item.title}
+                      </span>
                     </td>
                     <td className={styles.w10}>{item.writer}</td>
                     <td className={styles.w10}>{item.regdate}</td>
