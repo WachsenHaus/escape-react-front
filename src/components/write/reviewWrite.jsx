@@ -91,8 +91,6 @@ const EditorReview = ({ EscapeApi }) => {
   ];
 
   const onChangeEditor = (event, editor) => {
-    // console.log(event);
-    console.log({ event, editor });
     setState((v) => {
       const updated = { ...v };
       updated["data"] = editor.getData();
@@ -105,13 +103,11 @@ const EditorReview = ({ EscapeApi }) => {
     const pwd = pwdRef.current.value;
     const title = titleRef.current.value;
     const content = state.data;
-    console.log(content);
     const response = EscapeApi.sendBoard(writer, pwd, title, content);
 
     response.then((res) => {
       if (!!!res) return;
       if (res.status === 200) {
-        console.log(res.data.success);
         if (res.data.success === "isSuccess") {
           history.push({
             pathname: "/review",
@@ -190,10 +186,6 @@ const EditorReview = ({ EscapeApi }) => {
               }}
               data={state.data}
               onChange={onChangeEditor}
-              //   onChange={ ( event, editor ) => {
-              //     const data = editor.getData();
-              //     console.log( { event, editor, data } );
-              // } }
             />
           </form>
         </div>

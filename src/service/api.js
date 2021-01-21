@@ -58,6 +58,31 @@ class Escape {
     }
   }
 
+  async deleteReviewContent(num, pwd) {
+    try {
+      const response = await this.escape.get("/review/private/delete_AJAX.do", {
+        params: {
+          num: num,
+          pwd: pwd,
+        },
+      });
+      return response;
+    } catch (error) {
+      return false;
+    }
+  }
+  async updateReviewContent(num) {
+    try {
+      const response = await this.escape.get("review/review-detail_AJAX.do", {
+        params: {
+          num: num,
+        },
+      });
+      return response;
+    } catch (error) {
+      return false;
+    }
+  }
   async getReservation(branchName, thema, mDate) {
     try {
       const response = await this.escape.get("reservation/reservation_ajax.do", {

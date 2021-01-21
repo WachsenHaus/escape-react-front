@@ -1,0 +1,12 @@
+.border {
+  border-left: 1px solid darkgray;
+  border-right: 1px solid darkgray;
+}
+.solid {
+  border-top: 1px solid #ffffff;
+  width: 100%;
+}
+
+input {
+  width: 100%;
+}

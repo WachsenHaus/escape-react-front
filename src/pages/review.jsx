@@ -46,7 +46,6 @@ const EscapeReview = ({ EscapeApi }) => {
           alert(`페이지 에러${res.status}`);
           return;
         }
-        console.log(res.data);
         setContents([...res.data]);
       });
     },
@@ -55,14 +54,24 @@ const EscapeReview = ({ EscapeApi }) => {
 
   const onContentClick = (event) => {
     const num = event.target.dataset.num;
-    console.log(event.target.dataset.num);
     const response = EscapeApi.getReviewBoardContent(num);
     response.then((res) => {
       if (!!!res) {
         return;
       }
       if (res.status === 200) {
-        console.log(res.data.list);
+        const data = res.data.list;
+        history.push({
+          pathname: "/reviewDetail",
+          state: {
+            num: num,
+            writer: data.writer,
+            title: data.title,
+            content: data.content,
+            regdate: data.regdate,
+            viewcount: data.viewcount,
+          },
+        });
       }
     });
   };
