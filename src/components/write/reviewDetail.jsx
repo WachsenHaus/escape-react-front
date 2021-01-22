@@ -21,7 +21,6 @@ const EscapeBoardDetail = ({ EscapeApi }) => {
 
   const onChangeButton = (event) => {};
   const onDeleteButton = (event) => {
-    console.log(pwdRef.current.value);
     const response = EscapeApi.deleteReviewContent(state.num, pwdRef.current.value);
     response.then((res) => {
       if (!!!res) {
@@ -32,6 +31,11 @@ const EscapeBoardDetail = ({ EscapeApi }) => {
           pathname: "/review",
         });
       }
+    });
+  };
+  const onListButton = (event) => {
+    history.push({
+      pathname: "/review",
     });
   };
 
@@ -58,7 +62,7 @@ const EscapeBoardDetail = ({ EscapeApi }) => {
                 </div>
               </div>
               <div>
-                <Button>목록보기</Button>
+                <Button onClick={onListButton}>목록보기</Button>
               </div>
             </div>
             <hr className="w-100 solid" />
