@@ -19,7 +19,20 @@ const EscapeBoardDetail = ({ EscapeApi }) => {
     }
   );
 
-  const onChangeButton = (event) => {};
+  const onChangeButton = (event) => {
+    const response = EscapeApi.updateReviewContent(state.num, pwdRef.current.value);
+    response.then((res) => {
+      if (!!!res) {
+        return;
+      }
+      if (res.status === 200) {
+        console.log(res.data.list);
+        // history.push({
+        //   pathname: "/reviewUpdate",
+        // });
+      }
+    });
+  };
   const onDeleteButton = (event) => {
     const response = EscapeApi.deleteReviewContent(state.num, pwdRef.current.value);
     response.then((res) => {

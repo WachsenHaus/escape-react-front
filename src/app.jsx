@@ -33,6 +33,7 @@ import { branch as branchData } from "./data/mapInfo.js";
 import EscapeReview from "./pages/review.jsx";
 import EditorReview from "./components/write/reviewWrite.jsx";
 import EscapeBoardDetail from "./components/write/reviewDetail.jsx";
+import ReviewUpdate from "./components/write/reviewUpdate.jsx";
 
 function App() {
   const EscapeApi = new Escape();
@@ -162,6 +163,9 @@ function App() {
           </Route>
           <Route exact path="/reviewDetail">
             <EscapeBoardDetail EscapeApi={EscapeApi} />
+          </Route>
+          <Route exact path="/reviewUpdate">
+            <ReviewUpdate EscapeApi={EscapeApi} />
           </Route>
         </Switch>
         <EscapeFooter />

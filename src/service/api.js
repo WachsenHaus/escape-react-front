@@ -71,13 +71,12 @@ class Escape {
       return false;
     }
   }
-  async updateReviewContent(num) {
+  async updateReviewContent(num, pwd) {
     try {
-      const response = await this.escape.get("review/review-detail_AJAX.do", {
-        params: {
-          num: num,
-        },
-      });
+      let form = new FormData();
+      form.append("num", num);
+      form.append("pwd", pwd);
+      const response = await this.escape.post("/review/private/update_AJAX.do", form);
       return response;
     } catch (error) {
       return false;
