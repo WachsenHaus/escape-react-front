@@ -56,7 +56,6 @@ const EscapeInfo = ({ branchData, kakaoConfig, state, setBranch }) => {
             default:
               break;
           }
-          console.log(selectedBranch);
           let context = `<div style="padding:5px;">
               <button id="closeBtn" class="${styles.closeButton}" >
                 x

@@ -99,7 +99,6 @@ const EscapeReview = ({ EscapeApi }) => {
   const onSearch = useCallback(
     (event) => {
       event.preventDefault();
-      console.log(searchSelectRef.current.value);
       const getData = EscapeApi.getReviewSearchPageList(
         searchSelectRef.current.value,
         searchinputRef.current.value

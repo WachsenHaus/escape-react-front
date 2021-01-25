@@ -34,6 +34,7 @@ import EscapeReview from "./pages/review.jsx";
 import EditorReview from "./components/write/reviewWrite.jsx";
 import EscapeBoardDetail from "./components/write/reviewDetail.jsx";
 import ReviewUpdate from "./components/write/reviewUpdate.jsx";
+import EscapeNotice from "./pages/notice.jsx";
 
 function App() {
   const EscapeApi = new Escape();
@@ -139,7 +140,7 @@ function App() {
             <EscapeConfirm Regex={Regex} EscapeApi={EscapeApi} />
           </Route>
           <Route exact path="/notice">
-            <EscapeConfirm />
+            <EscapeNotice />
           </Route>
           <Route exact path="/mapinfo">
             <EscapeInfo
