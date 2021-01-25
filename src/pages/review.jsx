@@ -12,7 +12,6 @@ const EscapeReview = ({ EscapeApi }) => {
 
   const getPage = useCallback(
     (pageNum = 1) => {
-      console.log(pageNum);
       const getData = EscapeApi.getReviewPageNumber(pageNum);
       if (getData === false) {
         alert("서버 에러");
@@ -23,7 +22,6 @@ const EscapeReview = ({ EscapeApi }) => {
           alert(`페이지 에러${res.status}`);
           return;
         }
-        console.log(res.data);
         setPageInfo({
           pageNum: res.data.pageNum,
           startPageNum: res.data.startPageNum,
@@ -34,6 +32,28 @@ const EscapeReview = ({ EscapeApi }) => {
     },
     [EscapeApi]
   );
+  const getPageSearch = useCallback(() => {
+    const getData = EscapeApi.getReviewPageCondition(
+      searchSelectRef.current.value,
+      searchinputRef.current.value
+    );
+    if (getData === false) {
+      alert("서버 에러");
+      return;
+    }
+    getData.then((res) => {
+      if (res.status !== 200) {
+        alert(`페이지 에러${res.status}`);
+        return;
+      }
+      setPageInfo({
+        pageNum: res.data.pageNum,
+        startPageNum: res.data.startPageNum,
+        totalPageCount: res.data.totalPageCount,
+        endPageNum: res.data.endPageNum,
+      });
+    });
+  }, [EscapeApi]);
   const getPageContext = useCallback(
     (pageNum = 1) => {
       const getData = EscapeApi.getReviewPageList(pageNum);
@@ -76,6 +96,30 @@ const EscapeReview = ({ EscapeApi }) => {
     });
   };
 
+  const onSearch = useCallback(
+    (event) => {
+      event.preventDefault();
+      console.log(searchSelectRef.current.value);
+      const getData = EscapeApi.getReviewSearchPageList(
+        searchSelectRef.current.value,
+        searchinputRef.current.value
+      );
+      if (getData === false) {
+        alert("서버 에러");
+        return;
+      }
+      getData.then((res) => {
+        getPageSearch();
+        if (res.status !== 200) {
+          alert(`페이지 에러${res.status}`);
+          return;
+        }
+        setContents([...res.data]);
+      });
+    },
+    [EscapeApi]
+  );
+
   useEffect(() => {
     getPage();
   }, [getPage]);
@@ -83,7 +127,7 @@ const EscapeReview = ({ EscapeApi }) => {
   useEffect(() => {
     //여기에 본문 내용들 가져오는 함수 추가함.
     getPageContext(pageInfo.pageNum);
-  }, [pageInfo, getPageContext]);
+  }, [getPageContext]);
 
   const submitButton = useRef();
   const searchinputRef = useRef();
@@ -110,7 +154,9 @@ const EscapeReview = ({ EscapeApi }) => {
                 type="text"
                 placeholder="검색어..."
               />
-              <button ref={submitButton}>검색</button>
+              <button ref={submitButton} onClick={onSearch}>
+                검색
+              </button>
             </form>
           </div>
           <div>

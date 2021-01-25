@@ -10,9 +10,14 @@ const PaginationComponent = ({ getPage, pageInfo, setPageInfo }) => {
     }
     getPage(event.target.innerText);
   };
+  const onNextPage = () => {
+    getPage(pageInfo.endPageNum + 1);
+  };
+  const onPrevPage = () => {
+    getPage(pageInfo.startPageNum - 1);
+  };
 
   useEffect(() => {
-    console.log(pageInfo);
     let active = pageInfo.pageNum;
     const mItem = [];
     for (let i = pageInfo.startPageNum; i <= pageInfo.endPageNum; i++) {
@@ -22,16 +27,17 @@ const PaginationComponent = ({ getPage, pageInfo, setPageInfo }) => {
         </Pagination.Item>
       );
     }
-    console.log(mItem);
     setPages([...mItem]);
   }, [pageInfo]);
 
   return (
     <>
       <Pagination>
-        {pageInfo.startPageNum !== 1 ? <Pagination.Prev /> : null}
+        {pageInfo.startPageNum !== 1 ? <Pagination.Prev onClick={onPrevPage} /> : null}
         {pages}
-        {pageInfo.endPageNum < pageInfo.totalPageCount ? <Pagination.Next /> : null}
+        {pageInfo.endPageNum < pageInfo.totalPageCount ? (
+          <Pagination.Next onClick={onNextPage} />
+        ) : null}
       </Pagination>
     </>
   );

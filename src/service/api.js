@@ -19,11 +19,13 @@ class Escape {
       return false;
     }
   }
-  async getReviewPageList(pageNum) {
+
+  async getReviewPageCondition(condition, keyword) {
     try {
-      const response = await this.escape.get("review/ajax_list.do", {
+      const response = await this.escape.get("review/ajax_listpage.do", {
         params: {
-          pageNum: pageNum,
+          condition: condition,
+          keyword: keyword,
         },
       });
       return response;
@@ -31,6 +33,33 @@ class Escape {
       return false;
     }
   }
+  async getReviewPageList(pageNum) {
+    try {
+      const response = await this.escape.get("review/ajax_list.do", {
+        params: {
+          pageNum: pageNum,
+        },
+      });
+
+      return response;
+    } catch (error) {
+      return false;
+    }
+  }
+  async getReviewSearchPageList(condition, keyword) {
+    try {
+      const response = await this.escape.get("review/ajax_list.do", {
+        params: {
+          condition: condition,
+          keyword: keyword,
+        },
+      });
+      return response;
+    } catch (error) {
+      return false;
+    }
+  }
+
   async sendBoard(writer, pwd, title, content) {
     try {
       let form = new FormData();
@@ -40,6 +69,21 @@ class Escape {
       form.append("content", content);
 
       const response = await this.escape.post("review/insert_AJAX.do", form);
+      return response;
+    } catch (error) {
+      return false;
+    }
+  }
+  async updateBoard(num, writer, pwd, title, content) {
+    try {
+      let form = new FormData();
+      form.append("num", num);
+      form.append("writer", writer);
+      form.append("pwd", pwd);
+      form.append("title", title);
+      form.append("content", content);
+
+      const response = await this.escape.post("review/private/doUpdate_AJAX.do", form);
       return response;
     } catch (error) {
       return false;

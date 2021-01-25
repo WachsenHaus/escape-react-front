@@ -61,11 +61,11 @@ const EditorReview = ({ EscapeApi }) => {
       view: historyState.view,
       writer: historyState.writer,
       set: historyState.set,
+      pwd: historyState.pwd,
     }
   );
   useEffect(() => {
     if (!!mode.content) {
-      console.log(`출력합니다${mode.content}`);
       setState({ data: mode.content });
     }
   }, []);
@@ -137,22 +137,25 @@ const EditorReview = ({ EscapeApi }) => {
     });
   };
   const onReviseClick = () => {
+    const num = mode.num;
     const writer = writerRef.current.value;
-    const pwd = pwdRef.current.value;
+    const pwd = mode.pwd;
     const title = titleRef.current.value;
     const content = state.data;
-    const response = EscapeApi.sendBoard(writer, pwd, title, content);
+    const response = EscapeApi.updateBoard(num, writer, pwd, title, content);
 
     response.then((res) => {
       if (!!!res) return;
       if (res.status === 200) {
-        if (res.data.success === "isSuccess") {
+        if (res.data.result === true) {
           history.push({
             pathname: "/review",
           });
+        } else {
+          alert("비밀번호가 틀립니다.");
         }
       } else if (res.status !== 200) {
-        alert("글작성에 실패하였습니다.");
+        alert("글수정에 실패하였습니다.");
       }
     });
   };
@@ -199,7 +202,7 @@ const EditorReview = ({ EscapeApi }) => {
                   ref={titleRef}
                   className={"form-control"}
                   name="title"
-                  value={mode.title}
+                  defaultValue={mode.title}
                 ></input>
               )}
             </div>

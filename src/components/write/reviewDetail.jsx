@@ -26,10 +26,9 @@ const EscapeBoardDetail = ({ EscapeApi }) => {
         return;
       }
       if (res.status === 200) {
-        console.log(res.data.list);
         history.push({
           pathname: "/reviewWrite",
-          state: { ...res.data.list, set: "글수정" },
+          state: { ...res.data.list, set: "글수정", pwd: pwdRef.current.value },
         });
       }
     });
@@ -81,7 +80,14 @@ const EscapeBoardDetail = ({ EscapeApi }) => {
             </div>
             <hr className="w-100 solid" />
             <div className="row px-4">
-              <div className="contents">{parse(state.content)}</div>
+              <div
+                className="contents"
+                style={{
+                  width: "100%",
+                }}
+              >
+                {parse(state.content)}
+              </div>
             </div>
             <div className="form-group">
               <hr className={styles.solid} />
