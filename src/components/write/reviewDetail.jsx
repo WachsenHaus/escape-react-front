@@ -10,11 +10,11 @@ const EscapeBoardDetail = ({ EscapeApi }) => {
   const pwdRef = useRef();
   const [state, setState] = useState(
     historyState && {
-      num: historyState.num,
-      writer: historyState.writer,
-      title: historyState.title,
       content: historyState.content,
+      num: historyState.num,
       regdate: historyState.regdate,
+      title: historyState.title,
+      writer: historyState.writer,
       viewcount: historyState.viewcount,
     }
   );
@@ -27,9 +27,10 @@ const EscapeBoardDetail = ({ EscapeApi }) => {
       }
       if (res.status === 200) {
         console.log(res.data.list);
-        // history.push({
-        //   pathname: "/reviewUpdate",
-        // });
+        history.push({
+          pathname: "/reviewWrite",
+          state: { ...res.data.list, set: "글수정" },
+        });
       }
     });
   };

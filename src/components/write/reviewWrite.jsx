@@ -1,6 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Container, Form } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-editor-classic/src/classiceditor";
@@ -43,6 +43,7 @@ import TextTransformation from "@ckeditor/ckeditor5-typing/src/texttransformatio
 import Underline from "@ckeditor/ckeditor5-basic-styles/src/underline.js";
 
 const EditorReview = ({ EscapeApi }) => {
+  const historyState = useLocation().state;
   const [state, setState] = useState({
     data: "<p>다른 사용자를 위해 테마 내용은 지양해주세요</p>",
   });
@@ -51,6 +52,23 @@ const EditorReview = ({ EscapeApi }) => {
   const titleRef = useRef();
   const editorRef = useRef();
   const history = useHistory();
+  const [mode, setMode] = useState(
+    historyState && {
+      content: historyState.content,
+      num: historyState.num,
+      regdate: historyState.regdate,
+      title: historyState.title,
+      view: historyState.view,
+      writer: historyState.writer,
+      set: historyState.set,
+    }
+  );
+  useEffect(() => {
+    if (!!mode.content) {
+      console.log(`출력합니다${mode.content}`);
+      setState({ data: mode.content });
+    }
+  }, []);
 
   const installedPlugins = [
     Alignment,
@@ -118,30 +136,72 @@ const EditorReview = ({ EscapeApi }) => {
       }
     });
   };
+  const onReviseClick = () => {
+    const writer = writerRef.current.value;
+    const pwd = pwdRef.current.value;
+    const title = titleRef.current.value;
+    const content = state.data;
+    const response = EscapeApi.sendBoard(writer, pwd, title, content);
 
+    response.then((res) => {
+      if (!!!res) return;
+      if (res.status === 200) {
+        if (res.data.success === "isSuccess") {
+          history.push({
+            pathname: "/review",
+          });
+        }
+      } else if (res.status !== 200) {
+        alert("글작성에 실패하였습니다.");
+      }
+    });
+  };
   return (
     <>
       <Container>
         <div>
           <br></br>
-          <h1>글쓰기</h1>
+          {mode.set === "글작성" ? <h1>글쓰기</h1> : <h1>글수정</h1>}
           <form>
             <div className="form-group">
               <label for="writer">이름</label>
-              <input ref={writerRef} className={"form-control"} name="writer"></input>
+              {mode.set === "글작성" ? (
+                <input ref={writerRef} className={"form-control"} name="writer"></input>
+              ) : (
+                <input
+                  ref={writerRef}
+                  className={"form-control"}
+                  name="writer"
+                  readOnly={true}
+                  value={mode.writer}
+                ></input>
+              )}
             </div>
             <div className="form-group">
-              <label for="pwd">비밀번호</label>
-              <input
-                ref={pwdRef}
-                className={"form-control"}
-                type="password"
-                name="pwd"
-              ></input>
+              {mode.set === "글작성" ? (
+                <>
+                  <label for="pwd">비밀번호</label>
+                  <input
+                    ref={pwdRef}
+                    className={"form-control"}
+                    type="password"
+                    name="pwd"
+                  ></input>
+                </>
+              ) : null}
             </div>
             <div className="form-group">
               <label for="title">제목</label>
-              <input ref={titleRef} className={"form-control"} name="title"></input>
+              {mode.set === "글작성" ? (
+                <input ref={titleRef} className={"form-control"} name="title"></input>
+              ) : (
+                <input
+                  ref={titleRef}
+                  className={"form-control"}
+                  name="title"
+                  value={mode.title}
+                ></input>
+              )}
             </div>
             <div className="form-group">
               <label for="content">내용</label>
@@ -190,7 +250,11 @@ const EditorReview = ({ EscapeApi }) => {
           </form>
         </div>
         <div className="d-flex justify-content-center my-5">
-          <Button onClick={onClickWriteButton}>글쓰기</Button>
+          {mode.set === "글작성" ? (
+            <Button onClick={onClickWriteButton}>글쓰기</Button>
+          ) : (
+            <Button onClick={onReviseClick}>글수정</Button>
+          )}
         </div>
       </Container>
     </>
