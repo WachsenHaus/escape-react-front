@@ -2,13 +2,13 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Container, Button, Table } from "react-bootstrap";
 import styles from "./review.module.css";
 import PaginationComponent from "../components/pagination/pagination.jsx";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const EscapeReview = ({ EscapeApi }) => {
   const [pageInfo, setPageInfo] = useState({});
   const [contents, setContents] = useState([]);
+  const [searchFlag, setSearchFlag] = useState(false);
   const history = useHistory();
-  const numRef = useRef();
 
   const getPage = useCallback(
     (pageNum = 1) => {
@@ -54,9 +54,27 @@ const EscapeReview = ({ EscapeApi }) => {
       });
     });
   }, [EscapeApi]);
+
   const getPageContext = useCallback(
     (pageNum = 1) => {
       const getData = EscapeApi.getReviewPageList(pageNum);
+      if (getData === false) {
+        alert("서버 에러");
+        return;
+      }
+      getData.then((res) => {
+        if (res.status !== 200) {
+          alert(`페이지 에러${res.status}`);
+          return;
+        }
+        setContents([...res.data]);
+      });
+    },
+    [EscapeApi]
+  );
+  const getPageContextCondition = useCallback(
+    (pageNum = 1, condition, keyword) => {
+      const getData = EscapeApi.getReviewSearchPageList(pageNum, condition, keyword);
       if (getData === false) {
         alert("서버 에러");
         return;
@@ -99,7 +117,9 @@ const EscapeReview = ({ EscapeApi }) => {
   const onSearch = useCallback(
     (event) => {
       event.preventDefault();
+      searchinputRef.current.value === "" ? setSearchFlag(false) : setSearchFlag(true);
       const getData = EscapeApi.getReviewSearchPageList(
+        pageInfo.pageNum,
         searchSelectRef.current.value,
         searchinputRef.current.value
       );
@@ -108,11 +128,13 @@ const EscapeReview = ({ EscapeApi }) => {
         return;
       }
       getData.then((res) => {
+        // 페이지정보를 가져옴
         getPageSearch();
         if (res.status !== 200) {
           alert(`페이지 에러${res.status}`);
           return;
         }
+        //받은 목록들을 set함.
         setContents([...res.data]);
       });
     },
@@ -124,9 +146,15 @@ const EscapeReview = ({ EscapeApi }) => {
   }, [getPage]);
 
   useEffect(() => {
-    //여기에 본문 내용들 가져오는 함수 추가함.
-    getPageContext(pageInfo.pageNum);
-  }, [getPageContext]);
+    //페이지번호를 기준으로 내용을 가져온다.
+    searchFlag === true
+      ? getPageContextCondition(
+          pageInfo.pageNum,
+          searchSelectRef.current.value,
+          searchinputRef.current.value
+        )
+      : getPageContext(pageInfo.pageNum);
+  }, [pageInfo, getPageContext]);
 
   const submitButton = useRef();
   const searchinputRef = useRef();

@@ -20,6 +20,7 @@ class Escape {
     }
   }
 
+  //페이지네이션
   async getReviewPageCondition(condition, keyword) {
     try {
       const response = await this.escape.get("review/ajax_listpage.do", {
@@ -46,10 +47,12 @@ class Escape {
       return false;
     }
   }
-  async getReviewSearchPageList(condition, keyword) {
+  //리스트 얻기
+  async getReviewSearchPageList(pageNum, condition, keyword) {
     try {
       const response = await this.escape.get("review/ajax_list.do", {
         params: {
+          pageNum: pageNum,
           condition: condition,
           keyword: keyword,
         },
