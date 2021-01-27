@@ -140,7 +140,7 @@ function App() {
             <EscapeConfirm Regex={Regex} EscapeApi={EscapeApi} />
           </Route>
           <Route exact path="/notice">
-            <EscapeNotice />
+            <EscapeNotice EscapeApi={EscapeApi} state={state} setBranch={setBranch} />
           </Route>
           <Route exact path="/mapinfo">
             <EscapeInfo

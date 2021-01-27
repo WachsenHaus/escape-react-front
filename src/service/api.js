@@ -6,6 +6,19 @@ class Escape {
       baseURL: "http://localhost:8888/escape/",
     });
   }
+  async getNoticeList(branch, pageNum) {
+    try {
+      const response = await this.escape.get("notice/list.do", {
+        params: {
+          branch: branch,
+          pageNum: pageNum,
+        },
+      });
+      return response;
+    } catch (error) {
+      return false;
+    }
+  }
 
   async getReviewPageNumber(pageNum) {
     try {
