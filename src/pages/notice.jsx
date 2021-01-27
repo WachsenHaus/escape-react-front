@@ -14,6 +14,9 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
   const searchinputRef = useRef();
   const searchSelectRef = useRef();
 
+  const onClickBranch = (e) => {
+    setBranch(e.target.innerText);
+  };
   useEffect(() => {
     const result = EscapeApi.getNoticeList("홍대점", 1);
     result.then((res) => {
@@ -35,14 +38,30 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
             <span className="text-info">로그인</span>
           </div>
           <div className={styles.branch}>
-            <span className="text-success">홍대점</span>
-            <span className="text-success">대구점</span>
-            <span className="text-success">인천구월점</span>
-            <span className="text-success">전주점</span>
-            <span className="text-success">잠실점</span>
-            <span className="text-success">대전두산점</span>
-            <span className="text-success">천호점</span>
-            <span className="text-success">수유점</span>
+            <span onClick={onClickBranch} className="text-success">
+              홍대점
+            </span>
+            <span onClick={onClickBranch} className="text-success">
+              대구점
+            </span>
+            <span onClick={onClickBranch} className="text-success">
+              인천구월점
+            </span>
+            <span onClick={onClickBranch} className="text-success">
+              전주점
+            </span>
+            <span onClick={onClickBranch} className="text-success">
+              잠실점
+            </span>
+            <span onClick={onClickBranch} className="text-success">
+              대전두산점
+            </span>
+            <span onClick={onClickBranch} className="text-success">
+              천호점
+            </span>
+            <span onClick={onClickBranch} className="text-success">
+              수유점
+            </span>
           </div>
         </div>
         <div className="row d-flex justify-content-between align-items-center mb-2 mt-5">
@@ -82,21 +101,28 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
               </tr>
             </thead>
             <tbody>
-              {contents.map((item) => (
-                <>
-                  <tr>
-                    <td className={styles.w10}>{item.num}</td>
-                    <td className={styles.w50}>
-                      <span data-num={item.num} className={"text-success"}>
-                        {item.title}
-                      </span>
-                    </td>
-                    <td className={styles.w10}>{item.writer}</td>
-                    <td className={styles.w10}>{item.regdate}</td>
-                    <td className={styles.w10}>{item.viewCount}</td>
-                  </tr>
-                </>
-              ))}
+              {contents.map((item) => {
+                console.log(
+                  `${state.branch}, ${item.branch}, ${state.branch === item.branch}`
+                );
+                if (state.branch === item.branch) {
+                  return (
+                    <>
+                      <tr>
+                        <td className={styles.w10}>{item.num}</td>
+                        <td className={styles.w50}>
+                          <span data-num={item.num} className={"text-success"}>
+                            {item.title}
+                          </span>
+                        </td>
+                        <td className={styles.w10}>{item.writer}</td>
+                        <td className={styles.w10}>{item.regdate}</td>
+                        <td className={styles.w10}>{item.viewCount}</td>
+                      </tr>
+                    </>
+                  );
+                }
+              })}
             </tbody>
           </Table>
         </div>
