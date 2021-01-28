@@ -17,6 +17,30 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
   const onClickBranch = (e) => {
     setBranch(e.target.innerText);
   };
+
+  const getPage = useCallback(
+    (pageNum = 1) => {
+      const getData = EscapeApi.getReviewPageNumber(pageNum);
+      if (getData === false) {
+        alert("서버 에러");
+        return;
+      }
+      getData.then((res) => {
+        if (res.status !== 200) {
+          alert(`페이지 에러${res.status}`);
+          return;
+        }
+        setPageInfo({
+          pageNum: res.data.pageNum,
+          startPageNum: res.data.startPageNum,
+          totalPageCount: res.data.totalPageCount,
+          endPageNum: res.data.endPageNum,
+        });
+      });
+    },
+    [EscapeApi]
+  );
+
   useEffect(() => {
     const result = EscapeApi.getNoticeList("홍대점", 1);
     result.then((res) => {
@@ -130,6 +154,7 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
           <PaginationComponent
             setPageInfo={setPageInfo}
             pageInfo={pageInfo}
+            getPage={getPage}
           ></PaginationComponent>
         </div>
       </Container>
