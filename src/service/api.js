@@ -19,6 +19,19 @@ class Escape {
       return false;
     }
   }
+  async getNoticePageNumber(branch, pageNum) {
+    try {
+      const response = await this.escape.get("notice/ajax_listpage.do", {
+        params: {
+          branch: branch,
+          pageNum: pageNum,
+        },
+      });
+      return response;
+    } catch (error) {
+      return false;
+    }
+  }
 
   async getReviewPageNumber(pageNum) {
     try {

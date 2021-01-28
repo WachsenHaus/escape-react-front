@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Button, Container, Table } from "react-bootstrap";
 import styles from "./notice.module.css";
 import { useHistory } from "react-router-dom";
@@ -20,7 +20,8 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
 
   const getPage = useCallback(
     (pageNum = 1) => {
-      const getData = EscapeApi.getReviewPageNumber(pageNum);
+      console.log(state.branch, pageNum);
+      const getData = EscapeApi.getNoticePageNumber(state.branch, pageNum);
       if (getData === false) {
         alert("서버 에러");
         return;
@@ -40,6 +41,9 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
     },
     [EscapeApi]
   );
+  useEffect(() => {
+    getPage();
+  }, [getPage]);
 
   useEffect(() => {
     const result = EscapeApi.getNoticeList("홍대점", 1);
@@ -126,9 +130,6 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
             </thead>
             <tbody>
               {contents.map((item) => {
-                console.log(
-                  `${state.branch}, ${item.branch}, ${state.branch === item.branch}`
-                );
                 if (state.branch === item.branch) {
                   return (
                     <>
