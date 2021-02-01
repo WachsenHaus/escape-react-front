@@ -88,7 +88,20 @@ class Escape {
       return false;
     }
   }
+  async sendNotice(branch, writer, title, content) {
+    try {
+      let form = new FormData();
+      form.append("branch", branch);
+      form.append("writer", writer);
+      form.append("title", title);
+      form.append("content", content);
 
+      const response = await this.escape.post("notice/insert_AJAX.do", form);
+      return response;
+    } catch (error) {
+      return false;
+    }
+  }
   async sendBoard(writer, pwd, title, content) {
     try {
       let form = new FormData();

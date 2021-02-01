@@ -51,6 +51,7 @@ const EditorReview = ({ EscapeApi }) => {
   const pwdRef = useRef();
   const titleRef = useRef();
   const editorRef = useRef();
+  const branchRef = useRef();
   const history = useHistory();
   const [mode, setMode] = useState(
     historyState && {
@@ -118,24 +119,43 @@ const EditorReview = ({ EscapeApi }) => {
   };
 
   const onClickWriteButton = () => {
-    const writer = writerRef.current.value;
-    const pwd = pwdRef.current.value;
-    const title = titleRef.current.value;
-    const content = state.data;
-    const response = EscapeApi.sendBoard(writer, pwd, title, content);
+    if (mode.mode === "user") {
+      const writer = writerRef.current.value;
+      const pwd = pwdRef.current.value;
+      const title = titleRef.current.value;
+      const content = state.data;
+      const response = EscapeApi.sendBoard(writer, pwd, title, content);
 
-    response.then((res) => {
-      if (!!!res) return;
-      if (res.status === 200) {
-        if (res.data.success === "isSuccess") {
-          history.push({
-            pathname: "/review",
-          });
+      response.then((res) => {
+        if (!!!res) return;
+        if (res.status === 200) {
+          if (res.data.success === "isSuccess") {
+            history.push({
+              pathname: "/review",
+            });
+          }
+        } else if (res.status !== 200) {
+          alert("글작성에 실패하였습니다.");
         }
-      } else if (res.status !== 200) {
-        alert("글작성에 실패하였습니다.");
-      }
-    });
+      });
+    } else {
+      const branch = branchRef.current.value;
+      const writer = writerRef.current.value;
+      const title = titleRef.current.value;
+      const content = state.data;
+      const response = EscapeApi.sendNotice(branch, writer, title, content);
+
+      response.then((res) => {
+        if (!!!res) return;
+        if (res.status === 200) {
+          history.push({
+            pathname: "/notice",
+          });
+        } else if (res.status !== 200) {
+          alert("글작성에 실패하였습니다.");
+        }
+      });
+    }
   };
   const onReviseClick = () => {
     const num = mode.num;
@@ -175,7 +195,7 @@ const EditorReview = ({ EscapeApi }) => {
               <>
                 <div className="form-group">
                   <label className="mr-3">지점 선택</label>
-                  <select>
+                  <select ref={branchRef}>
                     <option value="천호점">천호점</option>
                     <option value="대구점">대구점</option>
                     <option value="대전두산점">대전두산점</option>
