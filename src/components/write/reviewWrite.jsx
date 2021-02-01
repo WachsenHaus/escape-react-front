@@ -62,6 +62,7 @@ const EditorReview = ({ EscapeApi }) => {
       writer: historyState.writer,
       set: historyState.set,
       pwd: historyState.pwd,
+      mode: historyState.mode,
     }
   );
   useEffect(() => {
@@ -164,12 +165,50 @@ const EditorReview = ({ EscapeApi }) => {
       <Container>
         <div>
           <br></br>
-          {mode.set === "글작성" ? <h1>글쓰기</h1> : <h1>글수정</h1>}
+          {mode.set === "글작성" ? (
+            <>{mode.mode === "user" ? <h1>글쓰기</h1> : <h1>공지사항 작성</h1>}</>
+          ) : (
+            <h1>글수정</h1>
+          )}
           <form>
+            {mode.mode === "admin" ? (
+              <>
+                <div className="form-group">
+                  <label className="mr-3">지점 선택</label>
+                  <select>
+                    <option value="천호점">천호점</option>
+                    <option value="대구점">대구점</option>
+                    <option value="대전두산점">대전두산점</option>
+                    <option value="홍대점">홍대점</option>
+                    <option value="인천구월점">인천구월점</option>
+                    <option value="잠실점">잠실점</option>
+                    <option value="전주점">전주점</option>
+                    <option value="수유점">수유점</option>
+                  </select>
+                </div>
+              </>
+            ) : null}
+
             <div className="form-group">
               <label for="writer">이름</label>
               {mode.set === "글작성" ? (
-                <input ref={writerRef} className={"form-control"} name="writer"></input>
+                <>
+                  {mode.mode === "user" ? (
+                    <input
+                      ref={writerRef}
+                      className={"form-control"}
+                      name="writer"
+                    ></input>
+                  ) : (
+                    <input
+                      ref={writerRef}
+                      className={"form-control"}
+                      name="writer"
+                      value="admin"
+                      readOnly={true}
+                    ></input>
+                  )}
+                </>
               ) : (
                 <input
                   ref={writerRef}
@@ -183,13 +222,17 @@ const EditorReview = ({ EscapeApi }) => {
             <div className="form-group">
               {mode.set === "글작성" ? (
                 <>
-                  <label for="pwd">비밀번호</label>
-                  <input
-                    ref={pwdRef}
-                    className={"form-control"}
-                    type="password"
-                    name="pwd"
-                  ></input>
+                  {mode.mode === "user" ? (
+                    <>
+                      <label for="pwd">비밀번호</label>
+                      <input
+                        ref={pwdRef}
+                        className={"form-control"}
+                        type="password"
+                        name="pwd"
+                      ></input>
+                    </>
+                  ) : null}
                 </>
               ) : null}
             </div>

@@ -194,6 +194,7 @@ const EscapeReview = ({ EscapeApi }) => {
                   pathname: "/reviewWrite",
                   state: {
                     set: "글작성",
+                    mode: "user",
                   },
                 });
               }}

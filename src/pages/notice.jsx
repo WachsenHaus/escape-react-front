@@ -111,9 +111,19 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
             </form>
           </div>
           <div>
-            <Button variant="outline-primary">
+            <Button
+              variant="outline-primary"
+              onClick={() => {
+                history.push({
+                  pathname: "/reviewWrite",
+                  state: {
+                    set: "글작성",
+                    mode: "admin",
+                  },
+                });
+              }}
+            >
               글작성
-              {/* <Link to="reviewWrite">글작성</Link> */}
             </Button>
           </div>
         </div>
