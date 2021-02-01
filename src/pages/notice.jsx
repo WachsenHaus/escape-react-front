@@ -41,6 +41,32 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
     },
     [EscapeApi]
   );
+
+  const onContentClick = (event) => {
+    const num = event.target.dataset.num;
+    const response = EscapeApi.getNoticeBoardContent(num);
+    response.then((res) => {
+      if (!!!res) {
+        return;
+      }
+      if (res.status === 200) {
+        const data = res.data.list;
+        history.push({
+          pathname: "/reviewDetail",
+          state: {
+            num: num,
+            writer: data.writer,
+            title: data.title,
+            content: data.content,
+            regdate: data.regdate,
+            viewcount: data.viewcount,
+            destination: "notice",
+          },
+        });
+      }
+    });
+  };
+
   useEffect(() => {
     getPage();
   }, [getPage]);
@@ -146,7 +172,11 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
                       <tr>
                         <td className={styles.w10}>{item.num}</td>
                         <td className={styles.w50}>
-                          <span data-num={item.num} className={"text-success"}>
+                          <span
+                            data-num={item.num}
+                            onClick={onContentClick}
+                            className={"text-success"}
+                          >
                             {item.title}
                           </span>
                         </td>

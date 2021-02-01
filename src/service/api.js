@@ -143,7 +143,18 @@ class Escape {
       return false;
     }
   }
-
+  async getNoticeBoardContent(num) {
+    try {
+      const response = await this.escape.get("notice/detail_AJAX.do", {
+        params: {
+          num: num,
+        },
+      });
+      return response;
+    } catch (error) {
+      return false;
+    }
+  }
   async deleteReviewContent(num, pwd) {
     try {
       const response = await this.escape.get("/review/private/delete_AJAX.do", {

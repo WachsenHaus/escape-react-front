@@ -108,6 +108,7 @@ const EscapeReview = ({ EscapeApi }) => {
             content: data.content,
             regdate: data.regdate,
             viewcount: data.viewcount,
+            destination: "review",
           },
         });
       }

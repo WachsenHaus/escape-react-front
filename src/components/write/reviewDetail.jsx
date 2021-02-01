@@ -16,6 +16,7 @@ const EscapeBoardDetail = ({ EscapeApi }) => {
       title: historyState.title,
       writer: historyState.writer,
       viewcount: historyState.viewcount,
+      destination: historyState.destination,
     }
   );
 
@@ -47,9 +48,15 @@ const EscapeBoardDetail = ({ EscapeApi }) => {
     });
   };
   const onListButton = (event) => {
-    history.push({
-      pathname: "/review",
-    });
+    if (state.destination === "notice") {
+      history.push({
+        pathname: "/notice",
+      });
+    } else if (state.destination === "review") {
+      history.push({
+        pathname: "/review",
+      });
+    }
   };
 
   return (
