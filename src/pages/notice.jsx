@@ -66,19 +66,40 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
       }
     });
   };
-
+  const getPageContext = useCallback(
+    (pageNum = 1) => {
+      const getData = EscapeApi.getNoticeList(state.branch, pageNum);
+      if (getData === false) {
+        alert("서버 에러");
+        return;
+      }
+      getData.then((res) => {
+        if (res.status !== 200) {
+          alert(`페이지 에러${res.status}`);
+          return;
+        }
+        setContents([...res.data]);
+      });
+    },
+    [EscapeApi]
+  );
   useEffect(() => {
     getPage();
   }, [getPage]);
 
+  // useEffect(() => {
+  //   const result = EscapeApi.getNoticeList("홍대점", 1);
+  //   result.then((res) => {
+  //     if (res.status === 200) {
+  //       setContents([...res.data]);
+  //     }
+  //   });
+  // }, [EscapeApi]);
   useEffect(() => {
-    const result = EscapeApi.getNoticeList("홍대점", 1);
-    result.then((res) => {
-      if (res.status === 200) {
-        setContents([...res.data]);
-      }
-    });
-  }, [EscapeApi]);
+    //페이지번호를 기준으로 내용을 가져온다.
+    getPageContext(pageInfo.pageNum);
+  }, [pageInfo, getPageContext]);
+
   return (
     <>
       <Container>

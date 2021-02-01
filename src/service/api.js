@@ -32,7 +32,19 @@ class Escape {
       return false;
     }
   }
+  async getNoticePageList(pageNum) {
+    try {
+      const response = await this.escape.get("notice/ajax_list.do", {
+        params: {
+          pageNum: pageNum,
+        },
+      });
 
+      return response;
+    } catch (error) {
+      return false;
+    }
+  }
   async getReviewPageNumber(pageNum) {
     try {
       const response = await this.escape.get("review/ajax_listpage.do", {

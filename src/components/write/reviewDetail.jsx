@@ -96,11 +96,16 @@ const EscapeBoardDetail = ({ EscapeApi }) => {
                 {parse(state.content)}
               </div>
             </div>
-            <div className="form-group">
-              <hr className={styles.solid} />
-              <input ref={pwdRef} type="password" placeholder="비밀번호" />
-              <hr className={styles.solid} />
-            </div>
+            {state.destination === "review" ? (
+              <>
+                <div className="form-group">
+                  <hr className={styles.solid} />
+                  <input ref={pwdRef} type="password" placeholder="비밀번호" />
+                  <hr className={styles.solid} />
+                </div>
+              </>
+            ) : null}
+
             <div className={"pb-5"}>
               <Button variant="outline-warning" onClick={onChangeButton}>
                 <svg
