@@ -59,7 +59,7 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
             title: data.title,
             content: data.content,
             regdate: data.regdate,
-            viewcount: data.viewcount,
+            viewcount: data.viewCount,
             destination: "notice",
           },
         });

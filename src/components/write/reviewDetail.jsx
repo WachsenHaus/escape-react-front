@@ -15,7 +15,7 @@ const EscapeBoardDetail = ({ EscapeApi }) => {
       regdate: historyState.regdate,
       title: historyState.title,
       writer: historyState.writer,
-      viewcount: historyState.viewcount,
+      viewcount: historyState.viewcount || historyState.viewCount,
       destination: historyState.destination,
     }
   );
