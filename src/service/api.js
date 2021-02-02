@@ -57,7 +57,19 @@ class Escape {
       return false;
     }
   }
+  async updateNoticeBoard(num, title, content) {
+    try {
+      let form = new FormData();
+      form.append("num", num);
+      form.append("title", title);
+      form.append("content", content);
 
+      const response = await this.escape.post("notice/doUpdate_AJAX.do", form);
+      return response;
+    } catch (error) {
+      return false;
+    }
+  }
   async getReviewPageNumber(pageNum) {
     try {
       const response = await this.escape.get("review/ajax_listpage.do", {

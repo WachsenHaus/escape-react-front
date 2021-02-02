@@ -164,27 +164,47 @@ const EditorReview = ({ EscapeApi }) => {
     }
   };
   const onReviseClick = () => {
-    const num = mode.num;
-    const writer = writerRef.current.value;
-    const pwd = mode.pwd;
-    const title = titleRef.current.value;
-    const content = state.data;
-    const response = EscapeApi.updateBoard(num, writer, pwd, title, content);
-
-    response.then((res) => {
-      if (!!!res) return;
-      if (res.status === 200) {
-        if (res.data.result === true) {
-          history.push({
-            pathname: "/review",
-          });
-        } else {
-          alert("비밀번호가 틀립니다.");
+    if (mode.mode === "user") {
+      const num = mode.num;
+      const writer = writerRef.current.value;
+      const pwd = mode.pwd;
+      const title = titleRef.current.value;
+      const content = state.data;
+      const response = EscapeApi.updateBoard(num, writer, pwd, title, content);
+      response.then((res) => {
+        if (!!!res) return;
+        if (res.status === 200) {
+          if (res.data.result === true) {
+            history.push({
+              pathname: "/review",
+            });
+          } else {
+            alert("비밀번호가 틀립니다.");
+          }
+        } else if (res.status !== 200) {
+          alert("글수정에 실패하였습니다.");
         }
-      } else if (res.status !== 200) {
-        alert("글수정에 실패하였습니다.");
-      }
-    });
+      });
+    } else if (mode.mode === "admin") {
+      const num = mode.num;
+      const title = titleRef.current.value;
+      const content = state.data;
+      const response = EscapeApi.updateNoticeBoard(num, title, content);
+      response.then((res) => {
+        if (!!!res) return;
+        if (res.status === 200) {
+          if (res.data.result === true) {
+            history.push({
+              pathname: "/notice",
+            });
+          } else {
+            alert("글수정에 실패하였습니다.");
+          }
+        } else if (res.status !== 200) {
+          alert("글수정에 실패하였습니다.");
+        }
+      });
+    }
   };
   return (
     <>
