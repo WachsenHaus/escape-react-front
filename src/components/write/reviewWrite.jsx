@@ -221,7 +221,7 @@ const EditorReview = ({ EscapeApi }) => {
               <>
                 <div className="form-group">
                   <label className="mr-3">지점 선택</label>
-                  <select ref={branchRef}>
+                  <select ref={branchRef} readOnly={mode.set === "글작성" ? true : false}>
                     <option value="천호점">천호점</option>
                     <option value="대구점">대구점</option>
                     <option value="대전두산점">대전두산점</option>
