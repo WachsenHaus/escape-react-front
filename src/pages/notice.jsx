@@ -20,7 +20,6 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
 
   const getPage = useCallback(
     (pageNum = 1) => {
-      console.log(state.branch, pageNum);
       const getData = EscapeApi.getNoticePageNumber(state.branch, pageNum);
       if (getData === false) {
         alert("서버 에러");
@@ -60,6 +59,7 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
             content: data.content,
             regdate: data.regdate,
             viewcount: data.viewCount,
+            branch: state.branch,
             destination: "notice",
           },
         });
@@ -166,6 +166,7 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
                   state: {
                     set: "글작성",
                     mode: "admin",
+                    branch: state.branch,
                   },
                 });
               }}

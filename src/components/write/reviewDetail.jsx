@@ -10,6 +10,7 @@ const EscapeBoardDetail = ({ EscapeApi }) => {
   const pwdRef = useRef();
   const [state, setState] = useState(
     historyState && {
+      branch: historyState.branch,
       content: historyState.content,
       num: historyState.num,
       regdate: historyState.regdate,
@@ -21,18 +22,43 @@ const EscapeBoardDetail = ({ EscapeApi }) => {
   );
 
   const onChangeButton = (event) => {
-    const response = EscapeApi.updateReviewContent(state.num, pwdRef.current.value);
-    response.then((res) => {
-      if (!!!res) {
-        return;
-      }
-      if (res.status === 200) {
-        history.push({
-          pathname: "/reviewWrite",
-          state: { ...res.data.list, set: "글수정", pwd: pwdRef.current.value },
-        });
-      }
-    });
+    if (state.destination === "notice") {
+      const response = EscapeApi.updateNoticeContent(state.num);
+      response.then((res) => {
+        if (!!!res) {
+          return;
+        }
+        if (res.status === 200) {
+          history.push({
+            pathname: "/reviewWrite",
+            state: {
+              ...res.data.list,
+              set: "글수정",
+              branch: state.branch,
+              mode: "admin",
+            },
+          });
+        }
+      });
+    } else if (state.destination === "review") {
+      const response = EscapeApi.updateReviewContent(state.num, pwdRef.current.value);
+      response.then((res) => {
+        if (!!!res) {
+          return;
+        }
+        if (res.status === 200) {
+          history.push({
+            pathname: "/reviewWrite",
+            state: {
+              ...res.data.list,
+              set: "글수정",
+              mode: "user",
+              pwd: pwdRef.current.value,
+            },
+          });
+        }
+      });
+    }
   };
   const onDeleteButton = (event) => {
     const response = EscapeApi.deleteReviewContent(state.num, pwdRef.current.value);

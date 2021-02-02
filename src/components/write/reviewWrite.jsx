@@ -55,6 +55,7 @@ const EditorReview = ({ EscapeApi }) => {
   const history = useHistory();
   const [mode, setMode] = useState(
     historyState && {
+      branch: historyState.branch,
       content: historyState.content,
       num: historyState.num,
       regdate: historyState.regdate,
@@ -71,6 +72,11 @@ const EditorReview = ({ EscapeApi }) => {
       setState({ data: mode.content });
     }
   }, []);
+  useEffect(() => {
+    if (!!mode.branch) {
+      branchRef.current.value = mode.branch;
+    }
+  }, [mode.branch]);
 
   const installedPlugins = [
     Alignment,
