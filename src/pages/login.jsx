@@ -17,8 +17,8 @@ const Login = ({ EscapeApi }) => {
     }
     getData.then((res) => {
       console.log(`세션 : ${res.data.success}`);
-      if (res.data.success === "isSuccess") {
-        sessionStorage.setItem("id", "admin");
+      if (res.data.success !== "isFail") {
+        sessionStorage.setItem("id", res.data.success);
 
         history.push({
           pathname: "/notice",

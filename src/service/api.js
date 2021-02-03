@@ -8,12 +8,11 @@ class Escape {
   }
   async tryLogin(id, pwd) {
     try {
-      const response = await this.escape.POST("login/login_AJAX.do", {
-        params: {
-          aid: id,
-          apwd: pwd,
-        },
-      });
+      let form = new FormData();
+      form.append("aid", id);
+      form.append("apwd", pwd);
+
+      const response = await this.escape.post("login/login_AJAX.do", form);
       return response;
     } catch (error) {
       return false;

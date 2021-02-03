@@ -1,14 +1,17 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Button, Container, Table } from "react-bootstrap";
 import styles from "./notice.module.css";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import PaginationComponent from "../components/pagination/pagination";
 
 const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
+  const historyState = useLocation().state;
+  const history = useHistory();
+
   const [pageInfo, setPageInfo] = useState({});
   const [contents, setContents] = useState([]);
+
   const [id, setId] = useState(sessionStorage.getItem("id"));
-  const history = useHistory();
 
   const submitButtonRef = useRef();
   const searchinputRef = useRef();
@@ -18,7 +21,11 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
     setBranch(e.target.innerText);
   };
 
-  const onClickLogout = () => {};
+  const onClickLogout = (e) => {
+    console.log("로그아웃!");
+    sessionStorage.removeItem("id");
+    setId(null);
+  };
   const getPage = useCallback(
     (pageNum = 1) => {
       const getData = EscapeApi.getNoticePageNumber(state.branch, pageNum);
@@ -103,20 +110,21 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
         </div>
         <div className="row d-flex justify-content-between mt-5">
           <div>
-            {id === "admin" ? (
+            {id !== null ? (
+              <span className="text-info" onClick={onClickLogout}>
+                로그아웃
+              </span>
+            ) : (
               <span
                 className="text-info"
                 onClick={() => {
                   history.push({
                     pathname: "/login",
-                    state: {},
                   });
                 }}
               >
-                로그아웃
+                로그인
               </span>
-            ) : (
-              <span className="text-info" onClick={() => {}}></span>
             )}
           </div>
           <div className={styles.branch}>
