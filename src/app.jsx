@@ -35,6 +35,7 @@ import EditorReview from "./components/write/reviewWrite.jsx";
 import EscapeBoardDetail from "./components/write/reviewDetail.jsx";
 import ReviewUpdate from "./components/write/reviewUpdate.jsx";
 import EscapeNotice from "./pages/notice.jsx";
+import Login from "./pages/login.jsx";
 
 function App() {
   const EscapeApi = new Escape();
@@ -170,6 +171,9 @@ function App() {
           </Route>
           <Route exact path="/reviewUpdate">
             <ReviewUpdate EscapeApi={EscapeApi} />
+          </Route>
+          <Route exact path="/login">
+            <Login EscapeApi={EscapeApi} />
           </Route>
         </Switch>
         <EscapeFooter />

@@ -6,6 +6,19 @@ class Escape {
       baseURL: "http://localhost:8888/escape/",
     });
   }
+  async tryLogin(id, pwd) {
+    try {
+      const response = await this.escape.POST("login/login_AJAX.do", {
+        params: {
+          aid: id,
+          apwd: pwd,
+        },
+      });
+      return response;
+    } catch (error) {
+      return false;
+    }
+  }
   async getNoticeList(branch, pageNum) {
     try {
       const response = await this.escape.get("notice/list.do", {

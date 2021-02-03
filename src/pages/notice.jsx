@@ -7,10 +7,10 @@ import PaginationComponent from "../components/pagination/pagination";
 const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
   const [pageInfo, setPageInfo] = useState({});
   const [contents, setContents] = useState([]);
-  const [searchFlag, setSearchFlag] = useState(false);
+  const [id, setId] = useState(sessionStorage.getItem("id"));
   const history = useHistory();
 
-  const submitButton = useRef();
+  const submitButtonRef = useRef();
   const searchinputRef = useRef();
   const searchSelectRef = useRef();
 
@@ -18,6 +18,7 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
     setBranch(e.target.innerText);
   };
 
+  const onClickLogout = () => {};
   const getPage = useCallback(
     (pageNum = 1) => {
       const getData = EscapeApi.getNoticePageNumber(state.branch, pageNum);
@@ -87,14 +88,6 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
     getPage();
   }, [getPage]);
 
-  // useEffect(() => {
-  //   const result = EscapeApi.getNoticeList("홍대점", 1);
-  //   result.then((res) => {
-  //     if (res.status === 200) {
-  //       setContents([...res.data]);
-  //     }
-  //   });
-  // }, [EscapeApi]);
   useEffect(() => {
     //페이지번호를 기준으로 내용을 가져온다.
     getPageContext(pageInfo.pageNum);
@@ -110,7 +103,21 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
         </div>
         <div className="row d-flex justify-content-between mt-5">
           <div>
-            <span className="text-info">로그인</span>
+            {id === "admin" ? (
+              <span
+                className="text-info"
+                onClick={() => {
+                  history.push({
+                    pathname: "/login",
+                    state: {},
+                  });
+                }}
+              >
+                로그아웃
+              </span>
+            ) : (
+              <span className="text-info" onClick={() => {}}></span>
+            )}
           </div>
           <div className={styles.branch}>
             <span onClick={onClickBranch} className="text-success">
@@ -154,26 +161,28 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
                 type="text"
                 placeholder="검색어..."
               />
-              <button ref={submitButton}>검색</button>
+              <button ref={submitButtonRef}>검색</button>
             </form>
           </div>
-          <div>
-            <Button
-              variant="outline-primary"
-              onClick={() => {
-                history.push({
-                  pathname: "/reviewWrite",
-                  state: {
-                    set: "글작성",
-                    mode: "admin",
-                    branch: state.branch,
-                  },
-                });
-              }}
-            >
-              글작성
-            </Button>
-          </div>
+          {id === "admin" ? (
+            <div>
+              <Button
+                variant="outline-primary"
+                onClick={() => {
+                  history.push({
+                    pathname: "/reviewWrite",
+                    state: {
+                      set: "글작성",
+                      mode: "admin",
+                      branch: state.branch,
+                    },
+                  });
+                }}
+              >
+                글작성
+              </Button>
+            </div>
+          ) : null}
         </div>
         <div className="row mt-5">
           <Table borderless>
@@ -209,6 +218,7 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
                     </>
                   );
                 }
+                return false;
               })}
             </tbody>
           </Table>
