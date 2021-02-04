@@ -5,9 +5,6 @@
   width: 50%;
 }
 
-.button {
-}
-
 .font {
   font-family: Georgia, "Times New Roman", Times, serif;
 }
@@ -24,11 +21,6 @@ td {
 
 tr {
   border-top: 1px solid gray;
-}
-
-li {
-  height: 0;
-  margin-bottom: 1rem;
 }
 
 span:hover {

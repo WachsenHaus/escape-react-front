@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Pagination } from "react-bootstrap";
+import styles from "./pagination.module.css";
 
 const PaginationComponent = ({ getPage, pageInfo, setPageInfo }) => {
   const [pages, setPages] = useState([]);
@@ -22,7 +23,12 @@ const PaginationComponent = ({ getPage, pageInfo, setPageInfo }) => {
     const mItem = [];
     for (let i = pageInfo.startPageNum; i <= pageInfo.endPageNum; i++) {
       mItem.push(
-        <Pagination.Item key={i} active={i === active} onClick={onClickPage}>
+        <Pagination.Item
+          className={styles.list}
+          key={i}
+          active={i === active}
+          onClick={onClickPage}
+        >
           {i}
         </Pagination.Item>
       );
@@ -33,10 +39,12 @@ const PaginationComponent = ({ getPage, pageInfo, setPageInfo }) => {
   return (
     <>
       <Pagination>
-        {pageInfo.startPageNum !== 1 ? <Pagination.Prev onClick={onPrevPage} /> : null}
+        {pageInfo.startPageNum !== 1 ? (
+          <Pagination.Prev className={styles.list} onClick={onPrevPage} />
+        ) : null}
         {pages}
         {pageInfo.endPageNum < pageInfo.totalPageCount ? (
-          <Pagination.Next onClick={onNextPage} />
+          <Pagination.Next className={styles.list} onClick={onNextPage} />
         ) : null}
       </Pagination>
     </>

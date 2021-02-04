@@ -163,7 +163,7 @@ const EscapeReview = ({ EscapeApi }) => {
 
   return (
     <>
-      <Container>
+      <Container className={styles.list}>
         <div className="row mt-5">
           <h1>이용후기</h1>
         </div>
