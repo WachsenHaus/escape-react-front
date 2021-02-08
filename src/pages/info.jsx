@@ -60,12 +60,9 @@ const EscapeInfo = ({ branchData, kakaoConfig, state, setBranch }) => {
               <button id="closeBtn" class="${styles.closeButton}" >
                 x
               </button>
-              <h1 class="mt-1">
+              <h3 class="mt-3">
                 <span class="badge badge-info">ACORN 이스케이프 ${state.branch}</span>
-              </h1>
-              <br/>
-                <img class="avatar"  src="../resources/images/unnamed.png" />
-              <br/>
+              </h3>
               <h5 class="text-center" style="color:black;">
                 지금 바로 탈출해 보세요!
               </h5> 
