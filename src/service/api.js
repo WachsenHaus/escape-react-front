@@ -18,6 +18,14 @@ class Escape {
       return false;
     }
   }
+  async tryLogout() {
+    try {
+      const response = await this.escape.get("login/logout_AJAX.do");
+      return response;
+    } catch (error) {
+      return false;
+    }
+  }
   async getNoticeList(branch, pageNum) {
     try {
       const response = await this.escape.get("notice/list.do", {

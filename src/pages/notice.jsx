@@ -23,6 +23,7 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
 
   const onClickLogout = (e) => {
     console.log("로그아웃!");
+    EscapeApi.tryLogout();
     sessionStorage.removeItem("id");
     setId(null);
   };
@@ -69,6 +70,7 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
             viewcount: data.viewCount,
             branch: state.branch,
             destination: "notice",
+            id: id,
           },
         });
       }
