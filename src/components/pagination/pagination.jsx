@@ -38,7 +38,7 @@ const PaginationComponent = ({ getPage, pageInfo, setPageInfo }) => {
 
   return (
     <>
-      <Pagination>
+      <Pagination className="">
         {pageInfo.startPageNum !== 1 ? (
           <Pagination.Prev className={styles.list} onClick={onPrevPage} />
         ) : null}

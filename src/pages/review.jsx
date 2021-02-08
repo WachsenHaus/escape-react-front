@@ -240,7 +240,7 @@ const EscapeReview = ({ EscapeApi }) => {
           </Table>
         </div>
 
-        <div className={`${styles.font} row`}>
+        <div className={`${styles.font} row d-flex justify-content-center`}>
           <PaginationComponent
             setPageInfo={setPageInfo}
             pageInfo={pageInfo}
