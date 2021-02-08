@@ -13,6 +13,7 @@ const EscapeNav = (props) => {
     <>
       <Navbar
         className="navbar-padding"
+        style={{ width: "100vw" }}
         collapseOnSelect
         expand="lg"
         bg="dark"
