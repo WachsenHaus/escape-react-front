@@ -65,10 +65,11 @@ const EscapeReservationTitle = ({
     setMaxDay(calcMaxDay());
   }, []);
 
-  const onChangeBranch = () => {
-    selectedTheme.current.value = "전체테마";
+  const onChangeBranch = useCallback(() => {
+    const DEFAULT = "total";
+    selectedTheme.current.value = DEFAULT;
     setOwnedThemes(selectedBranch.current.value);
-  };
+  }, []);
   const onChangeDate = () => {
     setDate(selectedDate.current.value);
   };
