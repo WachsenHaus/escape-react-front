@@ -3,7 +3,8 @@ import axios from "axios";
 class Escape {
   constructor() {
     this.escape = axios.create({
-      baseURL: "http://localhost:8888/escape/",
+      baseURL: "http://localhost:8888/",
+      // baseURL: "http://escape-react.wachsenhaus.com/",
     });
   }
   async tryLogin(id, pwd) {
