@@ -306,8 +306,8 @@ const EditorReview = ({ EscapeApi }) => {
               config={{
                 plugins: [...installedPlugins],
                 ckfinder: {
-                  uploadUrl: "http://localhost:8888/review/imgUpload.do",
-                  // uploadUrl: "http://escape-react.wachsenhaus.com/review/imgUpload.do",
+                  // uploadUrl: "http://localhost:8888/review/imgUpload.do",
+                  uploadUrl: "http://escape-react.wachsenhaus.com/review/imgUpload.do",
                 },
                 toolbar: [
                   "fontFamily",
