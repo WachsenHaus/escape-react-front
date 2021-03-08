@@ -174,7 +174,7 @@ const EscapeReservationDetail = ({ EscapeApi }) => {
         </div>
 
         <button
-          style={{ "margin-left": "45%" }}
+          style={{ marginLeft: "45%" }}
           className="btn btn-outline-info"
           onClick={uploadReservationState}
         >

@@ -106,9 +106,9 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
     <>
       <Container>
         <div className="row mt-5">
-          <h1 className={styles.titleSize}>
-            공지사항 - <h3>{state.branch}</h3>
-          </h1>
+          <div className={styles.titleSize}>
+            공지사항 - <span>{state.branch}</span>
+          </div>
         </div>
         <div className="row d-flex justify-content-between mt-5">
           <div>
@@ -212,40 +212,32 @@ const EscapeNotice = ({ EscapeApi, state, setBranch }) => {
               </tr>
             </thead>
             <tbody>
-              {contents.map((item) => {
+              {contents.map((item, index) => {
                 if (state.branch === item.branch) {
                   return (
-                    <>
-                      <tr>
-                        <td
-                          className={`${styles.w10} ${styles.fontsize}  ${styles.unuse}`}
+                    <tr key={`table_${index}`}>
+                      <td className={`${styles.w10} ${styles.fontsize}  ${styles.unuse}`}>
+                        {item.num}
+                      </td>
+                      <td className={`${styles.w50}`}>
+                        <span
+                          data-num={item.num}
+                          onClick={onContentClick}
+                          className={`text-success ${styles.titleFontSize}`}
                         >
-                          {item.num}
-                        </td>
-                        <td className={`${styles.w50}`}>
-                          <span
-                            data-num={item.num}
-                            onClick={onContentClick}
-                            className={`text-success ${styles.titleFontSize}`}
-                          >
-                            {item.title}
-                          </span>
-                        </td>
-                        <td className={`${styles.w10} ${styles.fontsize}`}>
-                          {item.writer}
-                        </td>
-                        <td
-                          className={`${styles.w10} ${styles.fontsize}  ${styles.unuse}`}
-                        >
-                          {item.regdate}
-                        </td>
-                        <td
-                          className={`${styles.w10} ${styles.fontsize}  ${styles.unuse}`}
-                        >
-                          {item.viewCount}
-                        </td>
-                      </tr>
-                    </>
+                          {item.title}
+                        </span>
+                      </td>
+                      <td className={`${styles.w10} ${styles.fontsize}`}>
+                        {item.writer}
+                      </td>
+                      <td className={`${styles.w10} ${styles.fontsize}  ${styles.unuse}`}>
+                        {item.regdate}
+                      </td>
+                      <td className={`${styles.w10} ${styles.fontsize}  ${styles.unuse}`}>
+                        {item.viewCount}
+                      </td>
+                    </tr>
                   );
                 }
                 return false;

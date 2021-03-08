@@ -207,78 +207,76 @@ const EscapeInfo = ({ branchData, kakaoConfig, state, setBranch }) => {
               <Table responsive className={`${styles.borderless}`} borderless={true}>
                 <tbody>
                   {selectedBranch.버스 &&
-                    selectedBranch.버스.map((item) => (
-                      <>
-                        <tr>
-                          <td>
-                            {item.정류장이름} : {item.정류장번호}
-                          </td>
-                          <td>
-                            {Object.keys(item).includes("간선") ? (
-                              <>
-                                <span className="badge badge-info">간선</span>
-                                {item["간선"].join(",")}
-                              </>
-                            ) : (
-                              <></>
-                            )}
-                            {Object.keys(item).includes("지선") ? (
-                              <>
-                                <br></br>
-                                <span className="badge badge-danger">지선</span>
-                                {item["지선"].join(",")}
-                              </>
-                            ) : (
-                              <></>
-                            )}
-                            {Object.keys(item).includes("급행") ? (
-                              <>
-                                <br></br>
-                                <span className="badge badge-success">급행</span>
-                                {item["급행"].join(",")}
-                              </>
-                            ) : (
-                              <></>
-                            )}
-                            {Object.keys(item).includes("일반") ? (
-                              <>
-                                <br></br>
-                                <span className="badge badge-success">급행</span>
-                                {item["일반"].join(",")}
-                              </>
-                            ) : (
-                              <></>
-                            )}
-                            {Object.keys(item).includes("공항") ? (
-                              <>
-                                <br></br>
-                                <span className="badge badge-info">공항</span>
-                                {item["공항"].join(",")}
-                              </>
-                            ) : (
-                              <></>
-                            )}
-                            {Object.keys(item).includes("광역") ? (
-                              <>
-                                <br></br>
-                                <span className="badge badge-warning">광역</span>
-                                {item["광역"].join(",")}
-                              </>
-                            ) : (
-                              <></>
-                            )}
-                            {Object.keys(item).includes("좌석") ? (
-                              <>
-                                <br></br>
-                                <span className="badge badge-info">좌석</span>
-                                {item["좌석"].join(",")}
-                              </>
-                            ) : (
-                              <></>
-                            )}
-                          </td>
-                        </tr>
-                      </>
+                    selectedBranch.버스.map((item, index) => (
+                      <tr key={`bus_${index}`}>
+                        <td>
+                          {item.정류장이름} : {item.정류장번호}
+                        </td>
+                        <td>
+                          {Object.keys(item).includes("간선") ? (
+                            <>
+                              <span className="badge badge-info">간선</span>
+                              {item["간선"].join(",")}
+                            </>
+                          ) : (
+                            <></>
+                          )}
+                          {Object.keys(item).includes("지선") ? (
+                            <>
+                              <br></br>
+                              <span className="badge badge-danger">지선</span>
+                              {item["지선"].join(",")}
+                            </>
+                          ) : (
+                            <></>
+                          )}
+                          {Object.keys(item).includes("급행") ? (
+                            <>
+                              <br></br>
+                              <span className="badge badge-success">급행</span>
+                              {item["급행"].join(",")}
+                            </>
+                          ) : (
+                            <></>
+                          )}
+                          {Object.keys(item).includes("일반") ? (
+                            <>
+                              <br></br>
+                              <span className="badge badge-success">급행</span>
+                              {item["일반"].join(",")}
+                            </>
+                          ) : (
+                            <></>
+                          )}
+                          {Object.keys(item).includes("공항") ? (
+                            <>
+                              <br></br>
+                              <span className="badge badge-info">공항</span>
+                              {item["공항"].join(",")}
+                            </>
+                          ) : (
+                            <></>
+                          )}
+                          {Object.keys(item).includes("광역") ? (
+                            <>
+                              <br></br>
+                              <span className="badge badge-warning">광역</span>
+                              {item["광역"].join(",")}
+                            </>
+                          ) : (
+                            <></>
+                          )}
+                          {Object.keys(item).includes("좌석") ? (
+                            <>
+                              <br></br>
+                              <span className="badge badge-info">좌석</span>
+                              {item["좌석"].join(",")}
+                            </>
+                          ) : (
+                            <></>
+                          )}
+                        </td>
+                      </tr>
                     ))}
                 </tbody>
               </Table>

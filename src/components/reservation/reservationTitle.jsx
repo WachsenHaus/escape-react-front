@@ -119,8 +119,8 @@ const EscapeReservationTitle = ({
               className={`form-control ${styles.fontsize}`}
             >
               <option value={"total"}>전체테마</option>
-              {state.ownedThemes.map((item) => (
-                <option value={item.title}>
+              {state.ownedThemes.map((item, index) => (
+                <option value={item.title} key={`thema_${index}`}>
                   {item.title} {item.level}
                 </option>
               ))}
@@ -136,49 +136,47 @@ const EscapeReservationTitle = ({
             </thead>
             <tbody>
               {themaList &&
-                themaList.map((item) => {
+                themaList.map((item, index) => {
                   return (
-                    <>
-                      <tr className="row">
-                        <td className="col-3 text-center">{item.time}</td>
-                        <td className="col-6 text-center">{item.thema}</td>
-                        {item.state === "매진" && (
-                          <td className="col-3 text-center">
-                            <span className="badge badge-danger">{item.state}</span>
-                          </td>
-                        )}
-                        {item.state === "예약진행중" && (
-                          <td className="col-3 text-center">
-                            <span className="badge badge-warning">{item.state}</span>
-                          </td>
-                        )}
-                        {item.state === "예약하기" && (
-                          <td className="col-3 text-center">
-                            <button
-                              className="badge badge-info"
-                              onClick={() => {
-                                history.push({
-                                  pathname: "/reservation-detail",
-                                  state: {
-                                    date: state.date,
-                                    time: item.time,
-                                    thema: item.thema,
-                                    branch: state.branch,
-                                  },
-                                });
-                              }}
-                            >
-                              {item.state}
-                            </button>
-                          </td>
-                        )}
-                      </tr>
-                    </>
+                    <tr className="row" key={`themaItem_${index}`}>
+                      <td className="col-3 text-center">{item.time}</td>
+                      <td className="col-6 text-center">{item.thema}</td>
+                      {item.state === "매진" && (
+                        <td className="col-3 text-center">
+                          <span className="badge badge-danger">{item.state}</span>
+                        </td>
+                      )}
+                      {item.state === "예약진행중" && (
+                        <td className="col-3 text-center">
+                          <span className="badge badge-warning">{item.state}</span>
+                        </td>
+                      )}
+                      {item.state === "예약하기" && (
+                        <td className="col-3 text-center">
+                          <button
+                            className="badge badge-info"
+                            onClick={() => {
+                              history.push({
+                                pathname: "/reservation-detail",
+                                state: {
+                                  date: state.date,
+                                  time: item.time,
+                                  thema: item.thema,
+                                  branch: state.branch,
+                                },
+                              });
+                            }}
+                          >
+                            {item.state}
+                          </button>
+                        </td>
+                      )}
+                    </tr>
                   );
                 })}
             </tbody>
           </Table>
-          <Button variant="primary" style={{ "margin-left": "85%" }}>
+          <Button variant="primary" style={{ marginLeft: "85%" }}>
             예약취소
           </Button>
         </div>

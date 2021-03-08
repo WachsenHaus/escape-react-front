@@ -170,7 +170,7 @@ const EscapeReview = ({ EscapeApi }) => {
         <div className="row d-flex justify-content-between align-items-center mb-2">
           <div>
             <form>
-              <label for="condition">검색조건</label>
+              <label htmlFor="condition">검색조건</label>
               <select ref={searchSelectRef} name="condition" id="condition">
                 <option value="title_content">제목+내용</option>
                 <option value="title">제목</option>
@@ -223,30 +223,28 @@ const EscapeReview = ({ EscapeApi }) => {
               </tr>
             </thead>
             <tbody>
-              {contents.map((item) => (
-                <>
-                  <tr>
-                    <td className={`${styles.w10} ${styles.fontsize}  ${styles.unuse}`}>
-                      {item.num}
-                    </td>
-                    <td className={`${styles.w50}`}>
-                      <span
-                        data-num={item.num}
-                        onClick={onContentClick}
-                        className={`text-success ${styles.titleFontSize}`}
-                      >
-                        {item.title}
-                      </span>
-                    </td>
-                    <td className={`${styles.w10} ${styles.fontsize}`}>{item.writer}</td>
-                    <td className={`${styles.w10} ${styles.fontsize} ${styles.unuse}`}>
-                      {item.regdate}
-                    </td>
-                    <td className={`${styles.w10} ${styles.fontsize} ${styles.unuse}`}>
-                      {item.viewcount}
-                    </td>
-                  </tr>
-                </>
+              {contents.map((item, index) => (
+                <tr key={`tableReview_${index}`}>
+                  <td className={`${styles.w10} ${styles.fontsize}  ${styles.unuse}`}>
+                    {item.num}
+                  </td>
+                  <td className={`${styles.w50}`}>
+                    <span
+                      data-num={item.num}
+                      onClick={onContentClick}
+                      className={`text-success ${styles.titleFontSize}`}
+                    >
+                      {item.title}
+                    </span>
+                  </td>
+                  <td className={`${styles.w10} ${styles.fontsize}`}>{item.writer}</td>
+                  <td className={`${styles.w10} ${styles.fontsize} ${styles.unuse}`}>
+                    {item.regdate}
+                  </td>
+                  <td className={`${styles.w10} ${styles.fontsize} ${styles.unuse}`}>
+                    {item.viewcount}
+                  </td>
+                </tr>
               ))}
             </tbody>
           </Table>

@@ -9,6 +9,8 @@
 }
 .titleSize {
   font-size: 1rem;
+  display: flex;
+  align-items: center;
 }
 .font {
   font-family: Georgia, "Times New Roman", Times, serif;

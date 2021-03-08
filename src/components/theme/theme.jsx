@@ -7,9 +7,9 @@ const EscapeTheme = ({ state, setOwnedThemes }) => {
   return (
     <>
       <Container>
-        <div class="text-center">
-          <h1 class="head-text">당신의 상상력,판단력,추리 능력은?</h1>
-          <p class="head-text">
+        <div className="text-center">
+          <h1 className="head-text">당신의 상상력,판단력,추리 능력은?</h1>
+          <p className="head-text">
             CUBE Escape Game은 참가자가 실제 상황을 방불케 하는 특별한 테마 룸에 갇힌 채
             60분 이내에
             <br />
