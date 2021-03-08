@@ -209,30 +209,42 @@ const EscapeReview = ({ EscapeApi }) => {
           <Table borderless>
             <thead>
               <tr>
-                <th className={styles.w10}>번호</th>
-                <th className={styles.w50}>제목</th>
-                <th className={styles.w10}>작성자</th>
-                <th className={styles.w10}>날짜</th>
-                <th className={styles.w10}>조회</th>
+                <th className={`${styles.w10} ${styles.fontsize} ${styles.unuse}`}>
+                  번호
+                </th>
+                <th className={`${styles.w50} ${styles.fontsize}`}>제목</th>
+                <th className={`${styles.w10} ${styles.fontsize}`}>작성자</th>
+                <th className={`${styles.w10} ${styles.fontsize}  ${styles.unuse}`}>
+                  날짜
+                </th>
+                <th className={`${styles.w10} ${styles.fontsize}  ${styles.unuse}`}>
+                  조회
+                </th>
               </tr>
             </thead>
             <tbody>
               {contents.map((item) => (
                 <>
                   <tr>
-                    <td className={styles.w10}>{item.num}</td>
-                    <td className={styles.w50}>
+                    <td className={`${styles.w10} ${styles.fontsize}  ${styles.unuse}`}>
+                      {item.num}
+                    </td>
+                    <td className={`${styles.w50}`}>
                       <span
                         data-num={item.num}
                         onClick={onContentClick}
-                        className={"text-success"}
+                        className={`text-success ${styles.titleFontSize}`}
                       >
                         {item.title}
                       </span>
                     </td>
-                    <td className={styles.w10}>{item.writer}</td>
-                    <td className={styles.w10}>{item.regdate}</td>
-                    <td className={styles.w10}>{item.viewcount}</td>
+                    <td className={`${styles.w10} ${styles.fontsize}`}>{item.writer}</td>
+                    <td className={`${styles.w10} ${styles.fontsize} ${styles.unuse}`}>
+                      {item.regdate}
+                    </td>
+                    <td className={`${styles.w10} ${styles.fontsize} ${styles.unuse}`}>
+                      {item.viewcount}
+                    </td>
                   </tr>
                 </>
               ))}

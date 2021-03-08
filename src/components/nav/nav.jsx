@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, Nav, Navbar, NavItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import styles from "./nav.module.css";
 
 const EscapeNav = (props) => {
   const [isBrandClick, setIsBrandClick] = useState(false);
@@ -13,7 +14,7 @@ const EscapeNav = (props) => {
     <>
       <Navbar
         className="navbar-padding"
-        style={{ width: "100vw" }}
+        // style={{ width: "100vw" }}
         collapseOnSelect
         expand="lg"
         bg="dark"
@@ -23,7 +24,10 @@ const EscapeNav = (props) => {
           <LinkContainer className="ml-3 mr-3" to="/" onClick={clickBrandButton}>
             <Navbar.Brand className="navbar-brand">Choi Escape</Navbar.Brand>
           </LinkContainer>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Toggle
+            aria-controls="responsive-navbar-nav"
+            className={styles.toggle}
+          />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto ml-auto">
               <LinkContainer className="ml-3 mr-3" to="/info">
