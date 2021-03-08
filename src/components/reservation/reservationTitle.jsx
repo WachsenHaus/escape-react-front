@@ -83,7 +83,7 @@ const EscapeReservationTitle = ({
             <input
               ref={selectedDate}
               onChange={onChangeDate}
-              className="form-control"
+              className={`form-control ${styles.fontsize}`}
               type="date"
               value={state.date}
               min={minDay}
@@ -98,7 +98,7 @@ const EscapeReservationTitle = ({
               value={state.branch}
               name=""
               id=""
-              className="form-control"
+              className={`form-control ${styles.fontsize}`}
             >
               <option value="홍대점">홍대점</option>
               <option value="대구점">대구점</option>
@@ -116,7 +116,7 @@ const EscapeReservationTitle = ({
               name=""
               ref={selectedTheme}
               onChange={getOwnedBranchSchedule}
-              className="form-control"
+              className={`form-control ${styles.fontsize}`}
             >
               <option value={"total"}>전체테마</option>
               {state.ownedThemes.map((item) => (
