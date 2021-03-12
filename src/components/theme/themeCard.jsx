@@ -11,14 +11,18 @@ const EscapeThemeCard = ({ theme }) => {
 
   return (
     <>
-      <li ref={card} className={`${styles.thema} col-md-4`} style={{ opacity: state }}>
+      <li
+        ref={card}
+        className={`${styles.thema} col-md-4`}
+        style={{ opacity: state, height: "100%" }}
+      >
         <div className={styles.border}>
           <div className="thema__border__picture">
             <div>
               <div className={styles.wrap__box}>
                 <img src={`${theme.img}`} alt={theme.alt} />
                 <div className={`${styles.note}`}>
-                  <span>{theme.contentsText}</span>
+                  <span className={`${styles.span}`}>{theme.contentsText}</span>
                 </div>
               </div>
             </div>

@@ -57,19 +57,15 @@ const EscapeStoreIntro = ({ setBranch }) => {
             원하시는 지점에서 예약 가능한 일자 확인 또는 예약을 하시려면, 예약하기 버튼을
             눌러 주세요.
           </h5>
-          <div className="row d-flex flex-wrap">
-            <div className="col-lg-2"></div>
+          <div className="row d-flex flex-wrap justify-content-center align-items-center">
             {cards.map((card, index) => (
               <EscapeStoreCard setBranch={setBranch} key={card.id} card={card} />
             ))}
-            <div className="col-lg-2"></div>
           </div>
-          <div className="row d-flex flex-wrap">
-            <div className="col-lg-2"></div>
+          <div className="row d-flex flex-wrap justify-content-center align-items-center">
             {cards2.map((card, index) => (
               <EscapeStoreCard setBranch={setBranch} key={card.id} card={card} />
             ))}
-            <div className="col-lg-2"></div>
           </div>
         </Container>
       </div>

@@ -1,0 +1,17 @@
+.box {
+  height: 10rem;
+}
+.box > * {
+  height: 50%;
+}
+.title {
+  font-size: 0.7rem;
+  word-break: keep-all;
+  text-align: center;
+}
+
+.column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

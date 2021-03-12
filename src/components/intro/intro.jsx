@@ -21,7 +21,7 @@ const EscapeIntro = ({ card }) => {
               <div className="col-lg-3 col-md-6 px-5">
                 <div className="d-flex flex-column justify-content-center align-items-center">
                   <img src={`${sub01_01}`} alt="" />
-                  <span className="text-muted mt-5">예약방법</span>
+                  <p className="text-muted mt-5">예약방법</p>
                   <hr className="w-25 solid" />
                 </div>
                 <p className="text-muted">
@@ -33,7 +33,7 @@ const EscapeIntro = ({ card }) => {
               <div className="col-lg-3 col-md-6 px-5">
                 <div className="d-flex flex-column justify-content-center align-items-center">
                   <img src={`${sub01_02}`} alt="" />
-                  <span className="text-muted mt-5">진행방법</span>
+                  <p className="text-muted mt-5">진행방법</p>
                   <hr className="w-25 solid" />
                 </div>
                 <p className="text-muted">
@@ -45,7 +45,7 @@ const EscapeIntro = ({ card }) => {
               <div className="col-lg-3 col-md-6 px-5">
                 <div className="d-flex flex-column justify-content-center align-items-center">
                   <img src={`${sub01_03}`} alt="" />
-                  <span className="text-muted mt-5">입장제한 및 환불 불가</span>
+                  <p className="text-muted mt-5">입장제한 및 환불 불가</p>
                   <hr className="w-25 solid" />
                 </div>
                 <p className="text-muted">
@@ -57,7 +57,7 @@ const EscapeIntro = ({ card }) => {
               <div className="col-lg-3 col-md-6 px-5">
                 <div className="d-flex flex-column justify-content-center align-items-center">
                   <img src={`${sub01_04}`} alt="" />
-                  <span className="text-muted mt-5">기밀누설금지</span>
+                  <p className="text-muted mt-5">기밀누설금지</p>
                   <hr className="w-25 solid" />
                 </div>
                 <p className="text-muted">

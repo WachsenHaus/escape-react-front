@@ -158,7 +158,7 @@ function App() {
             <EscapeReview EscapeApi={EscapeApi} />
           </Route>
           <Route exact path="/reservation-detail">
-            <EscapeReservationDetail EscapeApi={EscapeApi} />
+            <EscapeReservationDetail EscapeApi={EscapeApi} Regex={Regex} />
           </Route>
           <Route exact path="/reservation-succeed">
             <EscapeReservationSucceed EscapeApi={EscapeApi} />

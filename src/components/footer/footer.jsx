@@ -1,4 +1,6 @@
 import React from "react";
+import sns01 from "../../images/sns01.jpg";
+import sns02 from "../../images/sns02.jpg";
 
 const EscapeFooter = (props) => {
   return (
@@ -23,13 +25,13 @@ const EscapeFooter = (props) => {
               </p>
             </div>
             <div className="col-md-2">
-              <h4>SNS</h4>
+              {/* <h4>SNS</h4>
               <a href="#" className="mr-2">
-                <img src="/escape/resources/img/sns01.jpg" alt="" />
+                <img src={`${sns01}`} alt="sns1" />
               </a>
               <a href="#">
-                <img src="/escape/resources/img/sns02.jpg" alt="" />
-              </a>
+                <img src={`${sns02}`} alt="sns2" />
+              </a> */}
             </div>
           </div>
         </div>

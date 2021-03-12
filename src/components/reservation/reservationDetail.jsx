@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Container } from "react-bootstrap";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { Container, Form } from "react-bootstrap";
 import { useHistory, useLocation } from "react-router-dom";
-const EscapeReservationDetail = ({ EscapeApi }) => {
+const EscapeReservationDetail = ({ EscapeApi, Regex }) => {
   const historyState = useLocation().state;
   const history = useHistory();
+  const DID_NOT_TYPING = "";
 
   const [state, setState] = useState(
     historyState && {
@@ -14,7 +15,14 @@ const EscapeReservationDetail = ({ EscapeApi }) => {
       // }
     }
   );
-
+  const [inputState, setInputState] = useState({
+    name: DID_NOT_TYPING,
+    nameSucceed: DID_NOT_TYPING,
+    phone: DID_NOT_TYPING,
+    phoneSucceed: DID_NOT_TYPING,
+    checkNumber: DID_NOT_TYPING,
+    checkNumberSucceed: DID_NOT_TYPING,
+  });
   const numberOfPeopleRef = useRef();
   const costRef = useRef();
   const nameRef = useRef();
@@ -23,6 +31,11 @@ const EscapeReservationDetail = ({ EscapeApi }) => {
   useEffect(() => {}, []);
 
   const uploadReservationState = () => {
+    if (!(inputState.nameSucceed && inputState.phoneSucceed)) {
+      alert("값이 올바르지 않습니다.");
+      return;
+    }
+
     const data = {
       name: nameRef.current.value,
       date: state.date,
@@ -103,6 +116,39 @@ const EscapeReservationDetail = ({ EscapeApi }) => {
       }
     }
   };
+  const onChange = useCallback((event) => {
+    let func;
+    if (event.target.name === "name") {
+      func = Regex.checkHangleName;
+    } else if (event.target.name === "phone") {
+      func = Regex.checkNonHipenPhoneNumber;
+    } else if (event.target.name === "checkNumber") {
+      func = Regex.checkDigitNumber;
+    }
+    if (event.target.value !== DID_NOT_TYPING) {
+      func(event.target) === false
+        ? setInputState((state) => {
+            const updated = { ...state };
+            updated[`${event.target.name}`] = event.target.value;
+            updated[`${event.target.name}Succeed`] = false;
+            return updated;
+          })
+        : setInputState((state) => {
+            const updated = { ...state };
+            updated[`${event.target.name}`] = event.target.value;
+            updated[`${event.target.name}Succeed`] = true;
+            return updated;
+          });
+    }
+    if (event.target.value === DID_NOT_TYPING) {
+      setInputState((state) => {
+        const updated = { ...state };
+        updated[`${event.target.name}`] = DID_NOT_TYPING;
+        updated[`${event.target.name}Succeed`] = DID_NOT_TYPING;
+        return updated;
+      });
+    }
+  });
 
   return (
     <>
@@ -160,16 +206,46 @@ const EscapeReservationDetail = ({ EscapeApi }) => {
         <div className="form-group row">
           <div className="col-6">
             <label htmlFor="resname">예약자 성함</label>
-            <input ref={nameRef} type="text" className="form-control" />
+            {/* <input ref={nameRef} type="text" className="form-control" /> */}
+            <Form.Group>
+              <Form.Control
+                name={"name"}
+                ref={nameRef}
+                onChange={onChange}
+                placeholder="예약자 성함"
+                aria-label="Username"
+                isInvalid={
+                  inputState.name !== DID_NOT_TYPING ? !!!inputState.nameSucceed : ""
+                }
+                isValid={
+                  inputState.name !== DID_NOT_TYPING ? !!inputState.nameSucceed : ""
+                }
+              />
+            </Form.Group>
           </div>
           <div className="col-6">
             <label htmlFor="">연락처</label>
-            <input
+            {/* <input
               ref={phoneRef}
               type="text"
               className="form-control"
               placholeder=" '-'없이 숫자만 입력해주세요."
-            />
+            /> */}
+            <Form.Group>
+              <Form.Control
+                ref={phoneRef}
+                name={"phone"}
+                onChange={onChange}
+                placeholder="연락처"
+                aria-label="UserPhone"
+                isInvalid={
+                  inputState.phone !== DID_NOT_TYPING ? !!!inputState.phoneSucceed : ""
+                }
+                isValid={
+                  inputState.phone !== DID_NOT_TYPING ? !!inputState.phoneSucceed : ""
+                }
+              />
+            </Form.Group>
           </div>
         </div>
 
